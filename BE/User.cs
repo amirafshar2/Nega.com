@@ -21,6 +21,9 @@ namespace BE
         public bool Status { get; set; }
         public string? StatusİnCompany { get; set; }
         public string? About { get; set; }
-        
+        public string Facebook { get; set; }
+        public string İnstagram { get; set; }
+        public string Telegram { get; set; }
+
     }
 }

@@ -17,5 +17,6 @@ namespace BE
         public string İmage1 { get; set; }  
         public string? İmage2 { get; set; }
         public bool Status { get; set; }
+        public string MapLocation { get; set; }
     }
 }
