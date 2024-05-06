@@ -34,23 +34,23 @@ $(function() {
                 [ Navbar ( Change Background & Logo ) ]
     -----------------------------------------------------------------*/
 
-    //wind.on("scroll",function () {
+    wind.on("scroll",function () {
 
-    //    var bodyScroll = wind.scrollTop(),
-    //        navbar = $(".navbar"),
-    //        logo = $(".navbar .logo> img");
+        var bodyScroll = wind.scrollTop(),
+            navbar = $(".navbar"),
+            logo = $(".navbar .logo> img");
 
-    //    if(bodyScroll > 100){
+        if(bodyScroll > 100){
 
-    //        navbar.addClass("nav-scroll");
-    //        logo.attr('src', '~/simba/negadark.png');
+            navbar.addClass("nav-scroll");
+            logo.attr('src', '/simba/negadark.png');
 
-    //    }else{
+        }else{
 
-    //        navbar.removeClass("nav-scroll");
-    //        logo.attr('src', '~/simba/negalight.png');
-    //    }
-    //});
+            navbar.removeClass("nav-scroll");
+            logo.attr('src', '/simba/negalight.png');
+        }
+    });
 
 
     // close navbar-collapse when a  clicked
