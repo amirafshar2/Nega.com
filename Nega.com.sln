@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nega.com", "Nega.com\Nega.com.csproj", "{2D3A2121-BCF2-48EC-A4C0-EEF7825A9DDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nega.com", "Nega.com\Nega.com.csproj", "{2D3A2121-BCF2-48EC-A4C0-EEF7825A9DDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{BAAA9E70-3789-478A-929F-D9FE33C630E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{BAAA9E70-3789-478A-929F-D9FE33C630E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BE", "BE\BE.csproj", "{BBC7272A-7CD4-40FF-A463-5855F6DACC6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BE", "BE\BE.csproj", "{BBC7272A-7CD4-40FF-A463-5855F6DACC6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{7ECC361F-A7FE-4E59-B3B6-1ADC2A225277}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{7ECC361F-A7FE-4E59-B3B6-1ADC2A225277}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
