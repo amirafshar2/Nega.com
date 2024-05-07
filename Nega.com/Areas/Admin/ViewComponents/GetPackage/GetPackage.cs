@@ -16,8 +16,16 @@ namespace Negacom.Areas.Admin.ViewComponents.GetPackage
         PackageManager _packageBLL = new PackageManager(new EFpackageRepository());
         public IViewComponentResult Invoke()
         {
-            var value=_packageBLL.GetAll();
-            return View(value);
+            var value = _packageBLL.GetAll();
+            if (value != null)
+            {
+                return View(value);
+            }
+            else
+            {
+                return View();
+            }
+         
         }
     }
 }
