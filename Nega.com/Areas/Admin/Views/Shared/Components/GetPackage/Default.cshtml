@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model IEnumerable<BE.Package >
+
+    <h2>Package List</h2>
+@foreach (var item in Model)
+{
+    <div class="container">
+        <p style="display:none ">@item.id</p>
+        <h2>@item.Name</h2>
+        <div class="card" style="width:400px">
+            <img class="card-img-top" src="\nega.com\packimg\@item.Picture" alt="Card image" style="display:flex">
+            <div class="card-body">
+                <h4 class="card-title">@item.Title</h4>
+                <p class="card-text">@item.Content</p>
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+    <br>
+
+}
+<img src="c:\users\emir\source\repos\nega.com\nega.com\packimg\891a6e49-dfdc-46d5-99cb-8ab55e4a540e.jpg" />

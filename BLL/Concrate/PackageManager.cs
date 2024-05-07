@@ -20,27 +20,27 @@ namespace BLL.Concrate
 
         public void Add(Package t)
         {
-            throw new NotImplementedException();
+             _ıpackagedal.Add(t);
         }
 
         public void Delete(Package t)
         {
-            throw new NotImplementedException();
+            _ıpackagedal.Delete(t);
         }
 
         public List<Package> GetAll()
         {
-            throw new NotImplementedException();
+            return _ıpackagedal.GetAll();
         }
 
         public Package GetById(int id)
         {
-            throw new NotImplementedException();
+            return _ıpackagedal.GetBayId(id);
         }
 
         public void Update(Package t)
         {
-            throw new NotImplementedException();
+            _ıpackagedal.Update(t);
         }
     }
 }
