@@ -24,6 +24,7 @@ namespace BE
         public string Facebook { get; set; }
         public string İnstagram { get; set; }
         public string Telegram { get; set; }
+        public List<Blog> Blogs { get; set; }
 
     }
 }
