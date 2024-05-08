@@ -3,17 +3,29 @@
 *@
 
 
-
-
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
 
 
 @model IEnumerable<BE.Package >
 
-    <h2>List</h2>
+
+<h1>List</h1>
+<br />
 @foreach (var item in Model)
 {
-    <div class="container">
-        <p style="display:none ">@item.id</p>
+    <div class="container p-1">
+        <table style="display:none">
+            <tr style="display:none">
+                <td style="display:none ">@item.id</td>
+            </tr>
+        </table>
         <h2>@item.Name</h2>
         <div class="card" style="width:400px">
             <img class="card-img-top" src="~/image/Pack/@item.Picture" alt="Card image" style="display:flex">
@@ -21,15 +33,14 @@
                 <h4 class="card-title">@item.Title</h4>
                 <h5 class="card-title">@item.Price $</h5>
                 <p class="card-text">@item.Content</p>
-                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="/Admin/Package/Update/@item.id" class="btn btn-success btt">Update</a>
+
                 <a href="#" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>
     <br>
 
+
 }
 
-
-
-       

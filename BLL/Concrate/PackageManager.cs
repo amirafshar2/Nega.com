@@ -30,7 +30,9 @@ namespace BLL.Concrate
 
         public List<Package> GetAll()
         {
-            return _ıpackagedal.GetAll();
+            var value = _ıpackagedal.GetAll();
+             value.Reverse();
+            return value;
         }
 
         public Package GetById(int id)
@@ -40,7 +42,9 @@ namespace BLL.Concrate
 
         public void Update(Package t)
         {
-            _ıpackagedal.Update(t);
+           
+                _ıpackagedal.Update(t);
+           
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BE;
 using DAL.Abstract;
+
 using DAL.Repository;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,9 @@ using System.Threading.Tasks;
 
 namespace DAL.EntityFrameWork
 {
-    public class EFpackageRepository : GenericRepository<Package>,IPackageDal
+    public class EFpackageRepository : GenericRepository<Package>, IPackageDal
     {
+      
+        
     }
 }

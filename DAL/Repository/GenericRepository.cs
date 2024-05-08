@@ -1,5 +1,5 @@
 ﻿using DAL.Abstract;
-using DAL.DB;
+using DAL.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace DAL.Repository
 {
     public class GenericRepository<T> : IGenericDal<T> where T : class
     {
-        DBCon db = new DBCon();
+        DB db = new DB();
         public void Add(T item)
         {
             db.Add(item);
