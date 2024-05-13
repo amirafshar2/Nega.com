@@ -166,6 +166,19 @@ namespace Nega.com.Areas.Admin.Controllers
             }
             
         }
+        public IActionResult Delete(int id)
+        {
+            if (id == 0)
+            {
+                return View();
+            }
+            else
+            {
+                _PckageBLL.Delete(_PckageBLL.GetById(id));
+                return View("Index");
+            }
+            
+        }
    
     }
 }
