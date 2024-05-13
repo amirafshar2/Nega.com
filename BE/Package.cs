@@ -14,6 +14,24 @@ namespace BE
         public string Title { get; set; }
         public string Content { get; set; }
         public string? Picture { get; set; }
+        public string? Picture2 { get; set; }
+        public string? Picture3 { get; set; }
+        public string? Picture4 { get; set; }
+        public string? Picture5 { get; set; }
+        public string? Picture6 { get; set; }
+        public string? Picture7 { get; set; }
+        public string? Picture8 { get; set; }
+        public string? Picture9 { get; set; }
+        public string? Picture10 { get; set; }
+        public string Title2 { get; set; }
+        public string Title3 { get; set; }
+        public string Title4 { get; set; }
+        public string Title5 { get; set; }
+        public string Title6 { get; set; }
+        public string Title7 { get; set; }
+        public string Title8 { get; set; }
+        public string Title9 { get; set; }
+        public string Title10 { get; set; }
         public string? Content2 { get; set; }
         public string? Content3 { get; set; }
         public string? Content4 { get; set; }
