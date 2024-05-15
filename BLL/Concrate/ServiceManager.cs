@@ -20,27 +20,27 @@ namespace BLL.Concrate
 
         public void Add(Services t)
         {
-            throw new NotImplementedException();
+            _iservicedal.Add(t);
         }
 
         public void Delete(Services t)
         {
-            throw new NotImplementedException();
+            _iservicedal.Delete(t);
         }
 
         public List<Services> GetAll()
         {
-            throw new NotImplementedException();
+            return _iservicedal.GetAll();
         }
 
         public Services GetById(int id)
         {
-            throw new NotImplementedException();
+            return _iservicedal.GetBayId(id);
         }
 
         public void Update(Services t)
         {
-            throw new NotImplementedException();
+            _iservicedal.Update(t);
         }
     }
 }
