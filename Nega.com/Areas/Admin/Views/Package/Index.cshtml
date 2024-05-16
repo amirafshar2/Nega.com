@@ -24,25 +24,25 @@
                     <form method="post" enctype="multipart/form-data" autocomplete="off">
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Package Name</label>
+                            <label class="col-sm-2 col-form-label">Package Name<text class="text text-danger">*</text></label>
                             <div class="col-sm-10"><input type="text" class="form-control" id="PName" name="Name" ></div>
                         </div>
                         <div class="hr-line-dashed"></div>
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Title</label>
+                            <label class="col-sm-2 col-form-label">Title<text class="text text-danger">*</text></label>
                             <div class="col-sm-10"><input type="text" class="form-control" id="PTitle"  name="Title"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Price</label>
+                            <label class="col-sm-2 col-form-label">Price<text class="text text-danger">*</text></label>
                             <div class="col-sm-10"><input type="text" class="form-control" id="PPrice"  name="Price"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Content</label>
+                            <label class="col-sm-2 col-form-label">Content<text class="text text-danger">*</text></label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" name="Content" style="height: 150px;" id="PContent"></textarea>
                             </div>
@@ -52,7 +52,7 @@
                             <img id="preview" src="~/image/pic/picico.png" alt="Resim önizleme" style="display:flex;" class="card-img-top m-2 p-2" />
                             <div class="custom-file">
                                 <input id="logo" type="file" class="custom-file-input" name="Picture">
-                                <label for="logo" class="custom-file-label">Choose file...</label>
+                                <label for="logo" class="custom-file-label">Choose file...<text class="text text-danger">*</text></label>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>

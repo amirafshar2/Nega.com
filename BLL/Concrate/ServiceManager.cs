@@ -1,6 +1,7 @@
 ﻿using BE;
 using BLL.Abstract;
 using DAL.Abstract;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,9 @@ namespace BLL.Concrate
 
         public List<Services> GetAll()
         {
-            return _iservicedal.GetAll();
+            var value = _iservicedal.GetAll();
+            value.Reverse();
+            return value;
         }
 
         public Services GetById(int id)

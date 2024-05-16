@@ -241,7 +241,7 @@ namespace Nega.com.Areas.Admin.Controllers
 
                 }
              
-                return View();
+                return View("Index");
             }
             else
             {
