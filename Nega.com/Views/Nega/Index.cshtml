@@ -7,46 +7,7 @@
 
 <section class="hero section-padding" data-scroll-index="1">
     <div class="container">
-        <div class="row">
-
-            <div class="offset-lg-2 col-lg-8">
-                <div class="intro text-center mb-80">
-                    <h6 class="sub-title">معرفی</h6>
-                    <h4 class="mb-20">خدماتی که ارائه می‌دهیم</h4>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="item mb-30">
-                    <span class="icon lnr lnr-rocket"></span>
-                    <h6>امن و مطمئن</h6>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="item mb-30">
-                    <span class="icon lnr lnr-cog"></span>
-                    <h6>تنظیمات سریع</h6>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="item mb-sm30">
-                    <span class="icon lnr lnr-laptop-phone"></span>
-                    <h6>طراحی مدرن</h6>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="item">
-                    <span class="icon lnr lnr-eye"></span>
-                    <h6>رابط کاربری</h6>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از</p>
-                </div>
-            </div>
-
-        </div>
+        @await Component.InvokeAsync("GetService");
     </div>
 </section>
 

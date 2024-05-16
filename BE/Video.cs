@@ -13,7 +13,7 @@ namespace BE
         public string Content { get; set; }
         public string VideoLink { get; set; }
         public string picture { get; set; }
-        public int View {  get; set; }  
+        public int View {  get; set; }
         public bool Status { get; set; }
     }
 }

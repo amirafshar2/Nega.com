@@ -17,33 +17,37 @@
 @model IEnumerable<BE.Package >
 
 
-<h1>List</h1>
 <br />
-@foreach (var item in Model)
-{
-    <div class="container p-1">
-        <table style="display:none">
-            <tr style="display:none">
-                <td style="display:none ">@item.id</td>
-            </tr>
-        </table>
-        <h2>@item.Name</h2>
-        <div class="card" style="width:400px">
-            <img class="card-img-top" src="~/image/Pack/@item.Picture" alt="Card image" style="display:flex">
-            <div class="card-body">
-                <h4 class="card-title">@item.Title</h4>
-                <h5 class="card-title">@item.Price $</h5>
-                <p class="card-text">@item.Content</p>
-                <a href="/Admin/Package/Update/@item.id" class="btn btn-success btt">Update</a>
 
-                <a href="#" onclick="confirmDelete('@item.id')" class="btn btn-danger">Delete</a>
+<div class="col-lg-4">
+    <div class="container p-1 m-2">
+        @foreach (var item in Model)
+        {
+            <table style="display:none">
+                <tr style="display:none">
+                    <td style="display:none ">@item.id</td>
+                </tr>
+            </table>
+            <h2>@item.Name</h2>
+            <div class="card" style="width:400px">
+                <img class="card-img-top" src="~/image/Pack/@item.Picture" alt="Card image" style="display:flex">
+                <div class="card-body">
+                    <h4 class="card-title">@item.Title</h4>
+                    <h5 class="card-title">@item.Price $</h5>
+                    <p class="card-text">@item.Content</p>
+                    <a href="/Admin/Package/Update/@item.id" class="btn btn-success btt">Update</a>
+
+                    <a href="#" onclick="confirmDelete('@item.id')" class="btn btn-danger">Delete</a>
+                </div>
             </div>
-        </div>
+        }
     </div>
-    <br>
+</div>
+
+<br>
 
 
-}
+
 
 <script>
     function confirmDelete(itemId) {

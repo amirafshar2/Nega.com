@@ -20,27 +20,29 @@ namespace BLL.Concrate
 
         public void Add(Video t)
         {
-            throw new NotImplementedException();
+           _ıvideodal.Add(t);
         }
 
         public void Delete(Video t)
         {
-            throw new NotImplementedException();
+            _ıvideodal.Delete(t);
         }
 
         public List<Video> GetAll()
         {
-            throw new NotImplementedException();
+            var value = _ıvideodal.GetAll();
+            value.Reverse();
+            return value;
         }
 
         public Video GetById(int id)
         {
-            throw new NotImplementedException();
+            return _ıvideodal.GetBayId(id);
         }
 
         public void Update(Video t)
         {
-            throw new NotImplementedException();
+            _ıvideodal.Update(t);
         }
     }
 }
