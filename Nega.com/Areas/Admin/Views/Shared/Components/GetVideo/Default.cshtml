@@ -30,8 +30,12 @@
 
                             <iframe width="280" height="150" src="@embedLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-                            <a href="/Admin/Video/Update/@item.id" class="btn btn-success btt">Update</a>
-                            <a href="#" onclick="confirmDelete('@item.id')" class="btn btn-danger">Delete</a>
+                           
+                            <button onclick="location.href='@Url.Action("Update", "Video", new { id = item.id })'" class="btn btn-info  dim" type="button">
+                                <i class="fa fa-cog"></i>
+                            </button>
+                            <button onclick="confirmDelete('@item.id')" class="btn btn-danger  dim " type="button"><i class="fa fa-trash"></i></button>
+
                         </div>
                     </div>
                 </div>

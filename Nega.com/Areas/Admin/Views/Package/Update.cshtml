@@ -8,15 +8,37 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   
+        <link href="~/AdminTema/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/AdminTema/font-awesome/css/font-awesome.css" rel="stylesheet">
+        <link href="~/AdminTema/css/animate.css" rel="stylesheet">
+        <link href="~/AdminTema/css/plugins/dropzone/basic.css" rel="stylesheet">
+        <link href="~/AdminTema/css/plugins/dropzone/dropzone.css" rel="stylesheet">
+        <link href="~/AdminTema/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+        <link href="~/AdminTema/css/plugins/codemirror/codemirror.css" rel="stylesheet">
+        <link href="~/AdminTema/css/style.css" rel="stylesheet">
+
 </head>
 
-<h2>Update Package</h2>
+
 <br />
 @model Nega.com.Areas.Admin.Models.PackageModel
 <div class="container">
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-11">
             <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Update</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
                 <div class="ibox-content">
                     <form method="post" enctype="multipart/form-data" autocomplete="off">
 
@@ -57,12 +79,12 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" href="#collapse1">2 <--------------------> 2 </a>
-                                    </h4>
+                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse1" type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
                                 </div>
                                 <div id="collapse1" class="panel-collapse collapse">
-                                    <div class="m-5 p-5">
+                                    <div class="m-3 p-3">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Title2</label>
                                             <div class="col-sm-10"><input type="text" value="@ViewBag.Tit2" class="form-control" id="PTitle2" name="Title2"></div>
@@ -96,12 +118,12 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" href="#collapse2">3 <--------------------> 3 </a>
-                                    </h4>
+                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse2" type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
                                 </div>
                                 <div id="collapse2" class="panel-collapse collapse">
-                                    <div class="m-5 p-5">
+                                    <div class="m-3 p-3">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Title3</label>
                                             <div class="col-sm-10"><input type="text" value="@ViewBag.Tit3" class="form-control" id="PTitle3" name="Title3"></div>
@@ -136,12 +158,12 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" href="#collapse3">4 <--------------------> 4</a>
-                                    </h4>
+                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse3" type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
                                 </div>
                                 <div id="collapse3" class="panel-collapse collapse">
-                                    <div class="m-5 p-5">
+                                    <div class="m-3 p-3">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Title4</label>
                                             <div class="col-sm-10"><input type="text" class="form-control" value="@ViewBag.Tit4" id="PTitle4" name="Title4"></div>
@@ -176,12 +198,12 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" href="#collapse5">5 <--------------------> 5</a>
-                                    </h4>
+                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse5" type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
                                 </div>
                                 <div id="collapse5" class="panel-collapse collapse">
-                                    <div class="m-5 p-5">
+                                    <div class="m-3 p-3">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Title5</label>
                                             <div class="col-sm-10"><input type="text" value="@ViewBag.Tit5" class="form-control" id="PTitle5" name="Title5"></div>
@@ -215,12 +237,12 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" href="#collapse6">6 <--------------------> 6</a>
-                                    </h4>
+                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse6" type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
                                 </div>
                                 <div id="collapse6" class="panel-collapse collapse">
-                                    <div class="m-5 p-5">
+                                    <div class="m-3 p-3">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Title6</label>
                                             <div class="col-sm-10"><input type="text" class="form-control" value="@ViewBag.Tit6" id="PTitle6" name="Title6"></div>
@@ -255,12 +277,12 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" href="#collapse7">7 <--------------------> 7</a>
-                                    </h4>
+                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse7" type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
                                 </div>
                                 <div id="collapse7" class="panel-collapse collapse">
-                                    <div class="m-5 p-5">
+                                    <div class="m-3 p-3">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Title7</label>
                                             <div class="col-sm-10"><input type="text" class="form-control" value="@ViewBag.Tit7" id="PTitle7" name="Title7"></div>
@@ -295,12 +317,12 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" href="#collapse8">8 <--------------------> 8</a>
-                                    </h4>
+                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse8" type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
                                 </div>
                                 <div id="collapse8" class="panel-collapse collapse">
-                                    <div class="m-5 p-5">
+                                    <div class="m-3 p-3">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Title8</label>
                                             <div class="col-sm-10"><input type="text" class="form-control" value="@ViewBag.Tit8" id="PTitle8" name="Title8"></div>
@@ -335,12 +357,12 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" href="#collapse9">9 <--------------------> 9</a>
-                                    </h4>
+                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse9" type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
                                 </div>
                                 <div id="collapse9" class="panel-collapse collapse">
-                                    <div class="m-5 p-5">
+                                    <div class="m-3 p-3">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Title9</label>
                                             <div class="col-sm-10"><input type="text" class="form-control" value="@ViewBag.Tit9" id="PTitle9" name="Title9"></div>
@@ -374,12 +396,12 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" href="#collapse10">10 <--------------------> 10</a>
-                                    </h4>
+                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse10" type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
                                 </div>
                                 <div id="collapse10" class="panel-collapse collapse">
-                                    <div class="m-5 p-5">
+                                    <div class="m-3 p-3">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Title10</label>
                                             <div class="col-sm-10"><input type="text" class="form-control" value="@ViewBag.Tit10" id="PTitle10" name="Title10"></div>
@@ -416,7 +438,13 @@
 
                         <div class="form-group row">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-primary btn-sm" id="PBtn" type="submit">Update</button>
+                                <div class="form-group row">
+
+                                    <button class="btn btn-primary  dim" id="PBtn" type="submit">
+                                        <i class="fa fa-floppy-o"></i>
+                                    </button>
+
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -466,3 +494,15 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<script src="~/AdminTema/js/jquery-3.1.1.min.js"></script>
+<script src="~/AdminTema/js/popper.min.js"></script>
+<script src="~/AdminTema/js/bootstrap.js"></script>
+<script src="~/AdminTema/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="~/AdminTema/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="~/AdminTema/js/inspinia.js"></script>
+<script src="~/AdminTema/js/plugins/pace/pace.min.js"></script>

@@ -22,8 +22,12 @@
                                     <div class="content">@item.Content</div>
                                     <br>
                                     <br>
-                                    <a href="/Admin/Service/Update/@item.id" class="btn btn-success btt">Update</a>
-                                    <a href="#" onclick="confirmDelete('@item.id')" class="btn btn-danger">Delete</a>
+                                
+                                    <button onclick="location.href='@Url.Action("Update", "Service", new { id = item.id })'" class="btn btn-info  dim" type="button">
+                                        <i class="fa fa-cog"></i>
+                                    </button>
+                                    <button onclick="confirmDelete('@item.id')" class="btn btn-danger  dim " type="button"><i class="fa fa-trash"></i></button>
+
                                 </div>
                             </div>
                         </div>

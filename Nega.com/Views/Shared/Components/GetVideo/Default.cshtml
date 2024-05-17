@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+
+
+@model IEnumerable<BE.Video>
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="offset-lg-2 col-lg-8">
+            <h4>@item.Title</h4>
+            <p>@item.Content</p>
+            <a class="vid" href="@item.VideoLink">
+                <span class="vid-butn">
+                    <i class="far fa-play-circle"></i>
+                </span>
+            </a>
+        </div>
+
+    </div>
+}
