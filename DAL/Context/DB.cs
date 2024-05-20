@@ -15,6 +15,7 @@ namespace DAL.Context
         {
             optionsBuilder.UseSqlServer("Server=.;Database=nega;Encrypt=True;user=sa; password=1; TrustServerCertificate=True;");
         }
+        public DbSet<PortfolioCateory> portfolioCateories { get; set; }
         public DbSet<User> users { get; set; }
         public DbSet<Blog> blogs { get; set; }
         public DbSet<About> abouts { get; set; }

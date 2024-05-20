@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BE;
+using Microsoft.AspNetCore.Http;
+using System;
 
-namespace BE
+namespace Negacom.Areas.Admin.Models
 {
-    public class Portfolio
+    public class PortfolioMOdel
     {
         public int id { get; set; }
         public string Title { get; set; }
         public String Brand { get; set; }
-        public string Picture { get; set; }
+        public IFormFile Picture { get; set; }
         public string Link { get; set; }
         public bool Status { get; set; }
         public DateTime Date { get; set; }
         public Portfolio Portfoliocategory { get; set; }
-
-
     }
 }

@@ -10,12 +10,12 @@
 
 
 
+@foreach (var item in Model)
+{
+    <div class="col-lg-4">
+        <div class="home carousel" data-scroll-index="0">
+            <div class="owl-carousel owl-theme">
 
-<div class="col-lg-4">
-    <div class="home carousel" data-scroll-index="0">
-        <div class="owl-carousel owl-theme">
-            @foreach (var item in Model)
-            {
                 <div class="item valign bg-img bg-center ibox-content icons-box" data-overlay-dark="5">
                     <div class="card" style="width:100%">
                         <div class="card-body">
@@ -30,7 +30,7 @@
 
                             <iframe width="280" height="150" src="@embedLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-                           
+
                             <button onclick="location.href='@Url.Action("Update", "Video", new { id = item.id })'" class="btn btn-info  dim" type="button">
                                 <i class="fa fa-cog"></i>
                             </button>
@@ -40,11 +40,10 @@
                     </div>
                 </div>
                 <br />
-            }
+            </div>
         </div>
     </div>
-</div>
-
+}
 
 <script>
     function confirmDelete(itemId) {
