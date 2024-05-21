@@ -20,27 +20,32 @@ namespace BLL.Concrate
 
         public void Add(Portfolio t)
         {
-            throw new NotImplementedException();
+           _ıportfilodal.Add(t);
         }
 
         public void Delete(Portfolio t)
         {
-            throw new NotImplementedException();
+            _ıportfilodal.Delete(t);
         }
 
         public List<Portfolio> GetAll()
         {
-            throw new NotImplementedException();
+            return _ıportfilodal.GetAll();
         }
 
         public Portfolio GetById(int id)
         {
-            throw new NotImplementedException();
+            return _ıportfilodal.GetBayId(id);
+        }
+
+        public List<Portfolio> Porfoliobaycategory()
+        {
+            return _ıportfilodal.getportfilobaycategory();
         }
 
         public void Update(Portfolio t)
         {
-            throw new NotImplementedException();
+            _ıportfilodal.Update(t);
         }
     }
 }

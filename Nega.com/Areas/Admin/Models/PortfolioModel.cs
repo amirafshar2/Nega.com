@@ -13,6 +13,6 @@ namespace Negacom.Areas.Admin.Models
         public string Link { get; set; }
         public bool Status { get; set; }
         public DateTime Date { get; set; }
-        public Portfolio Portfoliocategory { get; set; }
+        public int categoryid { get; set; }
     }
 }

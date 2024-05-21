@@ -15,8 +15,7 @@ namespace BE
         public string Link { get; set; }
         public bool Status { get; set; }
         public DateTime Date { get; set; }
-        public Portfolio Portfoliocategory { get; set; }
-
-
+        public int PortfolioCateoryid { get; set; }
+        public PortfolioCateory Portfoliocategory { get; set; }
     }
 }

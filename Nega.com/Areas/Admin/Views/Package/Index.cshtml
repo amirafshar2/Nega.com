@@ -3,9 +3,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
     <link href="~/AdminTema/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/AdminTema/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="~/AdminTema/css/animate.css" rel="stylesheet">
@@ -14,7 +11,6 @@
     <link href="~/AdminTema/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
     <link href="~/AdminTema/css/plugins/codemirror/codemirror.css" rel="stylesheet">
     <link href="~/AdminTema/css/style.css" rel="stylesheet">
-
 </head>
 
 @{
@@ -22,13 +18,20 @@
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 
 
 <div class="container">
+    <div class="row m-3">
+        <div class="form-group row">
+            <div class="form-group col-sm-12">
+                <input type="button" class="form-control btn btn-success btn-block" id="add-package-btn" value="Add New Package" name="Name"> 
+            </div>
+        </div>
+    </div>
     <div class="row">
-        <div class="col-lg-5">
+
+        <div class="col-lg-10" style="display:none;" id="pacadd">
             <div class="ibox">
 
                 <div class="ibox-title">
@@ -47,7 +50,7 @@
                     <form method="post" enctype="multipart/form-data" autocomplete="off">
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Package Name<text class="text text-danger">*</text></label>
+                            <label class="col-sm-2 col-form-label">Package Name<text class="text text-danger">*</text></label><br />
                             <div class="col-sm-10"><input type="text" class="form-control" id="PName" name="Name"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -78,19 +81,22 @@
                                 <label for="logo" class="custom-file-label">Choose file...<text class="text text-danger">*</text></label>
                             </div>
                         </div>
-                        <div class="hr-line-dashed"></div>
+                   
+
+
+
 
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse1" type="button">
-                                            <i class="fa fa-plus"></i>
+                                        <button class="btn btn-success dim"  id="partbtn2" type="button">
+                                            <i class="fa fa-plus"></i> Add New Package
                                         </button>
 
                                     </h4>
                                 </div>
-                                <div id="collapse1" class="panel-collapse collapse">
+                                <div id="collapse1" style="display:none;">
                                     <div class="m-3 p-3">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Title2</label>
@@ -118,18 +124,16 @@
                             </div>
                         </div>
 
+                       
 
-
-                        <div class="hr-line-dashed"></div>
-
-                        <div class="panel-group">
+                        <div class="panel-group" style="display:none;" id="parttot3">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse2" type="button">
-                                        <i class="fa fa-plus"></i>
+                                    <button class="btn btn-success dim" " id="partbtn3" type="button">
+                                        <i class="fa fa-plus"></i>Add New Package
                                     </button>
                                 </div>
-                                <div id="collapse2" class="panel-collapse collapse">
+                                <div id="collapse2" class="panel-collapse collapse" style="display: none;">
                                     <div class="m-3 p-3">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Title3</label>
@@ -159,14 +163,14 @@
 
 
 
-                        <div class="hr-line-dashed"></div>
+                        
 
 
-                        <div class="panel-group">
+                        <div class="panel-group" style="display: none;" id="parttot4">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse3" type="button">
-                                        <i class="fa fa-plus"></i>
+                                    <button class="btn btn-success dim"  id="partbtn4"  type="button">
+                                        <i class="fa fa-plus"></i>Add New Package
                                     </button>
                                 </div>
                                 <div id="collapse3" class="panel-collapse collapse">
@@ -199,14 +203,13 @@
 
 
 
-                        <div class="hr-line-dashed"></div>
+                  
 
-
-                        <div class="panel-group">
+                        <div class="panel-group" style="display: none;" id="parttot5">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse5" type="button">
-                                        <i class="fa fa-plus"></i>
+                                    <button class="btn btn-success dim"  id="partbtn5"  type="button">
+                                        <i class="fa fa-plus"></i>Add New Package
                                     </button>
                                 </div>
                                 <div id="collapse5" class="panel-collapse collapse">
@@ -238,14 +241,14 @@
                         </div>
 
 
-                        <div class="hr-line-dashed"></div>
+                     
 
 
-                        <div class="panel-group">
+                        <div class="panel-group" style="display: none;" id="parttot6">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse6" type="button">
-                                        <i class="fa fa-plus"></i>
+                                    <button class="btn btn-success dim"  id="partbtn6" type="button">
+                                        <i class="fa fa-plus"></i>Add New Package
                                     </button>
                                 </div>
                                 <div id="collapse6" class="panel-collapse collapse">
@@ -279,13 +282,12 @@
 
 
 
-                        <div class="hr-line-dashed"></div>
 
-                        <div class="panel-group">
+                        <div class="panel-group" style="display: none;" id="parttot7">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse7" type="button">
-                                        <i class="fa fa-plus"></i>
+                                    <button class="btn btn-success dim" id="partbtn7"  type="button">
+                                        <i class="fa fa-plus"></i>Add New Package
                                     </button>
                                 </div>
                                 <div id="collapse7" class="panel-collapse collapse">
@@ -318,14 +320,14 @@
 
 
 
-                        <div class="hr-line-dashed"></div>
+                  
 
 
                         <div class="panel-group">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default" style="display: none;" id="parttot8">
                                 <div class="panel-heading">
-                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse8" type="button">
-                                        <i class="fa fa-plus"></i>
+                                    <button class="btn btn-success dim" id="partbtn8"  type="button">
+                                        <i class="fa fa-plus"></i>Add New Package
                                     </button>
                                 </div>
                                 <div id="collapse8" class="panel-collapse collapse">
@@ -358,14 +360,14 @@
 
 
 
-                        <div class="hr-line-dashed"></div>
+                     
 
 
-                        <div class="panel-group">
+                        <div class="panel-group" style="display: none;" id="parttot9">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse9" type="button">
-                                        <i class="fa fa-plus"></i>
+                                    <button class="btn btn-success dim" id="partbtn9" type="button">
+                                        <i class="fa fa-plus"></i>Add New Package
                                     </button>
                                 </div>
                                 <div id="collapse9" class="panel-collapse collapse">
@@ -398,13 +400,13 @@
 
 
 
-                        <div class="hr-line-dashed"></div>
+                       
 
-                        <div class="panel-group">
+                        <div class="panel-group" style="display: none;" id="parttot10">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <button class="btn btn-success dim" data-toggle="collapse" data-target="#collapse10" type="button">
-                                        <i class="fa fa-plus"></i>
+                                    <button class="btn btn-success dim" id="partbtn10"  type="button">
+                                        <i class="fa fa-plus"></i>Add New Package
                                     </button>
                                 </div>
                                 <div id="collapse10" class="panel-collapse collapse">
@@ -436,7 +438,6 @@
                         </div>
 
 
-                        <div class="hr-line-dashed"></div>
 
 
                         <div class="form-group row">
@@ -458,16 +459,16 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            @await Component.InvokeAsync("GetPackage")
-        </div>
+    </div>
+</div>
+<div class="row">
+   <div class="col-lg-12">
+        @await Component.InvokeAsync("GetPackage")
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
 <script src="~/AdminTema/js/jquery-3.1.1.min.js"></script>
 <script src="~/AdminTema/js/popper.min.js"></script>
 <script src="~/AdminTema/js/bootstrap.js"></script>
@@ -475,44 +476,6 @@
 <script src="~/AdminTema/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="~/AdminTema/js/inspinia.js"></script>
 <script src="~/AdminTema/js/plugins/pace/pace.min.js"></script>
+<script src="~/jsadmin/package/javascript.js"></script>
 
-<script>
-    $(document).ready(function () {
-        $('#logo').on('change', function () {
-            let fileName = $(this).val().split('\\').pop();
-            $(this).next('.custom-file-label').addClass("selected").html(fileName);
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#preview').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(this.files[0]);
-            }
-        });
 
-        function setupFileInputChangeHandler(inputId, previewId) {
-            $('#' + inputId).on('change', function () {
-                let fileName = $(this).val().split('\\').pop();
-                $(this).next('.custom-file-label').addClass("selected").html(fileName);
-                if (this.files && this.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        $('#' + previewId).attr('src', e.target.result);
-                    }
-                    reader.readAsDataURL(this.files[0]);
-                }
-            });
-        }
-
-        setupFileInputChangeHandler('logo', 'preview');
-        setupFileInputChangeHandler('logo2', 'preview2');
-        setupFileInputChangeHandler('logo3', 'preview3');
-        setupFileInputChangeHandler('logo4', 'preview4');
-        setupFileInputChangeHandler('logo5', 'preview5');
-        setupFileInputChangeHandler('logo6', 'preview6');
-        setupFileInputChangeHandler('logo7', 'preview7');
-        setupFileInputChangeHandler('logo8', 'preview8');
-        setupFileInputChangeHandler('logo9', 'preview9');
-        setupFileInputChangeHandler('logo10', 'preview10');
-    });
-</script>

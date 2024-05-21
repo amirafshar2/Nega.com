@@ -23,7 +23,8 @@ namespace Nega.com
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews().AddRazorRuntimeCompilation(); 
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,7 +42,7 @@ namespace Nega.com
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();

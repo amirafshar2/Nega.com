@@ -3,6 +3,7 @@
 *@
 
 
+
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
@@ -19,11 +20,12 @@
 
 
 
-<div class="col-lg-4">
-    <div class="container p-1 m-2">
-        <br />
+<div class="offset-lg-3 col-lg-12" >
+   
+      
         @foreach (var item in Model)
         {
+        <div class="container p-1 m-2" style="width:80%;">
             <table style="display:none">
                 <tr style="display:none">
                     <td style="display:none ">@item.id</td>
@@ -44,9 +46,9 @@
                    
                 </div>
             </div>
-            <br />
+        </div>
         }
-    </div>
+  
 </div>
 
 <br>

@@ -3,34 +3,33 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
-
 <head>
-<link href="~/AdminTema/css/bootstrap.min.css" rel="stylesheet">
-<link href="~/AdminTema/font-awesome/css/font-awesome.css" rel="stylesheet">
-<link href="~/AdminTema/css/animate.css" rel="stylesheet">
-<link href="~/AdminTema/css/plugins/dropzone/basic.css" rel="stylesheet">
-<link href="~/AdminTema/css/plugins/dropzone/dropzone.css" rel="stylesheet">
-<link href="~/AdminTema/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
-<link href="~/AdminTema/css/plugins/codemirror/codemirror.css" rel="stylesheet">
-<link href="~/AdminTema/css/style.css" rel="stylesheet">
+    <link href="~/AdminTema/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/AdminTema/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/AdminTema/css/animate.css" rel="stylesheet">
+    <link href="~/AdminTema/css/plugins/dropzone/basic.css" rel="stylesheet">
+    <link href="~/AdminTema/css/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <link href="~/AdminTema/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+    <link href="~/AdminTema/css/plugins/codemirror/codemirror.css" rel="stylesheet">
+    <link href="~/AdminTema/css/style.css" rel="stylesheet">
 </head>
+
 <div class="container">
     <div class="row">
-        <div class="col-lg-10">
+        <button class="btn btn-success  m-3" id="btnid">
+            Add New Service
+        </button>
+    </div>
+    <div class="row">
+        <div class="col-lg-10" style="display:none;" id="boxcon">
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>Aboute Add</h5>
                     <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
+                   
                     </div>
                 </div>
-                <div class="ibox-content">
+                <div class="ibox-content" >
                     <form method="post" enctype="multipart/form-data" autocomplete="off" >
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Name<text class="text text-danger">*</text></label>
@@ -121,8 +120,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
 <script src="~/AdminTema/js/jquery-3.1.1.min.js"></script>
 <script src="~/AdminTema/js/popper.min.js"></script>
 <script src="~/AdminTema/js/bootstrap.js"></script>
@@ -130,6 +127,7 @@
 <script src="~/AdminTema/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="~/AdminTema/js/inspinia.js"></script>
 <script src="~/AdminTema/js/plugins/pace/pace.min.js"></script>
+<script src="~/jsadmin/package/javascript.js"></script>
 
 
 <script>
@@ -164,4 +162,4 @@
         setupFileInputChangeHandler('logo2', 'preview2');
    
     });
-</script>
+</script><script src="~/jsadmin/service/javascript.js"></script>
