@@ -19,5 +19,15 @@ namespace DAL.EntityFrameWork
             var val = db.portfolios.Include(x=> x.Portfoliocategory).ToList();
             return val;
         }
+
+        public Portfolio getPortfoliobyid(int id)
+        {
+            var val = db.portfolios.Include(z=>z.Portfoliocategory).Where(x=>x.id == id).SingleOrDefault();
+            if (val != null)
+            {
+                return val;
+            }
+            return null;    
+        }
     }
 }

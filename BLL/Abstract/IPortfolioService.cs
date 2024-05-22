@@ -10,5 +10,6 @@ namespace BLL.Abstract
     public interface IPortfolioService: IGenericServis<Portfolio>
     {
         List<Portfolio> Porfoliobaycategory();
+        Portfolio getPortfoliobyid(int id);
     }
 }

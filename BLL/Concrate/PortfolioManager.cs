@@ -38,6 +38,16 @@ namespace BLL.Concrate
             return _ıportfilodal.GetBayId(id);
         }
 
+        public Portfolio getPortfoliobyid(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Portfolio getPortfoliobyidwhitecategory(int id)
+        {
+           return _ıportfilodal.getPortfoliobyid(id);
+        }
+
         public List<Portfolio> Porfoliobaycategory()
         {
             return _ıportfilodal.getportfilobaycategory();

@@ -11,5 +11,6 @@ namespace DAL.EntityFrameWork
 {
     public class EFAbouteRepository : GenericRepository<About>, IAbouteDal
     {
+        
     }
 }

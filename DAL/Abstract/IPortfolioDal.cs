@@ -10,5 +10,6 @@ namespace DAL.Abstract
     public interface IPortfolioDal:IGenericDal<Portfolio>
     {
         List<Portfolio> getportfilobaycategory();
+        Portfolio getPortfoliobyid(int id);
     }
 }

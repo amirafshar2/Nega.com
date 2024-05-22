@@ -4,6 +4,7 @@ using DAL.EntityFrameWork;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.WebUtilities;
 using Negacom.Areas.Admin.Models;
 using System;
 
@@ -86,21 +87,88 @@ namespace Negacom.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-
+            var cateories = _portfoliocategorybll.GetAll();
+            if (cateories != null)
+            {
+                ViewBag.category = new SelectList(cateories, "id", "Name");
+            }
+            var val = _portfoliobll.getPortfoliobyidwhitecategory(id);
+            ViewBag.Title = val.Title;
+            ViewBag.Brand = val.Brand;
+            ViewBag.Picture = val.Picture;
+            ViewBag.Link = val.Link;
+            ViewBag.Date = val.Date;
+            ViewBag.Category = val.Portfoliocategory.Name;
             return View();
         }
         [HttpPost]
         public IActionResult Update(PortfolioMOdel p)
         {
 
-            return View();
+            if (p.Title == null || p.Brand == null || p.Picture == null || p.Link == null || p.categoryid== 0)
+            {
+                if (p.Title == null)
+                {
+                    ModelState.AddModelError("", "Connot Be Left Blank The Title");
+                }
+                if (p.Brand == null)
+                {
+                    ModelState.AddModelError("", "Connot Be Left Blak The Brand");
+                }
+                if (p.Picture == null)
+                {
+                    ModelState.AddModelError("", "Connot Be Left Blank The Picture");
+                }
+                if (p.Link == null)
+                {
+                    ModelState.AddModelError("", "Connot Be Left Blank The Link");
+                }
+                if (p.categoryid == 0)
+                {
+                    ModelState.AddModelError("", "Cannot Be Left Blank The Category");
+                }
+                return View(p);
+            }
+            else
+            {
+                Portfolio pp = new Portfolio();
+                if (p.Picture != null)
+                {
+                    UploadFİle upf = new UploadFİle(Environment);
+                    pp.Picture = upf.upload(p.Picture);
+                }
+                else
+                {
+                    var val = _portfoliobll.GetById(p.id);
+                    pp.Picture = val.Picture;
+                }
+                pp.Title = p.Title;
+                pp.Brand = p.Brand;
+                pp.Status = true;
+                pp.Date = DateTime.Now;
+                pp.Link = p.Link;
+                pp.PortfolioCateoryid = p.categoryid;
+                _portfoliobll.Update(pp);
+
+                ModelState.Clear(); // Formu temizle
+
+                // Yeni boş form için view'ı döndürmek
+                return RedirectToAction("Index");
+            }
+
         }
+    
 
 
         public IActionResult Delete(int id)
         {
-
-            return View();
+            var val = _portfoliobll.GetById(id);
+            if ( val != null)
+            {
+                _portfoliobll.Delete(val);
+            }
+            
+            return View("Index");
         }
     }
 }
