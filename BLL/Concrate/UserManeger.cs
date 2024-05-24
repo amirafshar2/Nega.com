@@ -20,27 +20,27 @@ namespace BLL.Concrate
 
         public void Add(User t)
         {
-            throw new NotImplementedException();
+            _ıuserdal.Add(t);
         }
 
         public void Delete(User t)
         {
-            throw new NotImplementedException();
+            _ıuserdal.Delete(t);
         }
 
         public List<User> GetAll()
         {
-            throw new NotImplementedException();
+            return _ıuserdal.GetAll();
         }
 
         public User GetById(int id)
         {
-            throw new NotImplementedException();
+            return _ıuserdal.GetBayId(id);
         }
 
         public void Update(User t)
         {
-            throw new NotImplementedException();
+            _ıuserdal.Update(t);
         }
     }
 }

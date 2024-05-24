@@ -1,4 +1,5 @@
 ﻿using BE;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,13 @@ using System.Threading.Tasks;
 
 namespace DAL.Context
 {
-    public class DB : DbContext
+    public class DB : IdentityDbContext<User, UserRolee,int>
     {
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=.;Database=nega;Encrypt=True;user=sa; password=1; TrustServerCertificate=True;");
+            base.OnConfiguring(optionsBuilder);
         }
         public DbSet<PortfolioCateory> portfolioCateories { get; set; }
         public DbSet<User> users { get; set; }

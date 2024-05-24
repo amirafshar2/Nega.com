@@ -23,8 +23,7 @@ namespace BE
         public string? İmage4 { get; set; }
         public DateTime CreateDate { get; set; }
         public bool Status { get; set; }
-        public int UserId { get; set; }
-        public User user { get; set; }
+      
         public List<Comment> comments { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }

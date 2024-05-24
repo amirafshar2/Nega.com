@@ -1,3 +1,5 @@
+using BE;
+using DAL.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,8 +25,17 @@ namespace Nega.com
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DB>();
+            services.AddIdentity<User, UserRolee>(x=>
+            {
+                x.Password.RequireUppercase = false;
+                x.Password.RequireNonAlphanumeric = false;
+
+
+            }).AddEntityFrameworkStores<DB>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSession();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
