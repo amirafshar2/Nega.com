@@ -57,5 +57,10 @@ namespace BLL.Concrate
         {
             _ıportfilodal.Update(t);
         }
+
+        public void Update1(Portfolio p, int id)
+        {
+            _ıportfilodal.Update1(p, id);
+        }
     }
 }

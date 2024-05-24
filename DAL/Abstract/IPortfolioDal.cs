@@ -11,5 +11,6 @@ namespace DAL.Abstract
     {
         List<Portfolio> getportfilobaycategory();
         Portfolio getPortfoliobyid(int id);
+        void Update1 (Portfolio p , int id);
     }
 }

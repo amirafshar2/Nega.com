@@ -11,5 +11,6 @@ namespace BLL.Abstract
     {
         List<Portfolio> Porfoliobaycategory();
         Portfolio getPortfoliobyid(int id);
+        void Update1(Portfolio p , int id);
     }
 }

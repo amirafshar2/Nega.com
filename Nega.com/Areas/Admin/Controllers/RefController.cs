@@ -93,19 +93,19 @@ namespace Negacom.Areas.Admin.Controllers
                 ViewBag.category = new SelectList(cateories, "id", "Name");
             }
             var val = _portfoliobll.getPortfoliobyidwhitecategory(id);
-            ViewBag.Title = val.Title;
+            ViewBag.Tit = val.Title;
             ViewBag.Brand = val.Brand;
             ViewBag.Picture = val.Picture;
             ViewBag.Link = val.Link;
             ViewBag.Date = val.Date;
-            ViewBag.Category = val.Portfoliocategory.Name;
+            ViewBag.Categor = val.Portfoliocategory.Name;
             return View();
         }
         [HttpPost]
-        public IActionResult Update(PortfolioMOdel p)
+        public IActionResult Update(PortfolioMOdel p , int id)
         {
 
-            if (p.Title == null || p.Brand == null || p.Picture == null || p.Link == null || p.categoryid== 0)
+            if (p.Title == null || p.Brand == null ||  p.Link == null )
             {
                 if (p.Title == null)
                 {
@@ -115,18 +115,12 @@ namespace Negacom.Areas.Admin.Controllers
                 {
                     ModelState.AddModelError("", "Connot Be Left Blak The Brand");
                 }
-                if (p.Picture == null)
-                {
-                    ModelState.AddModelError("", "Connot Be Left Blank The Picture");
-                }
+          
                 if (p.Link == null)
                 {
                     ModelState.AddModelError("", "Connot Be Left Blank The Link");
                 }
-                if (p.categoryid == 0)
-                {
-                    ModelState.AddModelError("", "Cannot Be Left Blank The Category");
-                }
+           
                 return View(p);
             }
             else
@@ -139,16 +133,26 @@ namespace Negacom.Areas.Admin.Controllers
                 }
                 else
                 {
-                    var val = _portfoliobll.GetById(p.id);
+                    var val = _portfoliobll.GetById(id);
                     pp.Picture = val.Picture;
                 }
+                if (p.categoryid!=0)
+                {
+                    pp.PortfolioCateoryid = p.categoryid;
+                }
+                else
+                {
+                    var val = _portfoliobll.GetById(id);
+                    pp.PortfolioCateoryid = val.PortfolioCateoryid;
+                }
+                pp.id = p.id;
                 pp.Title = p.Title;
                 pp.Brand = p.Brand;
                 pp.Status = true;
                 pp.Date = DateTime.Now;
                 pp.Link = p.Link;
-                pp.PortfolioCateoryid = p.categoryid;
-                _portfoliobll.Update(pp);
+              
+                _portfoliobll.Update1(pp,id);
 
                 ModelState.Clear(); // Formu temizle
 

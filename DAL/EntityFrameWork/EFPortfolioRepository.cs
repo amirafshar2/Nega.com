@@ -29,5 +29,21 @@ namespace DAL.EntityFrameWork
             }
             return null;    
         }
+
+        public void Update1(Portfolio p, int id)
+        {
+            var q = db.portfolios.Where(x => x.id == id).FirstOrDefault();
+            if (q != null)
+            {
+                q.Title = p.Title;
+                q.Brand = p.Brand;
+                q.Picture = p.Picture;
+                q.Link = p.Link;
+                q.Status  = p.Status;
+                q.Date = p.Date;
+                q.PortfolioCateoryid = p.PortfolioCateoryid;
+                db.SaveChanges();
+            }
+        }
     }
 }
