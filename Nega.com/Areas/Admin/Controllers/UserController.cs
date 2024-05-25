@@ -86,7 +86,7 @@ namespace Negacom.Areas.Admin.Controllers
                     var resa = await _userManager.CreateAsync(uu,u.Password);
                     if (resa.Succeeded)
                     {
-                        return View("");
+                        return RedirectToAction("Index","Login");
                     }
                     else
                     {

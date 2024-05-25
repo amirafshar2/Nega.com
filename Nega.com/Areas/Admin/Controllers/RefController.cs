@@ -1,6 +1,7 @@
 ﻿using BE;
 using BLL.Concrate;
 using DAL.EntityFrameWork;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +11,7 @@ using System;
 
 namespace Negacom.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     public class RefController : Controller
     {

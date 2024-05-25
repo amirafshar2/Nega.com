@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <Folder Include="Packimage\" />
+    <Folder Include="wwwroot\image\Pack\" />
   </ItemGroup>
 
   <ItemGroup>

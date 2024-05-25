@@ -27,9 +27,9 @@ namespace Negacom.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(UserSignin u)
         {
-            if (u.Email == null || u.Password == null)
+            if (u.UserName == null || u.Password == null)
             {
-                if (u.Email == null)
+                if (u.UserName == null)
                 {
                     ModelState.AddModelError("", "connot be left blank the Emial");
                 }
@@ -41,10 +41,17 @@ namespace Negacom.Areas.Admin.Controllers
             }
             else
             {
-                var result = await _signinmanager.PasswordSignInAsync(u.Email, u.Password, true, true);
-                return RedirectToAction("Index","Admin/Home");
+                var result = await _signinmanager.PasswordSignInAsync(u.UserName, u.Password, true, true);
+                return RedirectToAction("Index","Home");
             }
 
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signinmanager.SignOutAsync();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

@@ -33,6 +33,11 @@ namespace Nega.com
 
 
             }).AddEntityFrameworkStores<DB>();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Admin/Login"; // Login sayfasýnýn yolu
+                options.AccessDeniedPath = "/Account/AccessDenied"; // Yetkisiz eriþim sayfasýnýn yolu
+            });
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSession();
 
@@ -53,6 +58,8 @@ namespace Nega.com
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseAuthentication(); // Authentication'ý ekleyin
+            app.UseAuthorization();  // Authorization'ý ekleyin
             app.UseSession();
             app.UseRouting();
 

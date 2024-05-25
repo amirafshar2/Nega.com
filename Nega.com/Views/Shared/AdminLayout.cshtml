@@ -342,9 +342,9 @@
 
 
                         <li>
-                            <a href="login.html">
-                                <i class="fa fa-sign-out"></i> Log out
-                            </a>
+                            <form asp-action="Logout" asp-controller="Login" method="post" class="form-inline">
+                                <button type="submit" class="btn btn-link"><i class="fa fa-sign-out"></i>Logout</button>
+                            </form>
                         </li>
                         <li>
                             <a class="right-sidebar-toggle">

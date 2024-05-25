@@ -1,10 +1,12 @@
 ﻿using BE;
 using BLL.Concrate;
 using DAL.EntityFrameWork;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Negacom.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     public class ServiceController : Controller
     {

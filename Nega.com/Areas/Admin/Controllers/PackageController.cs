@@ -5,6 +5,7 @@ using DAL.Context;
 using DAL.EntityFrameWork;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Nega.com.Areas.Admin.Models;
@@ -16,6 +17,7 @@ using System.Linq;
 
 namespace Nega.com.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     public class PackageController : Controller
     {
