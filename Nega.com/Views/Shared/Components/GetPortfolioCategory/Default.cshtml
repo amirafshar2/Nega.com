@@ -1,0 +1,15 @@
+﻿@{
+    Layout = null;
+}
+
+@model IEnumerable<BE.PortfolioCateory>
+
+
+<div class="filter">
+    <span data-filter="*" class="active">همه</span>
+    @foreach (var item in Model)
+    {
+        <span data-filter=".@item.id">@item.Name</span>
+      
+    }
+</div>
