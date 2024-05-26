@@ -300,103 +300,13 @@
         <div class="row">
 
             <div class="section-head offset-md-2 col-md-8 offset-lg-3 col-lg-6">
-                <h4>جدول <span>قیمت ها</span></h4>
-                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون</p>
+                <h4> <span>قیمت های</span></h4>
+                <p>طراحی سایت</p>
             </div>
 
             <div class="text-center offset-lg-1 col-lg-10">
 
-                <div class="row">
-
-                    <div class="col-md-4">
-                        <div class="item mb-md50">
-                            <div class="type">
-                                <h4>پایه</h4>
-                            </div>
-
-                            <div class="value">
-                                <h3><span>تومان</span>10,000</h3>
-                                <span class="per">/ ماهانه</span>
-                            </div>
-
-                            <div class="order">
-                                <a href="#0" class="butn butn-bg butn-radius">
-                                    <span>اکنون بخرید</span>
-                                </a>
-                            </div>
-
-                            <div class="features">
-                                <ul>
-                                    <li>10 GB فضای دیسک</li>
-                                    <li>15 نام دامنه</li>
-                                    <li>4 آدرس ایمیل</li>
-                                    <li>امنیت پیشرفته</li>
-                                    <li>پشتیبانی بی نهایت</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="item active bg-img bg-center mb-md50" data-overlay-color="9" data-background="/simba/img/bg2.jpg">
-
-                            <div class="type">
-                                <h4>استاندارد</h4>
-                            </div>
-
-                            <div class="value">
-                                <h3><span>تومان</span>30,000</h3>
-                                <span class="per">/ ماهانه</span>
-                            </div>
-
-                            <div class="order">
-                                <a href="#0" class="butn butn-light butn-radius">
-                                    <span>اکنون بخرید</span>
-                                </a>
-                            </div>
-
-                            <div class="features">
-                                <ul>
-                                    <li>100 GB فضای دیسک</li>
-                                    <li>30 نام دامنه</li>
-                                    <li>5 آدرس ایمیل</li>
-                                    <li>امنیت پیشرفته</li>
-                                    <li>پشتیبانی بی نهایت</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="item">
-                            <div class="type">
-                                <h4>طلایی</h4>
-                            </div>
-
-                            <div class="value">
-                                <h3><span>تومان</span>80,000</h3>
-                                <span class="per">/ ماهانه</span>
-                            </div>
-
-                            <div class="order">
-                                <a href="#0" class="butn butn-bg butn-radius">
-                                    <span>اکنون بخرید</span>
-                                </a>
-                            </div>
-
-                            <div class="features">
-                                <ul>
-                                    <li>500 GB فضای دیسک</li>
-                                    <li>100 نام دامنه</li>
-                                    <li>10 آدرس ایمیل</li>
-                                    <li>امنیت پیشرفته</li>
-                                    <li>پشتیبانی بی نهایت</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                @await Component.InvokeAsync("GetPack")
 
             </div>
 

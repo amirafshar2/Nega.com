@@ -31,7 +31,7 @@ namespace DAL.Context
         public DbSet<Services> services { get; set; }
         public DbSet<Success> successes { get; set; }
         public DbSet<Video> video { get; set; }
-
+        public DbSet<CustomerComment> customerComments { get; set; }
 
     }
 }

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<BE.Package>
+
+@{
+    int i = 0;
+}
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        if (i== 1)
+        {
+            <div class="col-md-4">
+                <div class="item active bg-img bg-center mb-md50" data-overlay-color="9" data-background="/simba/img/bg2.jpg">
+
+                    <div class="type">
+                        <h4>@item.Name</h4>
+                    </div>
+
+                    <div class="value">
+                        <h3><span>$</span>@item.Price</h3>
+
+                    </div>
+
+                    <div class="order">
+                        <a href="#0" class="butn butn-light butn-radius">
+                            <span>اکنون بخرید</span>
+                        </a>
+                    </div>
+
+                    <div class="features">
+                        <ul>
+                            <li>@item.Title</li>
+                            <li>@item.Title2</li>
+                            <li>@item.Title3</li>
+                            <li>@item.Title4</li>
+                            <li>@item.Title5</li>
+                            <li>@item.Title6</li>
+                            <li>@item.Title7</li>
+                            <li>@item.Title8</li>
+                            <li>@item.Title9</li>
+                            <li>@item.Title10</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+           
+        }
+        else
+        {
+
+            <div class="col-md-4">
+                <div class="item mb-md50">
+                    <div class="type">
+                        <h4>@item.Name</h4>
+                    </div>
+
+                    <div class="value">
+                        <h3><span>$</span>@item.Price</h3>
+
+                    </div>
+
+                    <div class="order">
+                        <a href="#0" class="butn butn-bg butn-radius">
+                            <span>اکنون بخرید</span>
+                        </a>
+                    </div>
+
+                    <div class="features">
+                        <ul>
+                            <li>@item.Title</li>
+                            <li>@item.Title2</li>
+                            <li>@item.Title3</li>
+                            <li>@item.Title4</li>
+                            <li>@item.Title5</li>
+                            <li>@item.Title6</li>
+                            <li>@item.Title7</li>
+                            <li>@item.Title8</li>
+                            <li>@item.Title9</li>
+                            <li>@item.Title10</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+           
+        }
+        i++;
+    }
+
+</div>
