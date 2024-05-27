@@ -9,5 +9,6 @@ namespace BLL.Abstract
 {
     public interface IUserService : IGenericServis<User>
     {
+        User GetbayUsername(string Username);
     }
 }

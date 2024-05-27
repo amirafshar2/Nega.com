@@ -9,6 +9,6 @@ namespace DAL.Abstract
 {
     public interface IUserDal :IGenericDal<User>
     {
-
+        User GetbayUsername(string Username);
     }
 }

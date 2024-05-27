@@ -1,7 +1,11 @@
 ﻿using BE;
+using BLL.Concrate;
+using DAL.Context;
+using DAL.EntityFrameWork;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Negacom.Areas.Admin.Models;
+using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 
@@ -13,12 +17,15 @@ namespace Negacom.Areas.Admin.Controllers
     [Area("Admin")]
     public class LoginController : Controller
     {
+        DB db = new DB();
+        UserManegerloc _UserMangerbll = new UserManegerloc(new EFUserRepository());
         private readonly SignInManager<User> _signinmanager;
 
         public LoginController(SignInManager<User> signinmanager)
         {
             _signinmanager = signinmanager;
         }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -41,8 +48,27 @@ namespace Negacom.Areas.Admin.Controllers
             }
             else
             {
-                var result = await _signinmanager.PasswordSignInAsync(u.UserName, u.Password, true, true);
-                return RedirectToAction("Index","Home");
+                var chack = db.users.Select(U => U.Id).FirstOrDefault();
+                if (chack == 0)
+                {
+                    var result = await _signinmanager.PasswordSignInAsync(u.UserName, u.Password, true, true);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+
+                    var val = _UserMangerbll.GetbayUsername(u.UserName);
+                    if (val == null || val.Status == true)
+                    {
+                        var result = await _signinmanager.PasswordSignInAsync(u.UserName, u.Password, true, true);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Your account needs to be approved by admin");
+                    }
+                }
+                return View();
             }
 
         }

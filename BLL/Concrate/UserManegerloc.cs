@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace BLL.Concrate
 {
-    public class UserManeger : IUserService
+    public class UserManegerloc : IUserService
     {
         IUserDal _ıuserdal;
 
-        public UserManeger(IUserDal ıuserdal)
+        public UserManegerloc(IUserDal ıuserdal)
         {
             _ıuserdal = ıuserdal;
         }
@@ -31,6 +31,11 @@ namespace BLL.Concrate
         public List<User> GetAll()
         {
             return _ıuserdal.GetAll();
+        }
+
+        public User GetbayUsername(string Username)
+        {
+            return _ıuserdal.GetbayUsername(Username);
         }
 
         public User GetById(int id)

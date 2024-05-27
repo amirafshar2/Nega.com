@@ -12,7 +12,7 @@ namespace BE
         public string NameSurName { get; set; }
         public string Brand { get; set; }
         public string Picture { get; set; }
-        public string Emil { get; set; }
+        public string Email { get; set; }
         public string Content { get; set; }
         public DateTime Date { get; set; }
         public bool Status { get; set; }
