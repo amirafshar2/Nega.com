@@ -26,6 +26,7 @@ namespace BE
         public string İnstagram { get; set; }
         public string Telegram { get; set; }
         public List<Blog> Blogs { get; set; }
+        public int ContorimCod { get; set; }
 
     }
 }

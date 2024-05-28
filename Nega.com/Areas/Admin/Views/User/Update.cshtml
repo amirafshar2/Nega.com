@@ -151,14 +151,14 @@
 
 
 
-@ViewBag.Adress
 
-@ViewBag.StatusİnCompany
-@ViewBag.About
-@ViewBag.Facebook
-@ViewBag.İnstragram
-@ViewBag.Telegram
-@ViewBag.UserName
+
+
+
+
+
+
+
 
 
 
@@ -206,26 +206,14 @@
 
 
 
-                        <label class="col-sm-2 col-form-label" for='checkbox-3'>Status</label>
-                        @if (@ViewBag.Status)
-                        {
-                            <div class="form-group row">
-                                <div class="col-sm-10">
-                                    <input type="checkbox" class="ios8-switch ios8-switch-lg" id="statusCheckbox">
-                                    <label for="statusCheckbox"></label>
-                                    <input type="hidden" name="Status" id="statusHidden" value="true">
-                                </div>
+                        <label class="col-sm-2 col-form-label" for="statusCheckbox">Status</label>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <input type="checkbox" class="ios8-switch ios8-switch-lg" id="statusCheckbox" @(ViewBag.Status ? "checked" : "")>
+                                <label for="statusCheckbox"></label>
+                                <input type="hidden" name="Status" id="statusHidden" value="@(ViewBag.Status ? "true" : "false")">
                             </div>
-                        }else
-                        {
-                            <div class="form-group row">
-                                <div class="col-sm-10">
-                                    <input type="checkbox" class="ios8-switch ios8-switch-lg" id="statusCheckbox">
-                                    <label for="statusCheckbox"></label>
-                                    <input type="hidden" name="Status" id="statusHidden" value="false">
-                                </div>
-                            </div>
-                        }
+                        </div>
                        
                         <div class="hr-line-dashed"></div>
 
@@ -233,7 +221,7 @@
                         <div class="form-group row">
 
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="Adress" style="height: 150px;" id="About"></textarea>
+                                <textarea class="form-control" name="Adress" style="height: 150px;" id="About">@ViewBag.Adress</textarea>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -242,36 +230,36 @@
                         <div class="form-group row">
 
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="About" style="height: 150px;" id="About"></textarea>
+                                <textarea class="form-control" name="About" style="height: 150px;" id="About">@ViewBag.About</textarea>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <label class="col-sm-2 col-form-label">Status In Company</label>
                         <div class="form-group row">
-                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" name="StatusİnCompany"></div>
+                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" value="@ViewBag.StatusİnCompany" name="StatusİnCompany"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <label class="col-sm-2 col-form-label">Facebook Link</label>
                         <div class="form-group row">
-                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" name="Facebook"></div>
+                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" value="@ViewBag.Facebook" name="Facebook"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <label class="col-sm-2 col-form-label">İnstagram Link</label>
                         <div class="form-group row">
-                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" name="İnstagram"></div>
+                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" value="@ViewBag.İnstragram" name="İnstagram"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
 
 
                         <label class="col-sm-2 col-form-label">Telegram Link</label>
                         <div class="form-group row">
-                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" name="Telegram"></div>
+                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" value="@ViewBag.Telegram" name="Telegram"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
 
                         <label class="col-sm-2 col-form-label">UserName</label>
                         <div class="form-group row">
-                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" name="UserName"></div>
+                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" value="@ViewBag.UserName" name="UserName"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
 
@@ -349,6 +337,9 @@
             } else {
                 $('#statusHidden').val('false');
             }
+        });
+        document.getElementById('statusCheckbox').addEventListener('change', function () {
+            document.getElementById('statusHidden').value = this.checked ? 'true' : 'false';
         });
         function setupFileInputChangeHandler(inputId, previewId) {
             $('#' + inputId).on('change', function () {
