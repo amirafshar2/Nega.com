@@ -23,12 +23,14 @@ namespace Negacom.Areas.Admin.Controllers
     [Area("Admin")]
     public class UserController : Controller
     {
+        private readonly IPasswordHasher<User> _passwordHasher;
         private readonly UserManager<User> _userManager;
         private readonly IWebHostEnvironment Environment;
         UserManegerloc _Userbll = new UserManegerloc(new EFUserRepository());
 
-        public UserController(UserManager<User> userManager, IWebHostEnvironment _envirorment)
+        public UserController(IPasswordHasher<User> passwordHasher, UserManager<User> userManager, IWebHostEnvironment _envirorment)
         {
+            _passwordHasher = passwordHasher;
             _userManager = userManager;
             Environment = _envirorment;
         }
@@ -92,7 +94,7 @@ namespace Negacom.Areas.Admin.Controllers
                         uu.Name = u.Name;
                         uu.Family = u.Family;
                         uu.Password = u.password;
-                        uu.IdNumber = u.IDNumber;
+
                         uu.PhoneNumber = u.PhoneNumber;
                         uu.Address = u.Adress;
                         uu.Status = u.Status;
@@ -139,6 +141,11 @@ namespace Negacom.Areas.Admin.Controllers
         public IActionResult Update(int id)
         {
             var val = _Userbll.GetById(id);
+            if (val == null)
+            {
+                return NotFound();
+            }
+            ViewBag.id = val.Id;
             ViewBag.Name = val.Name;
             ViewBag.Family = val.Family;
             ViewBag.Email = val.Email;
@@ -153,97 +160,84 @@ namespace Negacom.Areas.Admin.Controllers
             ViewBag.İnstragram = val.İnstagram;
             ViewBag.Telegram = val.Telegram;
             ViewBag.UserName = val.UserName;
+
             return View();
         }
+
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> Update(UserModel u, int id)
         {
             if (u.Name == null || u.Family == null || u.UserName == null || u.Email == null || u.password == null)
             {
-                if (u.Name == null)
-                {
-                    ModelState.AddModelError("", "connot be letf bland the Name");
-                }
-                if (u.Family == null)
-                {
-                    ModelState.AddModelError("", "connot be letf bland the Family");
-                }
-                if (u.UserName == null)
-                {
-                    ModelState.AddModelError("", "connot be letf bland the UserName");
-                }
-                if (u.Email == null)
-                {
-                    ModelState.AddModelError("", "connot be letf bland the Êmail");
-                }
-                if (u.password == null)
-                {
-                    ModelState.AddModelError("", "connot be letf bland the Password");
-                }
+                if (u.Name == null) ModelState.AddModelError("", "Name cannot be left blank.");
+                if (u.Family == null) ModelState.AddModelError("", "Family cannot be left blank.");
+                if (u.UserName == null) ModelState.AddModelError("", "Username cannot be left blank.");
+                if (u.Email == null) ModelState.AddModelError("", "Email cannot be left blank.");
+                if (u.password == null) ModelState.AddModelError("", "Password cannot be left blank.");
 
                 return View(u);
             }
             else
             {
-                DB db = new DB();
-                var emilcheck = db.users.Where(i => i.Email == u.Email).FirstOrDefault();
 
-                if (u.password == u.Confirmpassword)
+
+                var existingUser = await _userManager.FindByIdAsync(id.ToString());
+                if (existingUser == null)
                 {
-                    User uu = new User();
-                    if (u.Picture != null)
-                    {
-                        UploadFİle upf = new UploadFİle(Environment);
-                        uu.Picture = upf.upload(u.Picture);
-                    }
-                    else
-                    {
-                        var val = _Userbll.GetById(id);
-                        uu.Picture = val.Picture;
-                    }
-                    uu.Password = u.password;
-                    uu.About = u.About;
-                    uu.Name = u.Name;
-                    uu.Family = u.Family;
-                    uu.IdNumber = u.IDNumber;
-                    uu.PhoneNumber = u.PhoneNumber;
-                    uu.Address = u.Adress;
-                    uu.Status = u.Status;
-                    uu.StatusİnCompany = u.StatusİnCompany;
-                    uu.Facebook = u.Facebook;
-                    uu.İnstagram = u.İnstagram;
-                    uu.PasswordHash = u.password;
-                    uu.Telegram = u.Telegram;
-                    uu.UserName = u.UserName;
-                    uu.Email = u.Email;
-                    uu.Id = id;
-                    uu.ReqesterDate = DateTime.Now;
-                    var resa = await _userManager.UpdateAsync(uu);
-                    if (resa.Succeeded)
-                    {
-                        return RedirectToAction("Index", "Login");
-                    }
-                    else
-                    {
-                        foreach (var item in resa.Errors)
-                        {
-                            ModelState.AddModelError("", item.Description);
-                        }
-                        return View(u);
-                    }
-
+                    return NotFound();
                 }
-                else
+
+                if (u.password != u.Confirmpassword)
                 {
-                    ModelState.AddModelError("", "password does not match");
+                    ModelState.AddModelError("", "Password does not match the confirmation password.");
                     return View(u);
-
                 }
 
+                if (_userManager.Users.Any(i => i.Email == u.Email && i.Id != id))
+                {
+                    ModelState.AddModelError("", "Email is already in use.");
+                    return View(u);
+                }
+
+                existingUser.Name = u.Name;
+                existingUser.Family = u.Family;
+                existingUser.UserName = u.UserName;
+                existingUser.Email = u.Email;
+                existingUser.About = u.About;
+                existingUser.PhoneNumber = u.PhoneNumber;
+                existingUser.Address = u.Adress;
+                existingUser.Status = u.Status;
+                existingUser.StatusİnCompany = u.StatusİnCompany;
+                existingUser.Facebook = u.Facebook;
+                existingUser.İnstagram = u.İnstagram;
+                existingUser.Telegram = u.Telegram;
+                existingUser.ReqesterDate = DateTime.Now;
+
+                if (u.Picture != null)
+                {
+                    var uploadFile = new UploadFİle(Environment);
+                    existingUser.Picture = uploadFile.upload(u.Picture);
+                }
+
+                // Parolayı hashleyin ve kaydedin
+                existingUser.PasswordHash = _passwordHasher.HashPassword(existingUser, u.password);
+
+                var result = await _userManager.UpdateAsync(existingUser);
+                if (result.Succeeded)
+                {
+                    return View("Index");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
 
             }
+            return View(u);
         }
+
 
         [HttpGet]
         public IActionResult Reqister()
@@ -309,7 +303,16 @@ namespace Negacom.Areas.Admin.Controllers
                             UserName = u.User
 
                         };
-                        uu.Status = false;
+
+                        var chack = db.users.Select(U => U.Id).FirstOrDefault();
+                        if (chack == 0)
+                        {
+                            uu.Status = true;
+                        }
+                        else
+                        {
+                            uu.Status = false;
+                        }
                         uu.ContorimCod = ccode;
                         var resa = await _userManager.CreateAsync(uu, u.Password);
 
@@ -351,6 +354,17 @@ namespace Negacom.Areas.Admin.Controllers
                 ModelState.AddModelError("", "your email has already been registered");
                 return View();
             }
+        }
+        public IActionResult Delete(int id)
+        {
+            DB db = new DB();
+            var q = db.users.Where(i => i.Id == id).FirstOrDefault();
+            if (q != null)
+            {
+                q.Status = false;
+                db.SaveChanges();
+            }
+            return View("Index");
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿@*
+﻿@using Microsoft.AspNetCore.Http;
+
+@*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 <!DOCTYPE html>
@@ -31,14 +33,15 @@
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <img alt="image" class="rounded-circle" src="#" />
+
+                            <img alt="image" class="rounded-circle" src="~/AdminTema/image/Pack/@HttpContext.Session.GetString("Pic")" />
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="block m-t-xs font-bold">David Williams</span>
                                 <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="dropdown-item" href="~/Admin/User/Index">Profile</a></li>
-                              
+                                <li><a class="dropdown-item" href="~/Admin/Profile/Index">Profile</a></li>
+
                                 <li class="dropdown-divider"></li>
                                 <li>
                                     <form asp-action="Logout" asp-controller="Login" method="post" class="form-inline">
@@ -49,13 +52,14 @@
                         </div>
                     </li>
 
-                   
+
+
                     <li>
                         <a href="~/Admin/Aboute/Index"><i class="fa fa-info-circle"></i> <span class="nav-label">About</span>  </a>
                     </li>
                     <li>
                         <a href="~/Admin/CustomerComment/Index"><i class="fa  fa-commenting-o"></i> <span class="nav-label">Customer Comment</span> </a>
-                       
+
                     </li>
                     <li>
                         <a href="~/Admin/Package/Index"><i class="fa fa-cart-plus"></i> <span class="nav-label">Package</span></a>
@@ -65,27 +69,27 @@
                     </li>
                     <li>
                         <a href="~/Admin/Ref/Index"><i class="fa fa-briefcase"></i> <span class="nav-label">Portfolio</span></a>
-                 
+
                     </li>
                     <li>
                         <a href="~/Admin/Service/Index"><i class="fa fa-cogs"></i> <span class="nav-label">Service</span></a>
                     </li>
                     <li>
                         <a href="~/Admin/Video/Index"><i class="fa fa-youtube"></i> <span class="nav-label">Video </span></a>
-                        
+
                     </li>
                     <li>
                         <a href="~/Admin/User/Index"><i class="fa fa-user"></i> <span class="nav-label">User</span></a>
-                      
+
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Miscellaneous</span><span class="label label-info float-right">NEW</span></a>
-                        
-                        
+
+
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">UI Elements</span><span class="fa arrow"></span></a>
-                       
+
                     </li>
 
                     <li>
@@ -93,15 +97,15 @@
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Tables</span><span class="fa arrow"></span></a>
-                       
+
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">E-commerce</span><span class="fa arrow"></span></a>
-                        
+
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span><span class="fa arrow"></span></a>
-                       
+
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Menu Levels </span><span class="fa arrow"></span></a>

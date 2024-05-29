@@ -2,6 +2,7 @@
 using BLL.Concrate;
 using DAL.Context;
 using DAL.EntityFrameWork;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Negacom.Areas.Admin.Models;
@@ -20,10 +21,12 @@ namespace Negacom.Areas.Admin.Controllers
         DB db = new DB();
         UserManegerloc _UserMangerbll = new UserManegerloc(new EFUserRepository());
         private readonly SignInManager<User> _signinmanager;
+        private readonly UserManager<User> _usermanager;
 
-        public LoginController(SignInManager<User> signinmanager)
+        public LoginController(SignInManager<User> signinmanager, UserManager<User> usermanager)
         {
             _signinmanager = signinmanager;
+            _usermanager = usermanager;
         }
 
         [HttpGet]
@@ -48,16 +51,14 @@ namespace Negacom.Areas.Admin.Controllers
             }
             else
             {
-                var chack = db.users.Select(U => U.Id).FirstOrDefault();
-                if (chack == 0)
+                var user = await _usermanager.FindByEmailAsync(u.Email);
+                var val = _UserMangerbll.GetbayUsername(u.UserName);
+                if (user != null && await _usermanager.CheckPasswordAsync(user, u.Password))
                 {
-                    var result = await _signinmanager.PasswordSignInAsync(u.UserName, u.Password, true, true);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
+                    HttpContext.Session.SetString("UserName", user.UserName);
+                    HttpContext.Session.SetString("FullName", user.Name + user.Family);
+                    HttpContext.Session.SetString("Pic", user.Picture);
 
-                    var val = _UserMangerbll.GetbayUsername(u.UserName);
                     if (val == null || val.Status == true)
                     {
                         var result = await _signinmanager.PasswordSignInAsync(u.UserName, u.Password, true, true);
@@ -68,7 +69,7 @@ namespace Negacom.Areas.Admin.Controllers
                         ModelState.AddModelError("", "Your account needs to be approved by admin");
                     }
                 }
-                return View();
+                return View(u);
             }
 
         }

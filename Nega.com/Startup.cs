@@ -3,6 +3,7 @@ using DAL.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -33,10 +34,11 @@ namespace Nega.com
 
 
             }).AddEntityFrameworkStores<DB>();
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/Admin/Login"; // Login sayfasýnýn yolu
-                options.AccessDeniedPath = "/Account/AccessDenied"; // Yetkisiz eriþim sayfasýnýn yolu
+                options.AccessDeniedPath = "/Admin/Reqister"; // Yetkisiz eriþim sayfasýnýn yolu
             });
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSession();

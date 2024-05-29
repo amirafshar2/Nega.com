@@ -160,7 +160,7 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <form method="post"  action="Update" enctype="multipart/form-data" autocomplete="off">
+                    <form method="post"  action="Index" enctype="multipart/form-data" autocomplete="off">
                         <label class="col-sm-2 col-form-label">Name<text class="text text-danger">*</text></label>
                         <div class="form-group row">
                             <div class="col-sm-10"><input type="text" class="form-control" id="PName" name="Name"></div>
@@ -323,8 +323,7 @@
                 $('#statusHidden').val('false');
             }
         });
-        document.getElementById('statusCheckbox').addEventListener('change', function () {
-            document.getElementById('statusHidden').value = this.checked ? 'true' : 'false';
+       
         });
         function setupFileInputChangeHandler(inputId, previewId) {
             $('#' + inputId).on('change', function () {
@@ -344,7 +343,21 @@
         setupFileInputChangeHandler('logo2', 'preview2');
     });
 
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const statusCheckbox = document.getElementById('statusCheckbox');
+        const statusHidden = document.getElementById('statusHidden');
 
+        // Checkbox durumunu kontrol ederek hidden input değerini güncelleyen fonksiyon
+        const updateStatusHidden = () => {
+            statusHidden.value = statusCheckbox.checked ? 'true' : 'false';
+        };
+
+        // Sayfa yüklendiğinde checkbox durumunu kontrol et ve hidden input'u güncelle
+        updateStatusHidden();
+
+        // Checkbox değiştiğinde hidden input'u güncelle
+        statusCheckbox.addEventListener('change', updateStatusHidden);
+    });
 
     function confirmDelete(itemId) {
         // SweetAlert ile bir onay iletişi göster0

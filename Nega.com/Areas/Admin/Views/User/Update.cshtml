@@ -169,12 +169,13 @@
         <div class="col-lg-12"  id="boxcon">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>User Add</h5>
+                    <h5>Update User</h5>
                     <div class="ibox-tools">
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <form method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form method="post" action="Update" enctype="multipart/form-data" autocomplete="off">
+                    <input type="text" class="form-control" style="display:none;" id="PName" value="@ViewBag.id" name="Id">
                         <label class="col-sm-2 col-form-label">Name<text class="text text-danger">*</text></label>
                         <div class="form-group row">
                             <div class="col-sm-10"><input type="text" class="form-control" id="PName" value="@ViewBag.Name" name="Name"></div>
@@ -209,9 +210,12 @@
                         <label class="col-sm-2 col-form-label" for="statusCheckbox">Status</label>
                         <div class="form-group row">
                             <div class="col-sm-10">
-                                <input type="checkbox" class="ios8-switch ios8-switch-lg" id="statusCheckbox" @(ViewBag.Status ? "checked" : "")>
+                                @{
+                                    var status = ViewBag.Status != null ? (bool)ViewBag.Status : false;
+                                }
+                                <input type="checkbox" class="ios8-switch ios8-switch-lg" id="statusCheckbox" @(status ? "checked" : "")>
                                 <label for="statusCheckbox"></label>
-                                <input type="hidden" name="Status" id="statusHidden" value="@(ViewBag.Status ? "true" : "false")">
+                                <input type="hidden" name="Status" id="statusHidden" value="@(status ? "true" : "false")">
                             </div>
                         </div>
                        
@@ -310,11 +314,7 @@
 
 
 
-<div class="row">
-    <div class="col-lg-12">
-        @await Component.InvokeAsync("GetUser")
-    </div>
-</div>
+
 
 
 <script>
