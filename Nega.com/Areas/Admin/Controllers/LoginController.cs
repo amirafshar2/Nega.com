@@ -22,11 +22,12 @@ namespace Negacom.Areas.Admin.Controllers
         UserManegerloc _UserMangerbll = new UserManegerloc(new EFUserRepository());
         private readonly SignInManager<User> _signinmanager;
         private readonly UserManager<User> _usermanager;
-
-        public LoginController(SignInManager<User> signinmanager, UserManager<User> usermanager)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public LoginController(SignInManager<User> signinmanager, UserManager<User> usermanager, IHttpContextAccessor httpContextAccessor)
         {
             _signinmanager = signinmanager;
             _usermanager = usermanager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
@@ -55,8 +56,8 @@ namespace Negacom.Areas.Admin.Controllers
                 var val = _UserMangerbll.GetbayUsername(u.UserName);
                 if (user != null && await _usermanager.CheckPasswordAsync(user, u.Password))
                 {
-                    HttpContext.Session.SetString("UserName", user.UserName);
-                    HttpContext.Session.SetString("FullName", user.Name + user.Family);
+                    HttpContext.Session.SetString("StatusİnCompany", user.StatusİnCompany);
+                    HttpContext.Session.SetString("FullName", user.Name + " " + user.Family);
                     HttpContext.Session.SetString("Pic", user.Picture);
 
                     if (val == null || val.Status == true)

@@ -26,6 +26,13 @@ namespace Nega.com
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30); // Session süresi
+                options.Cookie.HttpOnly = true; // Güvenlik için
+                options.Cookie.IsEssential = true; // GDPR ve diðer regülasyonlar için gerekli
+            });
             services.AddDbContext<DB>();
             services.AddIdentity<User, UserRolee>(x=>
             {
@@ -42,6 +49,7 @@ namespace Nega.com
             });
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSession();
+            services.AddHttpContextAccessor();
 
         }
 

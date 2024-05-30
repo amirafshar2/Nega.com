@@ -1,7 +1,15 @@
 ﻿
+
+
+
+
+
+
+
+
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    Layout = "~/areas/admin/views/shared/adminlayout.cshtml";
 }
 
 
@@ -37,10 +45,10 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <form method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form method="post" action="Index" enctype="multipart/form-data" autocomplete="off">
                             <label class="col-sm-2 col-form-label">NameSureName<text class="text text-danger">*</text></label>
                         <div class="form-group row">
-                            <div class="col-sm-10"><input type="text" class="form-control" id="PName" name="NameSureName"></div>
+                            <div class="col-sm-10"><input type="text" class="form-control" id="PName" name="NameSurName"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
 
@@ -100,11 +108,11 @@
         </div>
 
 
-      @*   @await Component.InvokeAsync("GetAbout") *@
+     
 
     </div>
 </div>
-
+   @await Component.InvokeAsync("GetCommet") 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
