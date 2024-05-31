@@ -60,7 +60,7 @@
 
                             <label class="col-sm-2 col-form-label">Email</label>
                         <div class="form-group row">
-                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" name="Email"></div>
+                            <div class="col-sm-10"><input type="email" class="form-control" id="PTitle" name="Email"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
 
@@ -69,7 +69,8 @@
                         <div class="form-group row">
 
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="Content" style="height: 150px;" id="PContent"></textarea>
+                                <textarea class="form-control" minlength="10" maxlength="200" name="Content" style="height: 150px;" id="PContent"></textarea>
+                                <small id="charCount" class="form-text text-muted"></small>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -156,6 +157,29 @@
 
         setupFileInputChangeHandler('logo1', 'preview1');
         setupFileInputChangeHandler('logo2', 'preview2');
+
+
+
+
+        $("#PContent").on("input", function () { 
+        
+            var minlength = $(this).attr("minlength");
+            var maxlength = $(this).attr("maxlength");
+            var currentlength = $(this).val().length;
+            if (currentlength < minlength) {
+                $("#charCount").text("You must use a minimum of " + minlength + " characters ");
+                $('#charCount').removeClass('text-success text-muted').addClass('text-danger');
+            }
+            else if (currentlength >= maxlength) {
+                $("#charCount").text("You must use a Maximum of " + maxlength + " characters");
+                $('#charCount').removeClass('text-success text-muted').addClass('text-danger');
+            }
+            else {
+                $("#charCount").text("You have now typed " + currentlength + " characters");
+                $('#charCount').removeClass('text-danger text-muted').addClass('text-success');
+            }
+        });
+
 
     });
 </script><script src="~/jsadmin/service/javascript.js"></script>

@@ -27,7 +27,7 @@ namespace Negacom.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Index(Models.CustomerCommmentModel c)
         {
-            if (c.NameSurName == null || c.Brand == null || c.Email == null || c.Content == null || c.Picture == null)
+            if (c.NameSurName == null || c.Brand == null || c.Email == null || c.Content == null || c.Picture == null )
             {
                 if (c.NameSurName == null)
                 {
