@@ -6,7 +6,7 @@
 
 
 @model IEnumerable<BE.CustomerComment>
-
+@using System.Web
 <html>
 
 <head>
@@ -332,7 +332,7 @@
 
         p {
         }</style>
-    
+
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
@@ -355,9 +355,10 @@
                             @item.Date.ToLocalTime()
                         </span>
                         <div>
-                            <input id="s1_@item.id" type="checkbox" class="switch" @(item.Status ? "checked" : "") onchange="updateStatus(@item.id)">
+                            <input id="s1_@item.id" type="checkbox" class="switch" @(item.Status ? "checked" : "") onchange="updateStatus(@item.id, this)">
                             <label for="s1_@item.id">Status</label>
                         </div>
+
                         <h4>@item.Brand</h4>
                         <div class="be-comment-text">
                             <p id="content">
@@ -366,41 +367,44 @@
                         </div>
                     </div>
                     <div class="m-2">
+
                         <button onclick="location.href='@Url.Action("Update", "CustomerComment", new { id = item.id })'" class="btn btn-info dim" type="button">
                             <i class="fa fa-cog"></i>
                         </button>
-                        <button onclick="confirmDelete('@item.id')" class="btn btn-danger dim" type="button"><i class="fa fa-trash"></i></button>
+
+                        <button onclick="confirmDelete('@HttpUtility.UrlEncode(item.id.ToString())')" class="btn btn-danger dim" type="button"><i class="fa fa-trash"></i></button>
+
                     </div>
                 </div>
             </div>
         }
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        function updateStatus(commentId) {
-            var checkbox = document.getElementById("s1_" + commentId);
-            var status = checkbox.checked;
+        function updateStatus(itemId, checkbox) {
+            var newStatus = $(checkbox).is(':checked');
 
-            fetch('/Admin/CustomerCommentController/UpdateStatus', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
+            $.ajax({
+                url: '/Admin/CustomerComment/UpdateStatus', 
+                type: 'POST',
+                data: {
+                    id: itemId,
+                    status: newStatus
                 },
-                body: JSON.stringify({ id: commentId, status: status })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    console.log("Status updated successfully.");
-                } else {
-                    console.log("Failed to update status.");
+                success: function (response) {
+                    if (response.success) {
+                        $(checkbox).prop('checked', newStatus);
+                    } else {
+                        alert('Status update failed');
+                    }
+                },
+                error: function () {
+                    alert('An error occurred');
                 }
-            })
-            .catch(error => {
-                console.error("Error updating status:", error);
             });
         }
-
         function confirmDelete(itemId) {
             Swal.fire({
                 title: 'Are you sure?',
@@ -412,7 +416,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "/Admin/Aboute/Delete/" + itemId;
+                    window.location.href = "/Admin/CustomerComment/Delete/" + encodeURIComponent(itemId);
                 }
             });
         }

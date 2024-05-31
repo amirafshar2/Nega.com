@@ -325,98 +325,13 @@
 
             <div class="section-head col-lg-4">
                 <h4>آنچه <span>مشتریان</span> می‌گویند</h4>
-                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون</p>
+                
             </div>
 
             <div class="owl-carousel owl-theme col-lg-8">
-                <div class="item-box">
-                    <span class="quote">
-                        <img src="~/simba/img/quot.png" alt="">
-                    </span>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها</p>
-                    <div class="info">
-                        <div class="author-img">
-                            <img src="~/simba/img/clients/1.jpg" alt="">
-                        </div>
-                        <div class="cont">
-                            <h6>جان اسنو</h6>
-                            <span>مدیر مسئول دیوار بزرگ</span>
-                            <div class="rate">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-box">
-                    <span class="quote">
-                        <img src="~/simba/img/quot.png" alt="">
-                    </span>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها</p>
-                    <div class="info">
-                        <div class="author-img">
-                            <img src="~/simba/img/clients/2.jpg" alt="">
-                        </div>
-                        <div class="cont">
-                            <h6>جان اسنو</h6>
-                            <span>مدیر مسئول دیوار بزرگ</span>
-                            <div class="rate">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-box">
-                    <span class="quote">
-                        <img src="~/simba/img/quot.png" alt="">
-                    </span>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها</p>
-                    <div class="info">
-                        <div class="author-img">
-                            <img src="~/simba/img/clients/3.jpg" alt="">
-                        </div>
-                        <div class="cont">
-                            <h6>جان اسنو</h6>
-                            <span>مدیر مسئول دیوار بزرگ</span>
-                            <div class="rate">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-box">
-                    <span class="quote">
-                        <img src="~/simba/img/quot.png" alt="">
-                    </span>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها</p>
-                    <div class="info">
-                        <div class="author-img">
-                            <img src="~/simba/img/clients/4.jpg" alt="">
-                        </div>
-                        <div class="cont">
-                            <h6>جان اسنو</h6>
-                            <span>مدیر مسئول دیوار بزرگ</span>
-                            <div class="rate">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                 
+                @await Component.InvokeAsync("GetCustomerComment")
+
             </div>
 
         </div>

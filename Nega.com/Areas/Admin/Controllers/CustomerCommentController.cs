@@ -3,6 +3,7 @@ using BLL.Concrate;
 using DAL.EntityFrameWork;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Negacom.Areas.Admin.Models;
 using System;
 
 namespace Negacom.Areas.Admin.Controllers
@@ -20,23 +21,23 @@ namespace Negacom.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            
+
             return View();
         }
         [HttpPost]
         public IActionResult Index(Models.CustomerCommmentModel c)
         {
-            if (c.NameSurName == null || c.Brand == null|| c.Email == null || c.Content == null || c.Picture== null)
+            if (c.NameSurName == null || c.Brand == null || c.Email == null || c.Content == null || c.Picture == null)
             {
                 if (c.NameSurName == null)
                 {
-                    ModelState.AddModelError("", "connot be left bland the NameSureName");   
+                    ModelState.AddModelError("", "connot be left bland the NameSureName");
                 }
                 if (c.Brand == null)
                 {
                     ModelState.AddModelError("", "connot be left bland the Brand");
                 }
-                if (c.Email == null )
+                if (c.Email == null)
                 {
                     ModelState.AddModelError("", "connot be left bland the Email");
                 }
@@ -52,7 +53,8 @@ namespace Negacom.Areas.Admin.Controllers
             }
             else
             {
-                CustomerComment cc = new CustomerComment() {
+                CustomerComment cc = new CustomerComment()
+                {
                     NameSurName = c.NameSurName,
                     Brand = c.Brand,
                     Email = c.Email,
@@ -64,7 +66,7 @@ namespace Negacom.Areas.Admin.Controllers
                 if (c.Picture != null)
                 {
                     UploadFİle upf = new UploadFİle(Environment);
-                    cc.Picture= upf.upload(c.Picture);
+                    cc.Picture = upf.upload(c.Picture);
                 }
                 _customercommnet.Add(cc);
             }
@@ -82,5 +84,83 @@ namespace Negacom.Areas.Admin.Controllers
             }
             return Json(new { success = false });
         }
+        public IActionResult Delete(int id)
+        {
+            var val = _customercommnet.GetById(id);
+            _customercommnet.Delete(val);
+            return View("Index");
+        }
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            CustomerCommmentModel cc = new CustomerCommmentModel();
+            var c = _customercommnet.GetById(id);
+            if (c != null)
+            {
+                cc.id = c.id;
+                cc.NameSurName = c.NameSurName;
+                cc.Brand = c.Brand;
+                cc.Picturestring = c.Picture;
+                cc.Email = c.Email;
+                cc.Content = c.Content;
+                cc.Date = c.Date;
+                cc.Status = c.Status;
+
+            }
+            return View(cc);
+        }
+        [HttpPost]
+        public IActionResult Update(CustomerCommmentModel c)
+        {
+            if (c.NameSurName == null || c.Brand == null || c.Email == null || c.Content == null)
+            {
+                if (c.NameSurName == null)
+                {
+                    ModelState.AddModelError("", "connot be left bland the NameSureName");
+                }
+                if (c.Brand == null)
+                {
+                    ModelState.AddModelError("", "connot be left bland the Brand");
+                }
+                if (c.Email == null)
+                {
+                    ModelState.AddModelError("", "connot be left bland the Email");
+                }
+                if (c.Content == null)
+                {
+                    ModelState.AddModelError("", "connot be left bland the Content");
+                }
+
+                return View(c);
+            }
+            else
+            {
+                var cc = _customercommnet.GetById(c.id);
+
+
+                cc.NameSurName = c.NameSurName;
+                cc.Brand = c.Brand;
+                cc.Email = c.Email;
+                cc.Content = c.Content;
+                cc.Date = DateTime.Now;
+                cc.id = c.id;
+
+                if (c.Picture != null)
+                {
+                    UploadFİle upf = new UploadFİle(Environment);
+                    cc.Picture = upf.upload(c.Picture);
+                }
+                else
+                {
+                    var val = _customercommnet.GetById(c.id);
+                    cc.Picture = val.Picture;
+                    val = null;
+                }
+                _customercommnet.Update(cc);
+                return View("Index");
+            }
+        }
     }
+
 }
+
