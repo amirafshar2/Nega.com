@@ -1,4 +1,5 @@
 using BE;
+using BLL.Concrate;
 using DAL.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +34,7 @@ namespace Nega.com
                 options.Cookie.HttpOnly = true; // Güvenlik için
                 options.Cookie.IsEssential = true; // GDPR ve diðer regülasyonlar için gerekli
             });
+           
             services.AddDbContext<DB>();
             services.AddIdentity<User, UserRolee>(x=>
             {
@@ -53,7 +55,7 @@ namespace Nega.com
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

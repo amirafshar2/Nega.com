@@ -9,10 +9,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.Language.Components;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging.Abstractions;
 using MimeKit;
 using Negacom.Areas.Admin.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,15 +28,16 @@ namespace Negacom.Areas.Admin.Controllers
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly UserManager<User> _userManager;
         private readonly IWebHostEnvironment Environment;
+        private readonly RoleManager<UserRolee> _roleManager;
         UserManegerloc _Userbll = new UserManegerloc(new EFUserRepository());
 
-        public UserController(IPasswordHasher<User> passwordHasher, UserManager<User> userManager, IWebHostEnvironment _envirorment)
+        public UserController(IPasswordHasher<User> passwordHasher, UserManager<User> userManager, IWebHostEnvironment environment, RoleManager<UserRolee> roleManager)
         {
             _passwordHasher = passwordHasher;
             _userManager = userManager;
-            Environment = _envirorment;
+            Environment = environment;
+            _roleManager = roleManager;
         }
-
 
         [Authorize]
         [HttpGet]
@@ -355,6 +358,18 @@ namespace Negacom.Areas.Admin.Controllers
                 return View();
             }
         }
+        [HttpPost]
+        public IActionResult UpdateStatus(int id, bool status)
+        {
+            var comment = _Userbll.GetById(id);
+            if (comment != null)
+            {
+                comment.Status = status;
+                _Userbll.Update(comment);
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
         public IActionResult Delete(int id)
         {
             DB db = new DB();
@@ -366,5 +381,54 @@ namespace Negacom.Areas.Admin.Controllers
             }
             return View("Index");
         }
+        [HttpGet]
+        public async Task<IActionResult> AddRole(int id)
+        {
+
+            var user = _userManager.Users.FirstOrDefault(x => x.Id == id);
+            var roles = _roleManager.Roles.ToList();
+
+            var userroles = await _userManager.GetRolesAsync(user);
+            List<Rolemodel> rm = new List<Rolemodel>();
+            foreach (var item in roles)
+            {
+                Rolemodel m = new Rolemodel();
+                m.roleid = item.Id;
+                TempData["userid"] = user.Id;
+                m.name = item.Name;
+                m.Username = user.UserName;
+                m.Userid = user.Id;
+                m.exist = userroles.Contains(item.Name);
+                rm.Add(m);
+
+            }
+
+            return View(rm);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddRole(List<Rolemodel> m)
+        {
+            var userıd = (int)TempData["userid"];
+            var user = _userManager.Users.FirstOrDefault(x => x.Id == userıd);
+            foreach (var item in m)
+            {
+
+                if (item.exist)
+                {
+                    await _userManager.AddToRoleAsync(user, item.name);
+                    return View("Index");
+                }
+                else
+                {
+                    await _userManager.RemoveFromRoleAsync(user, item.name);
+                    return View("Index");
+                }
+            }
+
+            return View("Index");
+        }
     }
+
+
 }
+
