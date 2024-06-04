@@ -1,4 +1,9 @@
 ﻿
+@{
+    Layout = null;
+}
+
+
 
 
 
@@ -24,8 +29,8 @@
 
 
     <!-- Title  -->
-    <title>NEGA</title>
-   
+    <title>Nega</title>
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="~/simba/negatit2.png">
 
@@ -67,11 +72,11 @@
         <div class="container">
 
             <!-- Logo -->
-            <a class="logo" href="~/Admin/Login/Index">
-                <img src="~/simba/negalight.png"  alt="logo" />
+            <a class="logo" href="#">
+                <img src="~/simba/negalight.png" alt="logo" />
             </a>
-         
-          
+
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="icon-bar"><i class="fas fa-bars"></i></span>
             </button>
@@ -80,26 +85,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#" data-scroll-nav="0">خانه</a>
+                        <a class="nav-link active" href="~/Nega/Index" >خانه</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-scroll-nav="1">خدمات</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-scroll-nav="2">درباره ما</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-scroll-nav="3">کارها</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-scroll-nav="4">قیمت</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-scroll-nav="5">بلاگ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-scroll-nav="6">تماس</a>
-                    </li>
+           
                 </ul>
             </div>
         </div>
@@ -109,7 +97,7 @@
     ======================================= -->
     <!-- =====================================
     ==== Start Header -->
-    @await Component.InvokeAsync("GetCarousel");
+
     <!-- End Header ====
     ======================================= -->
     <!-- =====================================
@@ -165,7 +153,7 @@
             </div>
         </div>
     </footer>
- 
+
     <!-- End Footer ====
     ======================================= -->
     <!-- jQuery -->

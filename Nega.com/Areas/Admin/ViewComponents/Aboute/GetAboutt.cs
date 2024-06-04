@@ -8,7 +8,7 @@ namespace Negacom.Areas.Admin.ViewComponents.Aboute
 
 
 
-    public class GetAbout : ViewComponent
+    public class GetAboutt : ViewComponent
     {
         AbouteManeger _aboutebll = new AbouteManeger(new EFAbouteRepository());
         public IViewComponentResult Invoke()

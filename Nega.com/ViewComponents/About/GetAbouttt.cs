@@ -9,7 +9,7 @@ namespace Negacom.ViewComponents.About
 
 
 
-    public class GetAboutt :ViewComponent
+    public class GetAbouttt :ViewComponent
     {
         AbouteManeger _aboutbll = new AbouteManeger(new EFAbouteRepository());
         public IViewComponentResult Invoke()

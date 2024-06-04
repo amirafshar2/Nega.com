@@ -1,0 +1,330 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/NegaDetaleLayout.cshtml";
+}
+
+
+
+
+
+
+@model BE.Package
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+
+    <!-- Metas -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="HTML5 Template Simba onepage">
+    <meta name="description" content="Simba - Onepage Multi-Purpose HTML5 Template">
+    <meta name="author" content="">
+
+    <!-- Title  -->
+    <title></title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/simbs/img/favicon.ico">
+
+    <!-- Plugins -->
+    <link rel="stylesheet" href="~/simbs/css/plugins.css">
+
+    <!-- Core Style Css -->
+    <link rel="stylesheet" href="~/simbs/css/style.css">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#01BF81" />
+
+</head>
+
+<body>
+
+    <!-- =====================================
+    ==== Start Loading -->
+
+    <div class="loading">
+        <div class="text-center middle">
+            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+        </div>
+    </div>
+
+
+    <!-- =====================================
+    ==== Start Header -->
+
+    <header class="page-header valign bg-img" data-overlay-dark="8" data-background="/image/Pack/@Model.Picture" data-stellar-background-ratio="0.5">
+
+        <div class="container">
+            <div class="row">
+                <div class="full-width text-center caption mt-30">
+
+                    <h1>@Model.Name</h1>
+                    @{
+                        string content = Model.Content.Length > 100 ? Model.Content.Substring(0, 100) : Model.Content;
+                    }
+
+                    <p>@content ...</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- End Header ====
+    ======================================= -->
+    <!--====== Blog ======-->
+    <section class="blogs section-padding bg-gray main-content">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="posts blog mb-md50">
+
+                        <div class="item">
+                            <div>
+                                @if (Model.Title != null)
+                                {
+                                    <div class="row">
+
+                                        <div class="col-lg-6 about box-padding">
+                                            <div class=" skills box-padding">
+                                                <br />
+                                                <h6 class="sub-title">@Model.Title</h6>
+                                                <br />
+                                                <p>@Model.Content</p>
+                                                <br />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 bg-img bg-center" data-background=" /image/Pack/@Model.Picture"></div>
+                                    </div>
+                                }
+                                @if (Model.Title2 != null)
+                                {
+                                    <section class="boxs bg-gray">
+                                        <div class="container-fluid">
+
+                                            <div class="row">
+
+                                                <div class="col-lg-6 bg-img bg-center" data-background="/image/Pack/@Model.Picture2"></div>
+
+                                                <div class="col-lg-6 skills box-padding">
+
+                                                    <h6 class="sub-title">@Model.Title2</h6>
+
+                                                    <p>@Model.Content2</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                }
+                                @if (Model.Title3 != null)
+                                {
+
+                                    <div class="row">
+
+                                        <div class="col-lg-6 about box-padding">
+
+                                            <br />
+                                            <h6 class="sub-title">@Model.Title3</h6>
+                                            <br />
+                                            <p>@Model.Content3</p>
+                                            <br />
+                                        </div>
+
+                                        <div class="col-lg-6 bg-img bg-center" data-background=" /image/Pack/@Model.Picture3"></div>
+                                    </div>
+                                }
+                                @if (Model.Title4 != null)
+                                {
+                                    <section class="boxs bg-gray">
+                                        <div class="container-fluid">
+
+                                            <div class="row">
+
+                                                <div class="col-lg-6 bg-img bg-center" data-background="/image/Pack/@Model.Picture4"></div>
+
+                                                <div class="col-lg-6 skills box-padding">
+
+                                                    <h6 class="sub-title">@Model.Title4</h6>
+
+                                                    <p>@Model.Content4</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                }@if (Model.Title5 != null)
+                                {
+                                    <div class="row">
+
+                                        <div class="col-lg-6 about box-padding">
+
+                                            <br />
+                                            <h6 class="sub-title">@Model.Title5</h6>
+                                            <br />
+                                            <p>@Model.Content5</p>
+                                            <br />
+                                        </div>
+
+                                        <div class="col-lg-6 bg-img bg-center" data-background=" /image/Pack/@Model.Picture5"></div>
+                                    </div>
+                                }
+                                @if (Model.Title6 != null)
+                                {
+
+                                    <section class="boxs bg-gray">
+                                        <div class="container-fluid">
+
+                                            <div class="row">
+
+                                                <div class="col-lg-6 bg-img bg-center" data-background="/image/Pack/@Model.Picture6"></div>
+
+                                                <div class="col-lg-6 skills box-padding">
+
+                                                    <h6 class="sub-title">@Model.Title6</h6>
+
+                                                    <p>@Model.Content6</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                }
+                                @if (Model.Title7 != null)
+                                {
+
+                                    <div class="row">
+
+                                        <div class="col-lg-6 about box-padding">
+
+                                            <br />
+                                            <h6 class="sub-title">@Model.Title7</h6>
+                                            <br />
+                                            <p>@Model.Content7</p>
+                                            <br />
+                                        </div>
+
+                                        <div class="col-lg-6 bg-img bg-center" data-background=" /image/Pack/@Model.Picture7"></div>
+                                    </div>
+                                }@if (Model.Title8 != null)
+                                {
+
+                                    <section class="boxs bg-gray">
+                                        <div class="container-fluid">
+
+                                            <div class="row">
+
+                                                <div class="col-lg-6 bg-img bg-center" data-background="/image/Pack/@Model.Picture8"></div>
+
+                                                <div class="col-lg-6 skills box-padding">
+
+                                                    <h6 class="sub-title">@Model.Title8</h6>
+
+                                                    <p>@Model.Content8</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                }@if (Model.Title9 != null)
+                                {
+
+                                    <div class="row">
+
+                                        <div class="col-lg-6 about box-padding">
+
+                                            <br />
+                                            <h6 class="sub-title">@Model.Title9</h6>
+                                            <br />
+                                            <p>@Model.Content9</p>
+                                            <br />
+                                        </div>
+
+                                        <div class="col-lg-6 bg-img bg-center" data-background=" /image/Pack/@Model.Picture9"></div>
+                                    </div>
+                                }
+                                @if (Model.Title10 != null)
+                                {
+
+
+                                    <section class="boxs bg-gray">
+                                        <div class="container-fluid">
+
+                                            <div class="row">
+
+                                                <div class="col-lg-6 bg-img bg-center" data-background="/image/Pack/@Model.Picture10"></div>
+
+                                                <div class="col-lg-6 skills box-padding">
+
+                                                    <h6 class="sub-title">@Model.Title10</h6>
+
+                                                    <p>@Model.Content10</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End Blog ======-->
+    <!-- =====================================
+    ==== Start Footer -->
+    <!-- End Footer ====
+    ======================================= -->
+    <!-- jQuery -->
+    <script src="~/simbs/js/jquery-3.0.0.min.js"></script>
+    <script src="~/simbs/js/jquery-migrate-3.0.0.min.js"></script>
+
+    <!-- popper.min -->
+    <script src="~/simbs/js/popper.min.js"></script>
+
+    <!-- bootstrap -->
+    <script src="~/simbs/js/bootstrap.min.js"></script>
+
+    <!-- scrollIt -->
+    <script src="~/simbs/js/scrollIt.min.js"></script>
+
+    <!-- jquery.waypoints.min -->
+    <script src="~/simbs/js/jquery.waypoints.min.js"></script>
+
+    <!-- owl carousel -->
+    <script src="~/simbs/js/owl.carousel.min.js"></script>
+
+    <!-- jquery.magnific-popup js -->
+    <script src="~/simbs/js/jquery.magnific-popup.min.js"></script>
+
+    <!-- stellar js -->
+    <script src="~/simbs/js/jquery.stellar.min.js"></script>
+
+    <!-- isotope.pkgd.min js -->
+    <script src="~/simbs/js/isotope.pkgd.min.js"></script>
+
+    <!-- YouTubePopUp.jquery -->
+    <script src="~/simbs/js/YouTubePopUp.jquery.js"></script>
+
+    <!-- jquery.counterup -->
+    <script src="~/simbs/js/jquery.counterup.min.js"></script>
+
+    <!-- validator js -->
+    <script src="~/simbs/js/validator.js"></script>
+
+    <!-- custom scripts -->
+    <script src="~/simbs/js/scripts.js"></script>
+
+    <!--[if lt IE 10]>
+    <script src="js/jquery.placeholder.min.js" type="text/javascript"></script>
+    <script type="text/javascript">$('input, textarea').placeholder();</script>
+    <![endif]-->
+
+</body>
+</html>
+

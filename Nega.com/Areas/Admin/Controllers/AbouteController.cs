@@ -35,7 +35,7 @@ namespace Negacom.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Index(AboutModel p)
         {
-            if (p.Title1 == null || p.Name == null  || p.Content == null  || p.İmage1 == null  || p.MapLocation == null)
+            if (p.Title1 == null || p.Name == null  || p.Content == null  || p.İmage1 == null )
             {
                 if (p.Name == null)
                 {

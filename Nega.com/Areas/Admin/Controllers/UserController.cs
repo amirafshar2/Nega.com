@@ -30,6 +30,7 @@ namespace Negacom.Areas.Admin.Controllers
         private readonly IWebHostEnvironment Environment;
         private readonly RoleManager<UserRolee> _roleManager;
         UserManegerloc _Userbll = new UserManegerloc(new EFUserRepository());
+        RoleManager _rolbll = new RoleManager(new EFUserRoleeRepository());
 
         public UserController(IPasswordHasher<User> passwordHasher, UserManager<User> userManager, IWebHostEnvironment environment, RoleManager<UserRolee> roleManager)
         {
@@ -410,18 +411,29 @@ namespace Negacom.Areas.Admin.Controllers
         {
             var userıd = (int)TempData["userid"];
             var user = _userManager.Users.FirstOrDefault(x => x.Id == userıd);
-            foreach (var item in m)
+            if (user == null)
+            {
+                return View("Error");
+            }
+            else
             {
 
-                if (item.exist)
+                foreach (var item in m)
                 {
-                    await _userManager.AddToRoleAsync(user, item.name);
-                    return View("Index");
-                }
-                else
-                {
-                    await _userManager.RemoveFromRoleAsync(user, item.name);
-                    return View("Index");
+
+
+                    if (item.exist)
+                    {
+                        var val = _rolbll.GetById(item.roleid);
+                        await _userManager.AddToRoleAsync(user, val.NormalizedName);
+
+                    }
+                    else
+                    {
+                        var val = _rolbll.GetById(item.roleid);
+                        await _userManager.RemoveFromRoleAsync(user, val.NormalizedName);
+
+                    }
                 }
             }
 

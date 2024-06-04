@@ -435,6 +435,18 @@ namespace Nega.com.Areas.Admin.Controllers
             }
             
         }
-   
+        public IActionResult UpdateStatus(int id, bool status)
+        {
+            var comment = _PckageBLL.GetById(id);
+            if (comment != null)
+            {
+                comment.Status = status;
+                _PckageBLL.Update(comment);
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
+
+
     }
 }
