@@ -20,27 +20,28 @@ namespace BLL.Concrate
 
         public void Add(Blog t)
         {
-            throw new NotImplementedException();
+            _ıblogdal.Add(t);
         }
 
         public void Delete(Blog t)
         {
-            throw new NotImplementedException();
+            _ıblogdal.Delete(t);
         }
 
         public List<Blog> GetAll()
         {
-            throw new NotImplementedException();
+            return _ıblogdal.GetAll();
         }
 
         public Blog GetById(int id)
         {
-            throw new NotImplementedException();
+            return _ıblogdal.GetBayId(id);
+
         }
 
         public void Update(Blog t)
         {
-            throw new NotImplementedException();
+            _ıblogdal.Update(t);
         }
     }
 }
