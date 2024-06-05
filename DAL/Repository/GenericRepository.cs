@@ -20,7 +20,11 @@ namespace DAL.Repository
 
         public void Delete(T item)
         {
-            db.Remove(item);
+            if (item != null)
+            {
+
+                db.Remove(item);
+            }
             db.SaveChanges();
         }
 
@@ -45,6 +49,6 @@ namespace DAL.Repository
             db.SaveChanges();
         }
 
-      
+
     }
 }

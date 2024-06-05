@@ -28,7 +28,7 @@
 
         if (partt3.is(":visible")) {
             partt3.hide();
-            button.html('<i class="fa fa-plus"></i> Add New Package');
+            button.html('<i class="fa fa-plus"></i> Add New Page');
         } else {
             partt3.show();
             button.html("Cancel");
@@ -85,7 +85,7 @@
         var pacadd = $("#pacadd");
         if (pacadd.is(":visible")) {
             pacadd.hide();
-            $(this).val("Add New Package");
+            $(this).val("Add New Page");
         } else {
             pacadd.show();
             $(this).val("Cancel");

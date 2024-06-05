@@ -9,5 +9,6 @@ namespace BLL.Abstract
 {
     public interface ICategoryService:IGenericServis<Category>
     {
+      void Update1(Category c, int id);
     }
 }

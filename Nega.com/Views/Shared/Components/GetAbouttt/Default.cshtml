@@ -24,7 +24,7 @@
                 <div class="col-lg-6 about box-padding">
                     <h6 class="sub-title">@item.Title1</h6>
                     <h4>ما کیستیم؟</h4>
-                    <p>@item.Content</p>
+                    <p>@Html.Raw(item.Content)</p>
                     <div class="row">
                         <div class="col-sm-6">
                             <ul>
@@ -61,7 +61,7 @@
 
                             <h6 class="sub-title">چرا ما را انتخاب کنید؟</h6>
                             <h4>چرا ما را انتخاب کنید؟</h4>
-                            <p>@item.Content2</p>
+                            <p>@Html.Raw(item.Content2)</p>
 
                             <div class="skill-item mt-30">
                                 <h6>طراحی وب</h6>

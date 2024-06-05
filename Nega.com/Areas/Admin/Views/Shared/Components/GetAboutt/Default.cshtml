@@ -43,11 +43,11 @@
                     
                     
                     
-                    <p class="card-text">@item.Content</p>
+                    <p class="card-text">@Html.Raw(item.Content)</p>
                     <br/>
                     <img class="card-img-top" src="~/image/Pack/@item.İmage2" alt="Card image" style="display:flex">
                     <h5 class="card-title">@item.Title2</h5>
-                    <p class="card-text">@item.Content2</p>
+                    <p class="card-text">@Html.Raw(item.Content2)</p>
                     <div class="card-title">
                         <iframe src="@item.MapLocation" width="100%" height="100%"></iframe>
                         </div>

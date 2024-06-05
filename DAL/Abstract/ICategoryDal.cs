@@ -9,5 +9,6 @@ namespace DAL.Abstract
 {
     public interface ICategoryDal:IGenericDal<Category>
     {
+        void Update1(Category c, int id);
     }
 }

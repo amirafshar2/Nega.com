@@ -31,23 +31,23 @@ namespace Negacom.Areas.Admin.Controllers
             {
                 if (c.NameSurName == null)
                 {
-                    ModelState.AddModelError("", "connot be left bland the NameSureName");
+                    ModelState.AddModelError("", "NameSureName  cannot be left blank");
                 }
                 if (c.Brand == null)
                 {
-                    ModelState.AddModelError("", "connot be left bland the Brand");
+                    ModelState.AddModelError("", "Brand  cannot be left blank");
                 }
                 if (c.Email == null)
                 {
-                    ModelState.AddModelError("", "connot be left bland the Email");
+                    ModelState.AddModelError("", " Email  cannot be left blank");
                 }
                 if (c.Content == null)
                 {
-                    ModelState.AddModelError("", "connot be left bland the Content");
+                    ModelState.AddModelError("", "Content  cannot be left blank");
                 }
                 if (c.Picture == null)
                 {
-                    ModelState.AddModelError("", "connot be left bland the Picture");
+                    ModelState.AddModelError("", "Picture  cannot be left blank");
                 }
                 return View(c);
             }
@@ -116,21 +116,20 @@ namespace Negacom.Areas.Admin.Controllers
             {
                 if (c.NameSurName == null)
                 {
-                    ModelState.AddModelError("", "connot be left bland the NameSureName");
+                    ModelState.AddModelError("", "NameSureName  cannot be left blank");
                 }
                 if (c.Brand == null)
                 {
-                    ModelState.AddModelError("", "connot be left bland the Brand");
+                    ModelState.AddModelError("", "Brand  cannot be left blank");
                 }
                 if (c.Email == null)
                 {
-                    ModelState.AddModelError("", "connot be left bland the Email");
+                    ModelState.AddModelError("", " Email  cannot be left blank");
                 }
                 if (c.Content == null)
                 {
-                    ModelState.AddModelError("", "connot be left bland the Content");
+                    ModelState.AddModelError("", "Content  cannot be left blank");
                 }
-
                 return View(c);
             }
             else

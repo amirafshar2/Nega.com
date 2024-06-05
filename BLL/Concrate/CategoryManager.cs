@@ -42,5 +42,10 @@ namespace BLL.Concrate
         {
             _ıcategoeydal.Update(t);
         }
+
+        public void Update1(Category c, int id)
+        {
+            _ıcategoeydal.Update1(c,id);
+        }
     }
 }

@@ -11,6 +11,7 @@
     <link href="~/AdminTema/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
     <link href="~/AdminTema/css/plugins/codemirror/codemirror.css" rel="stylesheet">
     <link href="~/AdminTema/css/style.css" rel="stylesheet">
+    <script src="https://cdn.tiny.cloud/1/xs0kxyfwqm84rx29r0awvmsbi2pi16o0ng5kvd4wniwf7bl7/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 
 
@@ -76,7 +77,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Content<text class="text text-danger">*</text></label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="Content" style="height: 150px;" id="PContent"></textarea>
+                                <textarea class="form-control" name="Content" style="height: 150px;" id="tiny"></textarea>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -113,7 +114,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Content2</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" name="Content2" style="height: 150px;" id="PContent2"></textarea>
+                                                <textarea class="form-control" name="Content2" style="height: 150px;" id="tiny"></textarea>
                                             </div>
                                         </div>
                                         <div class="hr-line-dashed"></div>
@@ -150,7 +151,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Content3</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" name="Content3" style="height: 150px;" id="PContent3"></textarea>
+                                                <textarea id="tiny" class="form-control" name="Content3" style="height: 150px;"></textarea>
                                             </div>
                                         </div>
                                         <div class="hr-line-dashed"></div>
@@ -190,7 +191,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Content4</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" name="Content4" style="height: 150px;" id="PContent4"></textarea>
+                                                <textarea class="form-control" name="Content4" style="height: 150px;" id="tiny"></textarea>
                                             </div>
                                         </div>
                                         <div class="hr-line-dashed"></div>
@@ -229,7 +230,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Content5</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" name="Content5" style="height: 150px;" id="PContent5"></textarea>
+                                                <textarea class="form-control" name="Content5" style="height: 150px;" id="tiny"></textarea>
                                             </div>
                                         </div>
                                         <div class="hr-line-dashed"></div>
@@ -268,7 +269,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Content6</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" name="Content6" style="height: 150px;" id="PContent6"></textarea>
+                                                <textarea class="form-control" name="Content6" style="height: 150px;" id="tiny"></textarea>
                                             </div>
                                         </div>
                                         <div class="hr-line-dashed"></div>
@@ -307,7 +308,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Content7</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" name="Content7" style="height: 150px;" id="PContent7"></textarea>
+                                                <textarea class="form-control" name="Content7" style="height: 150px;" id="tiny"></textarea>
                                             </div>
                                         </div>
                                         <div class="hr-line-dashed"></div>
@@ -347,7 +348,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Content8</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" name="Content8" style="height: 150px;" id="PContent8"></textarea>
+                                                <textarea class="form-control" name="Content8" style="height: 150px;" id="tiny"></textarea>
                                             </div>
                                         </div>
                                         <div class="hr-line-dashed"></div>
@@ -387,7 +388,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Content9</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" name="Content9" style="height: 150px;" id="PContent9"></textarea>
+                                                <textarea class="form-control" name="Content9" style="height: 150px;" id="tiny"></textarea>
                                             </div>
                                         </div>
                                         <div class="hr-line-dashed"></div>
@@ -426,7 +427,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Content10</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" name="Content10" style="height: 150px;" id="PContent10"></textarea>
+                                                <textarea class="form-control" name="Content10" style="height: 150px;" id="tiny"></textarea>
                                             </div>
                                         </div>
                                         <div class="hr-line-dashed"></div>
@@ -483,5 +484,15 @@
 <script src="~/AdminTema/js/inspinia.js"></script>
 <script src="~/AdminTema/js/plugins/pace/pace.min.js"></script>
 <script src="~/jsadmin/package/javascript.js"></script>
-
+<script>
+    tinymce.init({
+        selector: 'textarea#tiny'
+    });
+    // Prevent Bootstrap dialog from blocking focusin
+    $(document).on('focusin', function (e) {
+        if ($(e.target).closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
+            e.stopImmediatePropagation();
+        }
+    });
+</script>
 

@@ -364,7 +364,7 @@
                     </div>
                     <h4 class="card-title">@item.Title</h4>
                     <h5 class="card-title">@item.Price $</h5>
-                    <p class="card-text">@item.Content</p>
+                    <p class="card-text">@Html.Raw(item.Content)</p>
 
                     <button onclick="location.href='@Url.Action("Update", "Package", new { id = item.id })'" class="btn btn-info  dim" type="button">
                         <i class="fa fa-cog"></i>

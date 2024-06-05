@@ -19,7 +19,7 @@ namespace Negacom.Areas.Admin.Controllers
     public class AbouteController : Controller
     {
 
-        AbouteManeger _aboutbll = new    AbouteManeger (new EFAbouteRepository());
+        AbouteManeger _aboutbll = new AbouteManeger(new EFAbouteRepository());
         private readonly IWebHostEnvironment Environment;
 
         public AbouteController(IWebHostEnvironment _envirorment)
@@ -35,7 +35,7 @@ namespace Negacom.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Index(AboutModel p)
         {
-            if (p.Title1 == null || p.Name == null  || p.Content == null  || p.İmage1 == null )
+            if (p.Title1 == null || p.Name == null || p.Content == null || p.İmage1 == null)
             {
                 if (p.Name == null)
                 {
@@ -47,19 +47,19 @@ namespace Negacom.Areas.Admin.Controllers
                     ModelState.AddModelError("Name", "Title1 cannot be left blank");
 
                 }
-              
+
                 if (p.Content == null)
                 {
                     ModelState.AddModelError("Name", "Content cannot be left blank");
 
                 }
-               
+
                 if (p.İmage1 == null)
                 {
                     ModelState.AddModelError("Name", "İmage1 cannot be left blank");
 
                 }
-               
+
                 if (p.MapLocation == null)
                 {
                     ModelState.AddModelError("Name", "MapLocation cannot be left blank");
@@ -83,8 +83,8 @@ namespace Negacom.Areas.Admin.Controllers
                     pa.İmage2 = upf.upload(p.İmage2);
 
                 }
-                pa.Name= p.Name;
-                pa.Title1= p.Title1;
+                pa.Name = p.Name;
+                pa.Title1 = p.Title1;
                 pa.Title2 = p.Title2;
                 pa.Content = p.Content;
                 pa.Content2 = p.Content2;
@@ -93,30 +93,34 @@ namespace Negacom.Areas.Admin.Controllers
                 _aboutbll.Add(pa);
 
             }
-                return View();
+            return View();
         }
 
         [HttpGet]
         public IActionResult Update(int id)
         {
-            
+
             var value = _aboutbll.GetById(id);
-            ViewBag.Name = value.Name;
-            ViewBag.Tit = value.Title1;
-            ViewBag.Tit2 = value.Title2;
-            ViewBag.Content = value.Content;
-            ViewBag.Content2 = value.Content2;
-            ViewBag.Pic = value.İmage1;
-            ViewBag.Pic2 = value.İmage2;
-            ViewBag.map = value.MapLocation;
-          
+            if (value != null)
+            {
+
+                ViewBag.Name = value.Name;
+                ViewBag.Tit = value.Title1;
+                ViewBag.Tit2 = value.Title2;
+                ViewBag.Content = value.Content;
+                ViewBag.Content2 = value.Content2;
+                ViewBag.Pic = value.İmage1;
+                ViewBag.Pic2 = value.İmage2;
+                ViewBag.map = value.MapLocation;
+            }
+
             return View();
         }
         [HttpPost]
         public IActionResult Update(AboutModel p, int id)
         {
 
-            if (p.Title1 == null || p.Name == null  || p.Content == null  || p.MapLocation == null)
+            if (p.Title1 == null || p.Name == null || p.Content == null || p.MapLocation == null)
             {
                 if (p.Name == null)
                 {
@@ -128,15 +132,15 @@ namespace Negacom.Areas.Admin.Controllers
                     ModelState.AddModelError("Name", "Title1 cannot be left blank");
 
                 }
-               
+
                 if (p.Content == null)
                 {
                     ModelState.AddModelError("Name", "Content cannot be left blank");
 
                 }
-             
-                
-               
+
+
+
                 if (p.MapLocation == null)
                 {
                     ModelState.AddModelError("Name", "MapLocation cannot be left blank");

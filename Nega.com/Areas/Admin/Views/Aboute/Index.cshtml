@@ -17,6 +17,7 @@
     <link href="~/AdminTema/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
     <link href="~/AdminTema/css/plugins/codemirror/codemirror.css" rel="stylesheet">
     <link href="~/AdminTema/css/style.css" rel="stylesheet">
+    <script src="https://cdn.tiny.cloud/1/xs0kxyfwqm84rx29r0awvmsbi2pi16o0ng5kvd4wniwf7bl7/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <div class="row">
     <div class="col-lg-12">
@@ -69,7 +70,7 @@
 
                             <label class="col-sm-2 col-form-label">Content1<text class="text text-danger">*</text></label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="Content" style="height: 150px;" id="PContent"></textarea>
+                                <textarea class="form-control" name="Content" style="height: 150px;" id="tiny"></textarea>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -77,7 +78,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Content2</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="Content2" style="height: 150px;" id="PContent"></textarea>
+                                <textarea class="form-control" name="Content2" style="height: 150px;" id="tiny"></textarea>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -174,6 +175,14 @@
 
         setupFileInputChangeHandler('logo1', 'preview1');
         setupFileInputChangeHandler('logo2', 'preview2');
-   
+        tinymce.init({
+            selector: 'textarea#tiny'
+        });
+        // Prevent Bootstrap dialog from blocking focusin
+        $(document).on('focusin', function (e) {
+            if ($(e.target).closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
+                e.stopImmediatePropagation();
+            }
+        });
     });
 </script><script src="~/jsadmin/service/javascript.js"></script>
