@@ -1,6 +1,7 @@
 using BE;
 using BLL.Concrate;
 using DAL.Context;
+using DAL.EntityFrameWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -52,7 +53,7 @@ namespace Nega.com
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSession();
             services.AddHttpContextAccessor();
-
+          
         }
 
         

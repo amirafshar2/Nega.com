@@ -42,23 +42,20 @@ namespace Negacom.Areas.Admin.Controllers
             {
                 if (u.UserName == null)
                 {
-                    ModelState.AddModelError("", "connot be left blank the Emial");
+                    ModelState.AddModelError("", "Emial  connot be left blank");
                 }
                 if (u.Password == null)
                 {
-                    ModelState.AddModelError("", "connot be left blank the Password");
+                    ModelState.AddModelError("", "Password connot be left blank");
                 }
                 return View(u);
             }
             else
             {
-                var user = await _usermanager.FindByEmailAsync(u.Email);
                 var val = _UserMangerbll.GetbayUsername(u.UserName);
-                if (user != null && await _usermanager.CheckPasswordAsync(user, u.Password))
+                if (val != null && await _usermanager.CheckPasswordAsync(  val, u.Password))
                 {
-                    HttpContext.Session.SetString("StatusİnCompany", user.StatusİnCompany);
-                    HttpContext.Session.SetString("FullName", user.Name + " " + user.Family);
-                    HttpContext.Session.SetString("Pic", user.Picture);
+                   
 
                     if (val == null || val.Status == true)
                     {

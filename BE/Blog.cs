@@ -47,5 +47,7 @@ namespace BE
         public List<Comment> comments { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public int Userid {  get; set; }
+        public User User { get; set; }
     }
 }

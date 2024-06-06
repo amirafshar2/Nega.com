@@ -22,6 +22,16 @@ namespace Negacom.Areas.Admin.Models
         public IFormFile? Picture8 { get; set; }
         public IFormFile? Picture9 { get; set; }
         public IFormFile? Picture10 { get; set; }
+        public string strPicture { get; set; }
+        public string strPicture2 { get; set; }
+        public string strPicture3 { get; set; }
+        public string strPicture4 { get; set; }
+        public string strPicture5 { get; set; }
+        public string strPicture6 { get; set; }
+        public string strPicture7 { get; set; }
+        public string strPicture8 { get; set; }
+        public string strPicture9 { get; set; }
+        public string strPicture10 { get; set; }
         public string Title2 { get; set; }
         public string Title3 { get; set; }
         public string Title4 { get; set; }
@@ -43,7 +53,7 @@ namespace Negacom.Areas.Admin.Models
         public DateTime Date { get; set; }
         public bool Status { get; set; }
         public int categoryid {  get; set; }
-        
+        public int userid { get; set; }
 
     }
 }
