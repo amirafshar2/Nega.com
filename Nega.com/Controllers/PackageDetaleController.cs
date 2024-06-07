@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Negacom.Controllers
 {
-	public class PachageDetaleController : Controller
+	public class PackageDetaleController : Controller
 	{
 		PackageManager _packagebll = new PackageManager(new EFpackageRepository());
 		[HttpGet]

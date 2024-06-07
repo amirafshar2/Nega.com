@@ -11,49 +11,51 @@
 
 @model List<BE.Blog>
 
-<div class="container">
+<div class="col-lg-3 col-sm-6 col-3 col-md-3">
     @foreach (var item in Model)
     {
+        <div class="container">
 
-        <div class="card">
-            <div class="card__header">
-                <img src="~/image/Pack/@item.Picture" alt="card__image" class="card__image" width="600">
-            </div>
-            <div class="card__body">
-                <span class="tag tag-blue">@item.Category.Name</span>
-                <h4>@item.Title</h4>
-                <p>
-                    @{
-                        var con = item.Content.ToString();
-                        string connt = con.Length > 300 ? con.Substring(0,300) : con;
-                        
-                    }
-                    @Html.Raw(connt)
-                </p>
+            <div class="card">
+                <div class="card__header">
+                    <img src="~/image/Pack/@item.Picture" alt="card__image" class="card__image" width="600">
+                </div>
+                <div class="card__body">
+                    <span class="tag tag-blue">@item.Category.Name</span>
+                    <h4>@item.Title</h4>
+                    <p>
+                        @{
+                            var con = item.Content.ToString();
+                            string connt = con.Length > 300 ? con.Substring(0, 300) : con;
 
-                <div class="row p-1">
+                        }
+                        @Html.Raw(connt)
+                    </p>
 
-                    <button onclick="location.href='@Url.Action("Update", "Blog", new { id = item.id })'" class="btn btn-info dim" style="width:15%" type="button">
-                        <i class="fa fa-cog"></i>
-                    </button>
-                    <button onclick="confirmDelete('@HttpUtility.UrlEncode(item.id.ToString())')" class="btn btn-danger dim" style="width:15%" type="button"><i class="fa fa-trash"></i></button>
-                    <input id="s1_@item.id" type="checkbox" class="switch p-2" @(item.Status ? "checked" : "") onchange="updateStatus(@item.id, this)">
-                    <label for="s1_@item.id" >Status</label>
+                    <div class="row p-1">
+
+                        <button onclick="location.href='@Url.Action("Update", "Blog", new { id = item.id })'" class="btn btn-info dim" style="width:15%" type="button">
+                            <i class="fa fa-cog"></i>
+                        </button>
+                        <button onclick="confirmDelete('@HttpUtility.UrlEncode(item.id.ToString())')" class="btn btn-danger dim" style="width:15%" type="button"><i class="fa fa-trash"></i></button>
+                        <input id="s1_@item.id" type="checkbox" class="switch p-2" @(item.Status ? "checked" : "") onchange="updateStatus(@item.id, this)">
+                        <label for="s1_@item.id">Status</label>
+                    </div>
+
                 </div>
 
-            </div>
-
-            <div class="card__footer">
-                <div class="user">
-                    <img src="~/image/Pack/@item.User.Picture" alt="user__image" class="user__image" style="width:12%;">
-                    <div class="user__info">
-                        <h5>@item.User.Name</h5>
-                        <small>@item.Date.ToShortDateString()</small>
+                <div class="card__footer">
+                    <div class="user">
+                        <img src="~/image/Pack/@item.User.Picture" alt="user__image" class="user__image" style="width:12%;">
+                        <div class="user__info">
+                            <h5>@item.User.Name</h5>
+                            <small>@item.Date.ToShortDateString()</small>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     }
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

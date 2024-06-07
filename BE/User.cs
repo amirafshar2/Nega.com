@@ -27,6 +27,7 @@ namespace BE
         public string Telegram { get; set; }
         public List<Blog> Blogs { get; set; }
         public int ContorimCod { get; set; }
+        public bool Personeldurumu {  get; set; }
 
     }
 }

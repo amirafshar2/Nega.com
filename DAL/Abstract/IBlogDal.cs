@@ -9,5 +9,7 @@ namespace DAL.Abstract
 {
     public interface IBlogDal : IGenericDal<Blog>
     {
+        List<Blog> ReadBlogsWhiteRel();
+        Blog ReadBlogsWhiteRelById(int id);
     }
 }

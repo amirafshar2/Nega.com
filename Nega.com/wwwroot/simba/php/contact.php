@@ -26,7 +26,7 @@ else{
 	$formcontent="نام: $name\nایمیل: $email\nموضوع: $subject\nپیام: $message";
 
 	//Place your Email Here
-	$recipient = "info@sample.com";
+	$recipient = "afshar414amir@gmail.com";
 
 	$mailheader = "From:$email\r\n";
 

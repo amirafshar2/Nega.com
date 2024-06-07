@@ -39,6 +39,16 @@ namespace BLL.Concrate
 
         }
 
+        public List<Blog> ReadBlogsWhiteRel()
+        {
+            return _ıblogdal.ReadBlogsWhiteRel();
+        }
+
+        public Blog ReadBlogsWhiteRelById(int id)
+        {
+            return _ıblogdal.ReadBlogsWhiteRelById(id);
+        }
+
         public void Update(Blog t)
         {
             _ıblogdal.Update(t);

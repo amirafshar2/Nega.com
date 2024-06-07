@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+
+@model List<BE.Blog>
+
+<div class="container">
+    <div class="row">
+
+        <div class="section-head offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+            <h4><span>آخرین</span> اخبار</h4>
+
+        </div>
+
+        <div class="owl-carousel owl-theme">
+
+
+            @foreach (var item in Model)
+            {
+
+                <div class="item">
+                    <div class="row">
+                        <div class="post-img col-lg-6 bg-img bg-center" data-background="/simba/img/blog/1.jpg"></div>
+                        <div class="cont col-lg-6">
+                            <div class="info">
+                                <a href="#0">توسط : @item.User.Name</a>
+                                <a href="#0">@item.Date.ToShortDateString()</a>
+                                <a href="#0" class="tag">@item.Category.Name</a>
+                            </div>
+                            <h6><a href="#0">@item.Title</a></h6>
+                            <p>
+                                @{
+                                    var con = item.Content.ToString();
+                                    string connt = con.Length > 300 ? con.Substring(0, 300) : con;
+
+                                }
+                                @Html.Raw(connt)
+                            </p>
+                            <a href="/BlogDet/Index/@item.id" class="more">بیشتر بخوانید <i class="fas fa-chevron-left"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+</div>

@@ -20,27 +20,27 @@ namespace BLL.Concrate
 
         public void Add(Contact t)
         {
-            throw new NotImplementedException();
+            _ıcontactdal.Add(t);
         }
 
         public void Delete(Contact t)
         {
-            throw new NotImplementedException();
+           _ıcontactdal.Delete(t);
         }
 
         public List<Contact> GetAll()
         {
-            throw new NotImplementedException();
+            return _ıcontactdal.GetAll();
         }
 
         public Contact GetById(int id)
         {
-            throw new NotImplementedException();
+            return _ıcontactdal.GetBayId(id);
         }
 
         public void Update(Contact t)
         {
-            throw new NotImplementedException();
+            _ıcontactdal.Update(t);
         }
     }
 }

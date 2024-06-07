@@ -401,7 +401,7 @@
 </head>
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-@model IEnumerable<BE.User>
+@model List<BE.User>
 @foreach (var item in Model)
 {
     <div class="container profile-page">
@@ -417,7 +417,10 @@
                                 <h5 class="m-t-0 m-b-0"><strong>@item.Name @item.Family</strong></h5>
                                
                                 <div class="col-6"><h5><strong>UserName:</strong></h5> <p>@item.UserName</p></div>
-                                
+                                <div>
+                                    <input id="s1_@item.Id" type="checkbox" class="switch" @(item.Personeldurumu ? "checked" : "") onchange="updateStatus1(@item.Id, this)">
+                                    <label for="s1_@item.Id">Share on Page</label>
+                                </div>
                                
                                 <div>
                                     <input id="s1_@item.Id" type="checkbox" class="switch" @(item.Status ? "checked" : "") onchange="updateStatus(@item.Id, this)">
@@ -450,6 +453,28 @@
 
         $.ajax({
             url: '/Admin/User/UpdateStatus',
+            type: 'POST',
+            data: {
+                id: itemId,
+                status: newStatus
+            },
+            success: function (response) {
+                if (response.success) {
+                    $(checkbox).prop('checked', newStatus);
+                } else {
+                    alert('Status update failed');
+                }
+            },
+            error: function () {
+                alert('An error occurred');
+            }
+        });
+    } 
+    function updateStatus1(itemId, checkbox) {
+        var newStatus = $(checkbox).is(':checked');
+
+        $.ajax({
+            url: '/Admin/User/UpdateStatus1',
             type: 'POST',
             data: {
                 id: itemId,

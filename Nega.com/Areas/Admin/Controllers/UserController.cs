@@ -382,6 +382,17 @@ namespace Negacom.Areas.Admin.Controllers
             }
             return View("Index");
         }
+        public IActionResult UpdateStatus1(int id, bool status)
+        {
+            var comment = _Userbll.GetById(id);
+            if (comment != null)
+            {
+                comment.Personeldurumu = status;
+                _Userbll.Update(comment);
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
         [HttpGet]
         public async Task<IActionResult> AddRole(int id)
         {

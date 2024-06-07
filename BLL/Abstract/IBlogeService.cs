@@ -9,5 +9,7 @@ namespace BLL.Abstract
 {
     public interface IBlogeService : IGenericServis<Blog>
     {
+        List<Blog> ReadBlogsWhiteRel();
+        Blog ReadBlogsWhiteRelById(int id);
     }
 }

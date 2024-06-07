@@ -35,8 +35,8 @@
 ======================================= -->
 <!-- =====================================
 ==== Start Numbers -->
-@* 
-<div class="numbers section-padding" data-overlay-color="10">
+
+@* <div class="numbers section-padding" data-overlay-color="10">
     <div class="container">
         <div class="row">
 
@@ -74,14 +74,14 @@
 
         </div>
     </div>
-</div>
+</div>  *@
 
- *@<!-- End Numbers ====
+<!-- End Numbers ====
 ======================================= -->
 <!-- =====================================
 ==== Start Teams -->
 
-@* <section class="team section-padding" data-scroll-index="2">
+@*  <section class="team section-padding" data-scroll-index="2">
     <div class="container">
         <div class="row">
 
@@ -343,82 +343,7 @@
 ==== Start Blog -->
 
 <section class="blog section-padding bg-gray" data-scroll-index="5">
-    <div class="container">
-        <div class="row">
-
-            <div class="section-head offset-md-2 col-md-8 offset-lg-3 col-lg-6">
-                <h4><span>آخرین</span> اخبار</h4>
-                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون</p>
-            </div>
-
-            <div class="owl-carousel owl-theme">
-                <div class="item">
-                    <div class="row">
-                        <div class="post-img col-lg-6 bg-img bg-center" data-background="/simba/img/blog/1.jpg"></div>
-                        <div class="cont col-lg-6">
-                            <div class="info">
-                                <a href="#0">توسط : مدیر</a>
-                                <a href="#0">18 آبان 1397</a>
-                                <a href="#0" class="tag">طراحی</a>
-                            </div>
-                            <h6><a href="#0">لورم ایپسوم متن ساختگی</a></h6>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه</p>
-                            <a href="#0" class="more">بیشتر بخوانید <i class="fas fa-chevron-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="row">
-                        <div class="post-img col-lg-6 bg-img bg-center" data-background="/simba/img/blog/2.jpg"></div>
-                        <div class="cont col-lg-6">
-                            <div class="info">
-                                <a href="#0">توسط : مدیر</a>
-                                <a href="#0">18 آبان 1397</a>
-                                <a href="#0" class="tag">طراحی</a>
-                            </div>
-                            <h6><a href="#0">لورم ایپسوم متن ساختگی</a></h6>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه</p>
-                            <a href="#0" class="more">بیشتر بخوانید <i class="fas fa-chevron-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="row">
-                        <div class="post-img col-lg-6 bg-img bg-center" data-background="/simba/img/blog/3.jpg"></div>
-                        <div class="cont col-lg-6">
-                            <div class="info">
-                                <a href="#0">توسط : مدیر</a>
-                                <a href="#0">18 آبان 1397</a>
-                                <a href="#0" class="tag">طراحی</a>
-                            </div>
-                            <h6><a href="#0">لورم ایپسوم متن ساختگی</a></h6>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه</p>
-                            <a href="#0" class="more">بیشتر بخوانید <i class="fas fa-chevron-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="row">
-                        <div class="post-img col-lg-6 bg-img bg-center" data-background="/simba/img/blog/2.jpg"></div>
-                        <div class="cont col-lg-6">
-                            <div class="info">
-                                <a href="#0">توسط : مدیر</a>
-                                <a href="#0">18 آبان 1397</a>
-                                <a href="#0" class="tag">طراحی</a>
-                            </div>
-                            <h6><a href="#0">لورم ایپسوم متن ساختگی</a></h6>
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه</p>
-                            <a href="#0" class="more">بیشتر بخوانید <i class="fas fa-chevron-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    @await Component.InvokeAsync("GetBlogs")
 </section>
 
 <!-- End Blog ====
@@ -427,55 +352,7 @@
 ==== Start Contact -->
 
 <section class="contact section-padding" data-scroll-index="6">
-    <div class="container">
-        <div class="row">
-
-            <div class="section-head offset-md-2 col-md-8 offset-lg-3 col-lg-6">
-                <h4><span>تماس</span> با ما</h4>
-                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون</p>
-            </div>
-
-            <div class="col-sm-12">
-                <form class="form" id="contact-form" method="post" action="php/contact.php">
-
-                    <div class="messages"></div>
-
-                    <div class="controls">
-
-                        <div class="row">
-
-                            <div class="col-lg-4 col-md-6">
-                                <div class="form-group">
-                                    <input id="form_name" type="text" name="name" placeholder="نام" required="required">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="form-group">
-                                    <input id="form_email" type="email" name="email" placeholder="ایمیل" required="required" dir="ltr">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-12">
-                                <div class="form-group">
-                                    <input id="form_subject" type="text" name="subject" placeholder="موضوع">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <textarea id="form_message" name="message" placeholder="پیام" rows="4" required="required"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <button type="submit" class="butn butn-bg"><span>ارسال پیام</span></button>
-                            </div>
-
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
+    @await Component.InvokeAsync("AddContact")
 </section>
 
 <!-- End Contact ====
