@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 namespace Negacom.Areas.Admin.Controllers
 {
 
-
+    [Authorize]
     [Area("Admin")]
     public class UserController : Controller
     {

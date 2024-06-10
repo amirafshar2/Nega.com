@@ -12,9 +12,18 @@
 {
     <div class="item-box">
         <span class="quote">
-            <img src="~/image/Pack/@item.Picture" alt="">
+            <img src="" alt="">
         </span>
-        <p>@item.Content</p>
+        <p>
+            @{
+                var con = item.Content.ToString();
+                // İçeriği 200 karaktere kısalt
+                string connt = con.Length > 100 ? con.Substring(0, 100) : con;
+                // Son kelimenin tam olarak kesildiğinden emin ol
+                connt = connt.Substring(0, connt.LastIndexOf(" "));
+            }
+            @Html.Raw(connt)
+        </p>
         <div class="info">
             <div class="author-img">
                 <img src="~/image/Pack/@item.Picture" alt="">

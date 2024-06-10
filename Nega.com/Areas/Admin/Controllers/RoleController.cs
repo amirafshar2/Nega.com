@@ -2,6 +2,7 @@
 using BLL.Concrate;
 using DAL.Context;
 using DAL.EntityFrameWork;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
@@ -9,7 +10,7 @@ namespace Negacom.Areas.Admin.Controllers
 {
 
 
-
+    [Authorize]
 
 
     [Area("Admin")]

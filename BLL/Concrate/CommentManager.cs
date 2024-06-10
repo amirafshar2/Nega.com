@@ -20,27 +20,27 @@ namespace BLL.Concrate
 
         public void Add(Comment t)
         {
-            throw new NotImplementedException();
+            _ıcommentdal.Add(t);
         }
 
         public void Delete(Comment t)
         {
-            throw new NotImplementedException();
+            _ıcommentdal.Delete(t);
         }
 
         public List<Comment> GetAll()
         {
-            throw new NotImplementedException();
+           return _ıcommentdal.GetAll();
         }
 
         public Comment GetById(int id)
         {
-            throw new NotImplementedException();
+            return _ıcommentdal.GetBayId(id);
         }
 
         public void Update(Comment t)
         {
-            throw new NotImplementedException();
+            _ıcommentdal.Update(t);
         }
     }
 }

@@ -2,6 +2,7 @@
 using BLL.Concrate;
 using DAL.Context;
 using DAL.EntityFrameWork;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
 namespace Negacom.Areas.Admin.Controllers
 {
 
-
+    [Authorize]
 
     [Area("Admin")]
     public class BlogController : Controller

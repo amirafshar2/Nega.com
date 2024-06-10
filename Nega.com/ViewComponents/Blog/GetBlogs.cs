@@ -14,6 +14,7 @@ namespace Negacom.ViewComponents.Blog
         {
             DB dB = new DB();
             var val = dB.blogs.Include(x => x.Category).Include(o => o.User).ToList();
+            val = val.Where(x => x.Status == true).ToList();
             val.Reverse();
             return View(val);
         }

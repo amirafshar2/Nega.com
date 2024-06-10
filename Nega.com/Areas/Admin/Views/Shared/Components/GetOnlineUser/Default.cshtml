@@ -1,9 +1,4 @@
-﻿
-
-
-
-
-
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     
@@ -26,6 +21,7 @@
         <li class="dropdown-divider"></li>
         <li>
             <form asp-action="Logout" asp-controller="Login" method="post" class="form-inline">
+                @Html.AntiForgeryToken()
                 <button type="submit" class="btn btn-link"><i class="fa fa-sign-out"></i>Logout</button>
             </form>
         </li>

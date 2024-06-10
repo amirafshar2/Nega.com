@@ -4,6 +4,12 @@
 
 
 
+
+
+
+
+
+
 @model List<BE.Blog>
 
 <div class="container">
@@ -20,21 +26,30 @@
             @foreach (var item in Model)
             {
 
-                <div class="item">
-                    <div class="row">
-                        <div class="post-img col-lg-6 bg-img bg-center" data-background="/simba/img/blog/1.jpg"></div>
+                <div class="item" >
+                    <div class="row" >
+                        <div class="post-img col-lg-6 bg-img bg-center" data-background="/image/Pack/@item.Picture" ></div>
                         <div class="cont col-lg-6">
                             <div class="info">
                                 <a href="#0">توسط : @item.User.Name</a>
-                                <a href="#0">@item.Date.ToShortDateString()</a>
+                                <a href="#0">
+                                    @{
+                                        TimeSpan timeSince = DateTime.Now - item.Date;
+                                        string formattedTime = FormatTimeSpan(timeSince);
+                                    }
+
+                                    <small>@formattedTime</small>
+                                </a>
                                 <a href="#0" class="tag">@item.Category.Name</a>
                             </div>
-                            <h6><a href="#0">@item.Title</a></h6>
+                            <h6><a href="#0">@item.Name</a></h6>
                             <p>
                                 @{
                                     var con = item.Content.ToString();
-                                    string connt = con.Length > 300 ? con.Substring(0, 300) : con;
-
+                                    // İçeriği 200 karaktere kısalt
+                                    string connt = con.Length > 200 ? con.Substring(0, 200) : con;
+                                    // Son kelimenin tam olarak kesildiğinden emin ol
+                                    connt = connt.Substring(0, connt.LastIndexOf(" "));
                                 }
                                 @Html.Raw(connt)
                             </p>
@@ -49,3 +64,31 @@
 
     </div>
 </div>
+<script>    
+    @functions {
+    string FormatTimeSpan(TimeSpan timeSpan)
+    {
+        if (timeSpan.TotalSeconds < 60)
+        {
+            return "Şimdi";
+        }
+        else if (timeSpan.TotalMinutes < 60)
+        {
+                return $"{(int)timeSpan.TotalMinutes} minute ago";
+        }
+        else if (timeSpan.TotalHours < 24)
+        {
+                return $"{(int)timeSpan.TotalHours} hours ago";
+        }
+        else if (timeSpan.TotalDays < 7)
+        {
+            return $"{(int)timeSpan.TotalDays} day ago";
+        }
+        else
+        {
+            int weeks = (int)(timeSpan.TotalDays / 7);
+            return $"{weeks} week ago";
+        }
+    }
+    }
+    </script>

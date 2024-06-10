@@ -76,7 +76,7 @@ namespace Negacom.Areas.Admin.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signinmanager.SignOutAsync();
-            return RedirectToAction("Index", "Profile");
+            return RedirectToAction("Index");
         }
     }
 }

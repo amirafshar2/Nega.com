@@ -1,11 +1,13 @@
 ﻿using BE;
 using BLL.Concrate;
 using DAL.EntityFrameWork;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace Negacom.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
   
     public class ContectController : Controller

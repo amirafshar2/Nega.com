@@ -43,12 +43,14 @@ namespace Nega.com
                 x.Password.RequireNonAlphanumeric = false;
 
 
-            }).AddEntityFrameworkStores<DB>();
+            }).AddEntityFrameworkStores<DB>()
+            .AddDefaultTokenProviders();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.ConfigureApplicationCookie(options =>
             {
-                options.LoginPath = "/Admin/Login"; // Login sayfasýnýn yolu
-                options.AccessDeniedPath = "/Admin/Reqister"; // Yetkisiz eriþim sayfasýnýn yolu
+                options.LoginPath = "/Admin/Login";
+                options.AccessDeniedPath = "/Admin/Reqister";
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
             });
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSession();
@@ -71,12 +73,12 @@ namespace Nega.com
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseRouting();
             app.UseAuthentication(); // Authentication'ý ekleyin
             app.UseAuthorization();  // Authorization'ý ekleyin
-            app.UseSession();
-            app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseSession();
+          
 
             app.UseEndpoints(endpoints =>
             {
