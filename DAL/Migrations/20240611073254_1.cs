@@ -65,6 +65,8 @@ namespace DAL.Migrations
                     Facebook = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     İnstagram = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Telegram = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContorimCod = table.Column<int>(type: "int", nullable: false),
+                    Personeldurumu = table.Column<bool>(type: "bit", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -392,32 +394,51 @@ namespace DAL.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Title2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Picture2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Picture3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Picture4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Picture5 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Picture6 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Picture7 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Picture8 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Picture9 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Picture10 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title5 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title6 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title7 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title8 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title9 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title10 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Content2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Content3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Content4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TompNailİmage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    İmage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    İmage1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    İmage2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    İmage3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    İmage4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Content5 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Content6 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Content7 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Content8 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Content9 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Content10 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    Userid = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_blogs", x => x.id);
                     table.ForeignKey(
-                        name: "FK_blogs_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_blogs_AspNetUsers_Userid",
+                        column: x => x.Userid,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_blogs_categories_CategoryId",
                         column: x => x.CategoryId,
@@ -457,22 +478,63 @@ namespace DAL.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Emil = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    BlogId = table.Column<int>(type: "int", nullable: false)
+                    BlogId = table.Column<int>(type: "int", nullable: false),
+                    userid = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_comments", x => x.id);
                     table.ForeignKey(
+                        name: "FK_comments_AspNetUsers_userid",
+                        column: x => x.userid,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_comments_blogs_BlogId",
                         column: x => x.BlogId,
                         principalTable: "blogs",
                         principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Replies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CommentId = table.Column<int>(type: "int", nullable: false),
+                    ParentReplyId = table.Column<int>(type: "int", nullable: true),
+                    userid = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Replies", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Replies_AspNetUsers_userid",
+                        column: x => x.userid,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Replies_comments_CommentId",
+                        column: x => x.CommentId,
+                        principalTable: "comments",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Replies_Replies_ParentReplyId",
+                        column: x => x.ParentReplyId,
+                        principalTable: "Replies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -520,9 +582,9 @@ namespace DAL.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_blogs_UserId",
+                name: "IX_blogs_Userid",
                 table: "blogs",
-                column: "UserId");
+                column: "Userid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_comments_BlogId",
@@ -530,9 +592,29 @@ namespace DAL.Migrations
                 column: "BlogId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_comments_userid",
+                table: "comments",
+                column: "userid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_portfolios_PortfolioCateoryid",
                 table: "portfolios",
                 column: "PortfolioCateoryid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Replies_CommentId",
+                table: "Replies",
+                column: "CommentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Replies_ParentReplyId",
+                table: "Replies",
+                column: "ParentReplyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Replies_userid",
+                table: "Replies",
+                column: "userid");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -556,9 +638,6 @@ namespace DAL.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "comments");
-
-            migrationBuilder.DropTable(
                 name: "contacts");
 
             migrationBuilder.DropTable(
@@ -577,6 +656,9 @@ namespace DAL.Migrations
                 name: "portfolios");
 
             migrationBuilder.DropTable(
+                name: "Replies");
+
+            migrationBuilder.DropTable(
                 name: "services");
 
             migrationBuilder.DropTable(
@@ -589,10 +671,13 @@ namespace DAL.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "blogs");
+                name: "portfolioCateories");
 
             migrationBuilder.DropTable(
-                name: "portfolioCateories");
+                name: "comments");
+
+            migrationBuilder.DropTable(
+                name: "blogs");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

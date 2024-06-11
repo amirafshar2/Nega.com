@@ -9,5 +9,6 @@ namespace BLL.Abstract
 {
     public interface ICommentService:IGenericServis<Comment>
     {
+        List<Comment> GetCommentWithRelation(int Blogİd);
     }
 }

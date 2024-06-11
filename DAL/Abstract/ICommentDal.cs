@@ -9,5 +9,6 @@ namespace DAL.Abstract
 {
     public interface ICommentDal :IGenericDal<Comment>
     {
+        List<Comment> GetCommentWithRelation(int Blogİd);
     }
 }

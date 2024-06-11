@@ -32,6 +32,30 @@ namespace DAL.Context
         public DbSet<Success> successes { get; set; }
         public DbSet<Video> video { get; set; }
         public DbSet<CustomerComment> customerComments { get; set; }
+        public DbSet<Reply> Replies { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Reply>()
+         .HasOne(r => r.ParentReply)
+         .WithMany(r => r.Replies)
+         .HasForeignKey(r => r.ParentReplyId)
+         .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.user)
+                .WithMany(u => u.Comments)
+                .HasForeignKey(c => c.userid)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.Blog)
+                .WithMany(b => b.comments)
+                .HasForeignKey(c => c.BlogId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
+
 }
+

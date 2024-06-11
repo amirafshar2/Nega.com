@@ -28,6 +28,8 @@ namespace BE
         public List<Blog> Blogs { get; set; }
         public int ContorimCod { get; set; }
         public bool Personeldurumu {  get; set; }
+        public List<Comment> Comments { get; set; }
+        public List<Reply> replies { get; set; }
 
     }
 }

@@ -38,6 +38,11 @@ namespace BLL.Concrate
             return _ıcommentdal.GetBayId(id);
         }
 
+        public List<Comment> GetCommentWithRelation(int Blogİd)
+        {
+            return _ıcommentdal.GetCommentWithRelation(Blogİd);
+        }
+
         public void Update(Comment t)
         {
             _ıcommentdal.Update(t);

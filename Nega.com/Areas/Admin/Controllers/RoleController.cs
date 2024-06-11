@@ -3,6 +3,7 @@ using BLL.Concrate;
 using DAL.Context;
 using DAL.EntityFrameWork;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
@@ -18,6 +19,13 @@ namespace Negacom.Areas.Admin.Controllers
     {
         DB db = new DB();
         RoleManager _rolebll = new RoleManager(new EFUserRoleeRepository());
+        private readonly UserManager<User> _usermanager;
+
+        public RoleController(UserManager<User> usermanager)
+        {
+            _usermanager = usermanager;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -34,6 +42,7 @@ namespace Negacom.Areas.Admin.Controllers
             else
             {
                 u.Status = true;
+                u.NormalizedName = _usermanager.NormalizeName(u.Name);
                 _rolebll.Add(u);
                 return View();
             }

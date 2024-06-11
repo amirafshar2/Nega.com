@@ -222,12 +222,14 @@ namespace DAL.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("userid")
+                        .HasColumnType("int");
 
                     b.HasKey("id");
 
                     b.HasIndex("BlogId");
+
+                    b.HasIndex("userid");
 
                     b.ToTable("comments");
                 });
@@ -514,6 +516,39 @@ namespace DAL.Migrations
                     b.HasKey("id");
 
                     b.ToTable("portfolioCateories");
+                });
+
+            modelBuilder.Entity("BE.Reply", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CommentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ParentReplyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("userid")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommentId");
+
+                    b.HasIndex("ParentReplyId");
+
+                    b.HasIndex("userid");
+
+                    b.ToTable("Replies");
                 });
 
             modelBuilder.Entity("BE.Services", b =>
@@ -866,10 +901,18 @@ namespace DAL.Migrations
                     b.HasOne("BE.Blog", "Blog")
                         .WithMany("comments")
                         .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("BE.User", "user")
+                        .WithMany("Comments")
+                        .HasForeignKey("userid")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Blog");
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("BE.Portfolio", b =>
@@ -881,6 +924,32 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Portfoliocategory");
+                });
+
+            modelBuilder.Entity("BE.Reply", b =>
+                {
+                    b.HasOne("BE.Comment", "Comment")
+                        .WithMany("replies")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BE.Reply", "ParentReply")
+                        .WithMany("Replies")
+                        .HasForeignKey("ParentReplyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("BE.User", "User")
+                        .WithMany("replies")
+                        .HasForeignKey("userid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Comment");
+
+                    b.Navigation("ParentReply");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -944,14 +1013,28 @@ namespace DAL.Migrations
                     b.Navigation("Blogs");
                 });
 
+            modelBuilder.Entity("BE.Comment", b =>
+                {
+                    b.Navigation("replies");
+                });
+
             modelBuilder.Entity("BE.PortfolioCateory", b =>
                 {
                     b.Navigation("portfolios");
                 });
 
+            modelBuilder.Entity("BE.Reply", b =>
+                {
+                    b.Navigation("Replies");
+                });
+
             modelBuilder.Entity("BE.User", b =>
                 {
                     b.Navigation("Blogs");
+
+                    b.Navigation("Comments");
+
+                    b.Navigation("replies");
                 });
 #pragma warning restore 612, 618
         }

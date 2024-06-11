@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="BE.Blog">
-    <Position X="3.75" Y="0.75" Width="2" />
+    <Position X="9.75" Y="12" Width="2" />
     <TypeIdentifier>
       <HashCode>AQApsAiEQgAEAkQCIAAAAQQAEABAAgARAAAAAAAAGgA=</HashCode>
       <FileName>Blog.cs</FileName>
@@ -15,7 +15,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="BE.Category">
-    <Position X="7" Y="3.5" Width="2" />
+    <Position X="13" Y="11" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAEAAAgAAAAAAAAAAQAAEAAAAAAAAAAAAAAAgA=</HashCode>
       <FileName>Category.cs</FileName>
@@ -25,23 +25,43 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="BE.Comment">
-    <Position X="7" Y="0.75" Width="2" />
+    <Position X="10" Y="8" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAEAgABAAAAAAAAAAAQAAAAAAABAQAAAAAAAgA=</HashCode>
+      <HashCode>AAgIAAAEAiABAAAAAAAAAAAQAAAAAAABAAAAAAAAAwA=</HashCode>
       <FileName>Comment.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Blog" />
+      <Property Name="user" />
     </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="replies" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="BE.User">
-    <Position X="0.5" Y="0.75" Width="2.25" />
+    <Position X="6.5" Y="8.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAggAEACACAAEAAAABQAQAAEAAAAACAATAAABABAA=</HashCode>
+      <HashCode>AAgAggAEACACAAMAAAABQAQAAEAAAAACAATAAABAJAA=</HashCode>
       <FileName>User.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Blogs" />
+      <Property Name="Comments" />
+      <Property Name="replies" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="BE.Reply">
+    <Position X="10.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAEAiAQAAABACAAAAAAAAAAAAAgAAAAAAAIAAA=</HashCode>
+      <FileName>Reply.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Comment" />
+      <Property Name="ParentReply" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Replies" />
     </ShowAsCollectionAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />

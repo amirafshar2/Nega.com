@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 namespace Negacom.Areas.Admin.Controllers
 {
 
-    [Authorize]
+   
     [Area("Admin")]
     public class UserController : Controller
     {
@@ -359,6 +359,7 @@ namespace Negacom.Areas.Admin.Controllers
                 return View();
             }
         }
+        [Authorize]
         [HttpPost]
         public IActionResult UpdateStatus(int id, bool status)
         {
@@ -371,6 +372,7 @@ namespace Negacom.Areas.Admin.Controllers
             }
             return Json(new { success = false });
         }
+        [Authorize]
         public IActionResult Delete(int id)
         {
             DB db = new DB();
@@ -382,6 +384,7 @@ namespace Negacom.Areas.Admin.Controllers
             }
             return View("Index");
         }
+        [Authorize]
         public IActionResult UpdateStatus1(int id, bool status)
         {
             var comment = _Userbll.GetById(id);
@@ -393,6 +396,7 @@ namespace Negacom.Areas.Admin.Controllers
             }
             return Json(new { success = false });
         }
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> AddRole(int id)
         {
@@ -417,6 +421,7 @@ namespace Negacom.Areas.Admin.Controllers
 
             return View(rm);
         }
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddRole(List<Rolemodel> m)
         {

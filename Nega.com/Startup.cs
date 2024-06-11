@@ -1,4 +1,5 @@
 using BE;
+using BLL.Abstract;
 using BLL.Concrate;
 using DAL.Context;
 using DAL.EntityFrameWork;
@@ -53,6 +54,19 @@ namespace Nega.com
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
             });
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+                    });
+            });
+
+            // Dependency Injection
+           
             services.AddSession();
             services.AddHttpContextAccessor();
           
