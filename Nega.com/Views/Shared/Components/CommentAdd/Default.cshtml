@@ -4,42 +4,41 @@
 
 
 
-@model List<BE.Comment>
-<div class="row" id="getcommentt">
-   
+
+@* <div class="row" id="getcommentt">
+
     <div class="sidebar-item comments">
         <div class="sidebar-heading">
-            <h2>@Model.Count() کامنت</h2>
+            <h2>Model.Count کامنت</h2>
         </div>
-        <div class="col-lg-12">
-            <ul>
-                @foreach (var item in Model)
-                {
-                    <li style="width:100%;">
-                        <div class="col-lg-12" style="float:inline-start">
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <div class="author-thumb">
-                                        <img src="~/image/Pack/@item.user.Picture" alt="">
-                                    </div>
+        <div class="col-lg-12" id="list">
+            <ul class="ul">
+
+                @* <li style="width:100%;">
+                    <div class="col-lg-12" style="float:inline-start">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="author-thumb">
+                                    <img src="~/image/Pack/item.user.Picture" alt="">
                                 </div>
-                                <div class="col-lg-10">
-                                    <div class="right-content">
-                                        @{
-                                            TimeSpan timeSince = DateTime.Now - item.Date;
-                                            string formattedTime = FormatTimeSpan(timeSince);
-                                        }
-                                        <h4>@item.user.Name  <span><small> @formattedTime </small></span></h4>
-                                        <p>@item.Content</p>
-                                    </div>
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="right-content">
+                                    @*  @{
+                                    TimeSpan timeSince = DateTime.Now - Date;
+                                    string formattedTime = FormatTimeSpan(timeSince);
+                                    } *@
+                  @*                   <h4>item.user.Name  <span><small>time </small></span></h4>
+                                    <p>item.Content</p>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
 
-                    </li>
+                </li> *@ 
 
-                    @* <li class="replied">
+                @* <li class="replied">
                 <div class="author-thumb">
                 <img src="~/551/assets/images/comment-author-02.jpg" alt="">
                 </div>
@@ -49,73 +48,73 @@
                 </div>
                 </li>
                 <a href="#" id="toggle-comments">...</a> *@
-                    @* $(document).ready(function() {
+                @* $(document).ready(function() {
                 $("#toggle-comments").click(function() {
                 $("#comments ul").slideToggle("slow");
                 });
                 });*@
-                }
 
+@* 
             </ul>
         </div>
     </div>
 
-</div>
+</div>  *@
+@{
+    int iid = @ViewBag.blogidd;
+}
 
 <div class="sidebar-heading">
     <h2>نظر شما</h2>
 </div>
-<form id="comment" action="@Url.Action("CreateComment", "Coment")" method="post">
+<form id="comment" >
+    <input type="hidden" name="BlogId" id="blogid" value="@iid" />
     <div class="row">
         <div class="col-lg-12">
-            <fieldset>
+         
                 <textarea name="Content" rows="6" id="content" placeholder="نطر خود را بویسید" required=""></textarea>
-            </fieldset>
+          
         </div>
         <div class="col-lg-12">
-            <fieldset>
-                <button type="submit" style="background-color: #5fc3b1; cursor:pointer; " class="main-button">Submit</button>
-            </fieldset>
+           
+                <button id="subbtn"  style="background-color: #5fc3b1; cursor:pointer;" class="btn main-button">Submit</button>
+            
         </div>
+        <div id="res" style="display: none;"></div>
     </div>
 </form>
-<div id="res"></div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
-    $(document).ready(function () {
-        $("#comment").submit(function (event) {
-            event.preventDefault(); // Formun varsayılan gönderimini engeller
-            const blogId = @ViewBag.blogidd;
-            const val = {
-                BlogId:blogId,
-                Content: $("#content").val()
-            };
+    $("#subbtn").on("click", function () {
+        console.log("btn");
+        //const commentData = {
+        //    blogId: $("#blogid").val(),
+        //    content: $("#content").val()
+        //};
 
-            $.ajax({
-                url: $(this).attr("action"),
-                type: "POST",
-                data: val,
-                success: function (response) {
-                    if (response.success) {
-                        console.log("success");
-                        $("#res").css("color", "green");
-                        $("#res").text("نظر ثبت شد").show();
-                        $("#content").val("");
-                       
-                    } else {
-                        console.log("error");
-                        $("#res").css("color", "red");
-                        $("#res").text("برای کامنت گذاشتن نیاز هست که با حساب کاربری خود وارد سایت شوید").show();
-                    }
-                },
-                error: function () {
-                    console.log("error");
-                    $("#res").css("color", "red");
-                    $("#res").text("ثبت انجام نشد بعدا امتحان کنید").show();
-                }
-            });
-        });
+        //$.ajax({
+        //    url: '@Url.Action("CreateComment", "BlogDet")', // AJAX isteğinin doğru URL'si
+        //    type: "POST",
+        //    contentType: "application/json",
+        //    data: JSON.stringify(commentData),
+        //    success: function (response) {
+        //        $("#res").show().text("کامنت ثبت شد");
+        //        $("#res").css("color", "green");
+        //        $("#content").val(""); // İçeriği temizler
+        //        console.log("کامنت ثبت شد");
+        //        setTimeout(function () {
+        //            $("#res").css("display", "none");
+        //        }, 10000); // 10 saniye
+        //    },
+        //    error: function () {
+        //        $("#res").css("color", "red");
+        //        $("#res").text("لطفا بعد امتحان کنید").show();
+        //        setTimeout(function () {
+        //            $("#res").css("display", "none");
+        //        }, 10000); // 10 saniye
+        //    }
+        //});
     });
     @functions {
         string FormatTimeSpan(TimeSpan timeSpan)
@@ -142,6 +141,7 @@
                 return $"{weeks} هفته قبل";
             }
         }
-
     }
 </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
