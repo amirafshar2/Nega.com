@@ -75,6 +75,7 @@ namespace Negacom.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
+            HttpContext.Session.Remove("userid");
             await _signinmanager.SignOutAsync();
             return RedirectToAction("Index");
         }

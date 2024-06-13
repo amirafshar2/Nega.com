@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 using System;
 using System.Net.Mime;
 using System.Web.Helpers;
+using Negacom.Models;
+using System.Linq.Expressions;
+using Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace Negacom.Controllers
 {
@@ -27,33 +33,68 @@ namespace Negacom.Controllers
         {
             var val = _blogbll.ReadBlogsWhiteRelById(id);
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            TempData["userid"] = user.Id;
+            if (user != null)
+            {
+                HttpContext.Session.SetInt32("userid", user.Id);
+
+            }
             return View(val);
         }
-
+        
         [HttpPost]
-        public void CreateComment(Comment c)
+        public IActionResult CreateComment([FromBody] CommentModel c)
         {
-            var user = Convert.ToInt32(TempData["userid"]);
-            if (user != 0)
+            var userId = HttpContext.Session.GetInt32("userid");
+            if (userId != 0)
             {
-                c.userid = user;
-                c.Status = true;
-                c.Date = DateTime.Now;
-                _commentbll.Add(c);
-               
+                Comment cc = new Comment
+                {
+                    userid =Convert.ToInt32(userId),
+                    Status = true,
+                    Date = DateTime.Now,
+                    Content = c.Content,
+                    BlogId = c.BlogId
+                };
+                _commentbll.Add(cc);
+                return Ok(new { success = true, message = "Comment added successfully" });
             }
             else
             {
-               View("~/Areas/Admin/Views/Login/Index.cshtml");
+                return Unauthorized();
             }
         }
-
+     
         [HttpGet]
         public IActionResult GetBlogComments(int blogId)
         {
-            var comments = _commentbll.GetCommentWithRelation(blogId);
-            return Json(comments);
+            List<CommentModel> cmm = new List<CommentModel>();
+            try
+            {
+                var comments = _commentbll.GetCommentWithRelation(blogId); // Örneğin, ilgili blogun yorumlarını almak için uygun bir metot kullanın
+                foreach (var item in comments)
+                {
+                    CommentModel cm = new CommentModel();
+                    cm.userid = item.userid;
+                    cm.id = item.id;
+                    cm.Emil = item.Emil;
+                    cm.Date = item.Date;
+                    
+                    cm.Content = item.Content;
+                    cm.username = item.user.Name;
+                    cm.userpic = item.user.Picture;
+                    cm.BlogId = item.BlogId;
+                    cm.Status = item.Status;
+                    cmm.Add(cm);
+                }
+                return Json(cmm); // Verileri JSON formatında döndürün
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunu loglayabilirsiniz
+                return StatusCode(500, "Internal server error"); // İstekte bir hata oluşursa 500 hatası döndürün
+            }
         }
+
+
     }
-    }
+}

@@ -1,3 +1,15 @@
+
+
+
+
+
+
+
+
+
+
+
+
 using BE;
 using BLL.Abstract;
 using BLL.Concrate;
@@ -10,6 +22,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,9 +49,9 @@ namespace Nega.com
                 options.Cookie.HttpOnly = true; // Güvenlik için
                 options.Cookie.IsEssential = true; // GDPR ve diðer regülasyonlar için gerekli
             });
-           
+
             services.AddDbContext<DB>();
-            services.AddIdentity<User, UserRolee>(x=>
+            services.AddIdentity<User, UserRolee>(x =>
             {
                 x.Password.RequireUppercase = false;
                 x.Password.RequireNonAlphanumeric = false;
@@ -53,7 +66,11 @@ namespace Nega.com
                 options.AccessDeniedPath = "/Admin/Reqister";
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
             });
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            })
+                .AddRazorRuntimeCompilation();
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAllOrigins",
@@ -66,13 +83,13 @@ namespace Nega.com
             });
 
             // Dependency Injection
-           
+
             services.AddSession();
             services.AddHttpContextAccessor();
-          
+
         }
 
-        
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -88,11 +105,12 @@ namespace Nega.com
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseCors("AllowAllOrigins");
             app.UseAuthentication(); // Authentication'ý ekleyin
             app.UseAuthorization();  // Authorization'ý ekleyin
 
             app.UseSession();
-          
+
 
             app.UseEndpoints(endpoints =>
             {
@@ -105,5 +123,8 @@ namespace Nega.com
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+
+
     }
 }
