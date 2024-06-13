@@ -78,7 +78,6 @@ namespace Negacom.Controllers
                     cm.id = item.id;
                     cm.Emil = item.Emil;
                     cm.Date = item.Date;
-                    
                     cm.Content = item.Content;
                     cm.username = item.user.Name;
                     cm.userpic = item.user.Picture;
