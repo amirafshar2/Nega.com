@@ -32,6 +32,46 @@
             text-align: right; /* Başlıkları sağa hizalar */
         }
 
+        .reply-container {
+            border: 1px solid #d3d3d3; /* Açık gri border */
+            background-color: #f7f7f7; /* Açık gri arka plan */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+            padding: 15px; /* İç boşluk */
+            border-radius: 5px; /* Köşeleri yuvarlama */
+            display: flex; /* Flexbox düzeni */
+            align-items: center; /* Dikey hizalama */
+        }
+
+            .reply-container .author-thumb {
+                margin-right: 15px; /* Sağ tarafa boşluk */
+            }
+
+                .reply-container .author-thumb img {
+                    border-radius: 50%; /* Resmi yuvarlak yapma */
+                    width: 50px; /* Resim genişliği */
+                    height: 50px; /* Resim yüksekliği */
+                }
+
+            .reply-container .right-content {
+                flex-grow: 1; /* Sağ içeriği genişletme */
+            }
+
+                .reply-container .right-content h4 {
+                    margin: 0;
+                    font-size: 16px;
+                }
+
+                .reply-container .right-content span {
+                    display: block;
+                    font-size: 12px;
+                    color: #888; /* Daha soluk renk */
+                }
+
+                .reply-container .right-content p {
+                    margin: 5px 0 0 0;
+                    font-size: 14px;
+                }
+
     </style>
 
     <!-- Additional CSS Files -->
@@ -62,7 +102,7 @@
     <!-- Banner Ends Here -->
 
 
-
+  
 
     <section class="blog-posts grid-system">
         <div class="container">
@@ -306,39 +346,15 @@
                                                 <div class="col-lg-12" id="list">
                                                     <ul id="GettComment">
 
-                                                        @* <li style="width:100%;">
-                                                        <div class="col-lg-12" style="float:inline-start">
-                                                        <div class="row">
-                                                        <div class="col-lg-2">
-                                                        <div class="author-thumb">
-                                                        <img src="~/image/Pack/item.user.Picture" alt="">
-                                                        </div>
-                                                        </div>
-                                                        <div class="col-lg-10">
-                                                        <div class="right-content">
-                                                        <h4>item.user.Name  <span><small>time </small></span></h4>
-                                                        <p>item.Content</p>
-                                                        </div>
-                                                        </div>
-                                                        </div>
-                                                        </div>
-                                                        </li>
 
-                                                        <li class="replied">
-                                                        <div class="author-thumb">
-                                                        <img src="~/551/assets/images/comment-author-02.jpg" alt="">
-                                                        </div>
-                                                        <div class="right-content">
-                                                        <h4>Thirteen Man<span>May 20, 2020</span></h4>
-                                                        <p>In porta urna sed venenatis sollicitudin. Praesent urna sem, pulvinar vel mattis eget.</p>
-                                                        </div>
-                                                        </li> *@
+
+                                                       
 
 
 
                                                     </ul>
                                                 </div>
-                                                @*< a id="toggle-comments">...</a>  *@
+
                                             </div>
 
                                         </div>
@@ -354,7 +370,7 @@
                                                     <textarea rows="6" id="CONtent" placeholder="نطر خود را بویسید" required></textarea>
                                                 </div>
                                                 <div class="col-lg-12">
-                                                    <button id="SUBbtn" style="background-color: #5fc3b1; cursor:pointer;" class="btn">Submit</button>
+                                                    <button id="SUBbtn" style="background-color: #5fc3b1; cursor:pointer;" class="btn">ذخیره</button>
                                                 </div>
                                                 <div id="res" style="display: none;" class="m-2"></div>
                                             </div>

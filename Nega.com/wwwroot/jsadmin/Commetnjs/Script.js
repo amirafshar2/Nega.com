@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿
+
+$(document).ready(function () {
     var blogggid = $("#BLOgid").val();
     if (blogggid) {
         Getall(blogggid);
@@ -67,21 +69,19 @@
         if (interval >= 1) {
             return interval + " دقیقه قبل";
         }
-        return Math.floor(seconds) + " سانیه قبل";
+        return Math.floor(seconds) + " ثانیه قبل";
     }
     function Getall(blogId) {
         console.log("Getall fonksiyonu çağrıldı, blogId:", blogId);
         $.ajax({
-            url: "/BlogDet/GetBlogComments/",
+            url: "/BlogDet/GetBlogComments",
             type: "GET",
             data: { blogId: blogId },
             success: function (response) {
                 // Tüm mevcut yorumları temizle
                 $("#GettComment").empty();
                 console.log(response);
-               
                 response.forEach(function (item) {
-                    
                     let list = `
                     <li style="width:100%;">
                         <div class="col-lg-12" style="float:inline-start">
@@ -91,19 +91,35 @@
                                         <img src="/image/Pack/${item.userpic}" alt="">
                                     </div>
                                 </div>
-                                <div class="col-lg-10">
+                                <div class="col-lg-8">
                                     <div class="right-content">
                                         <h4>${item.username} <span><small>${timeSince(item.date)}</small></span></h4>
                                         <p>${item.content}</p>
                                     </div>
+                                </div>  
+                                <div class="col-lg-2">
+                                    <div  style="color: #2ac2b6;">   <a  style="color: #2ac2b6;" class="btn btn-twitter toggle-comments" data-comment-id="${item.id}"><i class="fa fa-reply-all" aria-hidden="true"></i><small>پاسخ ها</small></a> </div>
+                                    <div style="color: #2ac2b6;">  <a  style="color: #2ac2b6;" class="btn btn-twitter toggle-comments-Add" data-comment-id="${item.id}">  <i class="fa fa-reply" aria-hidden="true"></i><small>درج پاسخ </small></a></div>
+                                    
                                 </div>
+                            </div>
+                            <div id="REPlay_${item.id}">
+                            </div>
+                            <div id="REPlayadd_${item.id}">
                             </div>
                         </div>
                     </li>`;
-                    
+
                     $("#GettComment").append(list);
                 });
                 console.log(response);
+                $(".toggle-comments").on("click", function (e) {
+                    e.preventDefault();
+                    const commentId = $(this).data("comment-id");
+                    GetReplay_bay_Commentid(commentId);
+                }); 
+
+
             },
             error: function (xhr, status, error) {
                 console.error("Yorumlar alınırken bir hata oluştu: ", status, error);
@@ -112,6 +128,119 @@
             }
         });
     }
+  
 
 
+    function AddReplay(commentid, content) {
+        if (content === null || content.length < 10) {
+            $("#resr_" + commentid).css("color", "red");
+            $("#resr_" + commentid).show().text("لطفا بعد از نوشتن کامنت امتحان کنید و کمترین تعداد کلمه ی مورد فبول 10 میباشد");
+            setTimeout(function () {
+                $("#resr_" + commentid).css("display", "none");
+            }, 5000); // 5 saniye
+        } else {
+            console.log(commentid);
+            console.log(content);
+            const c = {
+                CommentId: commentid, // commentid değerini doğrudan kullanabilirsiniz
+                Content: content
+            };
+            $.ajax({
+                url: '/BlogDet/CreateReplay',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(c),
+                success: function (response) {
+                    console.log("Replay added successfully:", response);
+                    GetReplay_bay_Commentid(commentid); // burada commentid parametresini doğru şekilde kullanmalısınız
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error adding replay:", status, error);
+                }
+            });
+        }
+    }
+
+
+
+    function GetReplay_bay_Commentid(Commentid) {
+        $.ajax({
+            url: "/BlogDet/GetCommentReplay",
+            type: "GET",
+            data: { id: Commentid },
+            success: function (val) {
+                console.log(val);
+                let replyContent = '';
+                if (val.length == 0) {
+
+                    replyContent += `
+                    
+                     <div style="margin:3% 19% 0% 0%;" class="reply-container">
+                        <div class="author-thumb">
+                             <p>اولین پاسخ را شما درج کنید</p>
+                        </div>
+                     </div>
+                     `;
+
+                    $(`#REPlay_${Commentid}`).hide().html(replyContent).fadeIn(500);
+                    setTimeout(function () {
+                        $(`#REPlay_${Commentid}`).fadeOut(500, function () {
+                            $(this).empty().show(); 
+                        });
+                    }, 5000); 
+                } else {
+
+                    val.forEach(function (reply) {
+                        replyContent += `
+                    
+                     <div style="margin:3% 19% 0% 0%;" class="reply-container">
+                        <div class="author-thumb">
+                            <img src="/image/Pack/${reply.userpic}" alt="">
+                        </div>
+                        <div class="right-content ">
+                             <h4>${reply.username}<span style="margin: 0% 6%;" >${timeSince(reply.createdAt)}</span></h4>
+                             <p>${reply.content}</p>
+                        </div>
+                     </div>
+                     `;
+                    });
+                    $(`#REPlay_${Commentid}`).hide().html(replyContent).fadeIn(500);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Yorumlar alınırken bir hata oluştu: ", status, error);
+                console.log(xhr.responseText); // Sunucu yanıtını kontrol et
+            }
+        });
+    }
+    $(document).on("click", ".toggle-comments-Add", function (e) {
+        e.preventDefault();
+        const commentId = $(this).data("comment-id");
+        const target = $(`#REPlayadd_${commentId}`);
+        var Replayadd = `
+        <div class="row">
+            <div class="col-lg-10 m-4">
+                <textarea rows="6" class="repcontent${commentId}" placeholder="پاسخ کامنت را بنویسید" required></textarea>
+                  <input type="text" hidden class="comentidd${commentId}" value="${commentId}" />
+            </div>
+            <div class="col-lg-10">
+                <button class="repbtn" data-comment-id="${commentId}" style="background-color: #5fc3b1; cursor:pointer;" class="btn">ذخیره</button>
+            </div>
+            <div id="resr_${commentId}" style="display: none;" class="m-2"></div>
+        </div>`;
+
+        if (target.html().trim() === "") {
+            target.hide().html(Replayadd).fadeIn(500);
+        } else {
+            target.fadeOut(500, function () {
+                $(this).empty().show();
+            });
+        }
+    });
+    $(document).on("click", ".repbtn", function (e) {
+        e.preventDefault();
+        const commentId = $(this).data("comment-id");
+        const content = $(`#REPlayadd_${commentId} .repcontent`).val();
+        AddReplay(commentId, content);
+    });
 });

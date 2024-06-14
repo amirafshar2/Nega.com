@@ -19,7 +19,8 @@ namespace Negacom.Models
        
         public int userid { get; set; }
        public string username { get; set; }
-        public string userpic { get; set; } 
-       
+        public string userpic { get; set; }
+        public List<ReplayModel> replies { get; set; }
+
     }
 }
