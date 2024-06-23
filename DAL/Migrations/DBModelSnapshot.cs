@@ -625,6 +625,9 @@ namespace DAL.Migrations
                     b.Property<int>("ContorimCod")
                         .HasColumnType("int");
 
+                    b.Property<bool>("DelateStatus")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");

@@ -4,13 +4,6 @@ using System.Collections.Generic;
 
 namespace Negacom.Models
 
-
-
-
-
-
-
-
 { 
     public class ReplayModel
     {
@@ -20,7 +13,7 @@ namespace Negacom.Models
         public int CommentId { get; set; }
         public int? ParentReplyId { get; set; }
       
-        public List<ReplayModel> Replies { get; set; } = new List<ReplayModel>();
+       
         public int userid { get; set; }
         public string Username { get; set; }
         public string userpic { get; set; }

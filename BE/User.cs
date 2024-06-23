@@ -20,6 +20,7 @@ namespace BE
         public string? Address { get; set; }
         public DateTime ReqesterDate{ get; set; }
         public bool Status { get; set; }
+        public bool DelateStatus { get; set; }
         public string? StatusİnCompany { get; set; }
         public string? About { get; set; }
         public string Facebook { get; set; }

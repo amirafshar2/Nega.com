@@ -57,7 +57,7 @@ namespace Negacom.Areas.Admin.Controllers
                 {
                    
 
-                    if (val == null || val.Status == true)
+                    if (val == null || val.Status == true || val.DelateStatus== false)
                     {
                         var result = await _signinmanager.PasswordSignInAsync(u.UserName, u.Password, true, true);
                         return RedirectToAction("Index", "Home");

@@ -152,23 +152,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="container">
    
     <div class="row">
@@ -180,7 +163,7 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <form method="post" action="Update" enctype="multipart/form-data" autocomplete="off">
+                    <form method="post" action="Update" id="myForm" enctype="multipart/form-data" autocomplete="off">
                     <input type="text" class="form-control" style="display:none;" id="PName" value="@ViewBag.id" name="Id">
                         <label class="col-sm-2 col-form-label">Name<text class="text text-danger">*</text></label>
                         <div class="form-group row">
@@ -190,24 +173,24 @@
 
                         <label class="col-sm-2 col-form-label">SureName<text class="text text-danger">*</text></label>
                         <div class="form-group row">
-                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" value="@ViewBag.Family" name="Family"></div>
+                            <div class="col-sm-10"><input type="text" class="form-control" id="Family" value="@ViewBag.Family" name="Family"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
 
                         <label class="col-sm-2 col-form-label">Email</label>
                         <div class="form-group row">
-                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" value="@ViewBag.Email" name="Email"></div>
+                            <div class="col-sm-10"><input type="text" class="form-control" id="Email" value="@ViewBag.Email" name="Email"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
 
                         <label class="col-sm-2 col-form-label">ID Numeber</label>
                         <div class="form-group row">
-                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" value="@ViewBag.IDNumber" name="IDNumber"></div>
+                            <div class="col-sm-10"><input type="text" class="form-control" id="IDNumber" value="@ViewBag.IDNumber" name="IDNumber"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <label class="col-sm-2 col-form-label">Phone Numeber</label>
                         <div class="form-group row">
-                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" value="@ViewBag.PhoneNumber" name="PhoneNumber"></div>
+                            <div class="col-sm-10"><input type="text" class="form-control" id="PhoneNumber" value="@ViewBag.PhoneNumber" name="PhoneNumber"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
 
@@ -269,18 +252,18 @@
 
                         <label class="col-sm-2 col-form-label">UserName</label>
                         <div class="form-group row">
-                            <div class="col-sm-10"><input type="text" class="form-control" id="PTitle" value="@ViewBag.UserName" name="UserName"></div>
+                            <div class="col-sm-10"><input type="text" class="form-control" id="UserName" value="@ViewBag.UserName" name="UserName"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
 
                         <label class="col-sm-2 col-form-label">Password</label>
                         <div class="form-group row">
-                            <div class="col-sm-10"><input type="password" class="form-control" id="PTitle" name="Password"></div>
+                            <div class="col-sm-10"><input type="password" class="form-control" id="Password" name="Password"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <label class="col-sm-2 col-form-label">Password Confirm</label>
                         <div class="form-group row">
-                            <div class="col-sm-10"><input type="password" class="form-control" id="PTitle" name="ConfirmPassword"></div>
+                            <div class="col-sm-10"><input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
 
@@ -296,7 +279,7 @@
 
 
                         <div class="form-group row">
-                            <label class=" col-form-label text-danger">@Html.ValidationSummary()</label>
+                            <label id="wrong" class="col-form-label text-danger">@Html.ValidationSummary()</label>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group row m-3">
@@ -386,7 +369,7 @@
     }
 
 </script>
-
+<script src="~/jsadmin/user/user.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

@@ -128,8 +128,9 @@ namespace Negacom.Controllers
             }
 
         }
+
         [HttpPost]
-        public IActionResult CreateReplay([FromBody] ReplayModel replayModel)
+        public IActionResult CreateReplay([FromBody] ReplayModel replayData)
         {
             try
             {
@@ -138,8 +139,8 @@ namespace Negacom.Controllers
                 {
                     Reply r = new Reply()
                     {
-                        Content = replayModel.Content,
-                        CommentId = replayModel.CommentId,
+                        Content = replayData.Content,
+                        CommentId = replayData.CommentId,
                         userid = (int)userId,
                         CreatedAt = DateTime.Now
                     };
@@ -156,6 +157,7 @@ namespace Negacom.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
 
     }
 }

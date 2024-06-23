@@ -1,6 +1,7 @@
 ﻿using BLL.Concrate;
 using DAL.EntityFrameWork;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Negacom.Areas.Admin.ViewComponents.User
 {
@@ -14,6 +15,7 @@ namespace Negacom.Areas.Admin.ViewComponents.User
         public IViewComponentResult Invoke()
         {
             var val = _Userbll.GetAll();
+            val = val.Where(s=>s.DelateStatus== false).ToList();
             return View(val);
         }
     }

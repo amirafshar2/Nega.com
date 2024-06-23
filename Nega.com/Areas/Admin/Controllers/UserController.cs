@@ -5,6 +5,7 @@ using DAL.EntityFrameWork;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.Language.Components;
@@ -42,7 +43,7 @@ namespace Negacom.Areas.Admin.Controllers
 
         [Authorize]
         [HttpGet]
-        public IActionResult Index()
+        public  IActionResult Index()
         {
             var val = _Userbll.GetAll();
             val.Reverse();
@@ -98,7 +99,7 @@ namespace Negacom.Areas.Admin.Controllers
                         uu.Name = u.Name;
                         uu.Family = u.Family;
                         uu.Password = u.password;
-
+                        uu.DelateStatus = false;
                         uu.PhoneNumber = u.PhoneNumber;
                         uu.Address = u.Adress;
                         uu.Status = u.Status;
@@ -144,7 +145,9 @@ namespace Negacom.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            var val = _Userbll.GetById(id);
+            HttpContext.Session.SetInt32("userid", id);
+            var userId = HttpContext.Session.GetInt32("userid");
+            var val = _Userbll.GetById((int)userId);
             if (val == null)
             {
                 return NotFound();
@@ -203,12 +206,12 @@ namespace Negacom.Areas.Admin.Controllers
                     ModelState.AddModelError("", "Email is already in use.");
                     return View(u);
                 }
-
                 existingUser.Name = u.Name;
                 existingUser.Family = u.Family;
                 existingUser.UserName = u.UserName;
                 existingUser.Email = u.Email;
                 existingUser.About = u.About;
+                existingUser.DelateStatus = false;
                 existingUser.PhoneNumber = u.PhoneNumber;
                 existingUser.Address = u.Adress;
                 existingUser.Status = u.Status;
@@ -230,7 +233,7 @@ namespace Negacom.Areas.Admin.Controllers
                 var result = await _userManager.UpdateAsync(existingUser);
                 if (result.Succeeded)
                 {
-                    return View("Index");
+                    return RedirectToAction("Index","User");
                 }
 
                 foreach (var error in result.Errors)
@@ -380,9 +383,10 @@ namespace Negacom.Areas.Admin.Controllers
             if (q != null)
             {
                 q.Status = false;
+                q.DelateStatus = true;
                 db.SaveChanges();
             }
-            return View("Index");
+            return RedirectToAction("Index","User");
         }
         [Authorize]
         public IActionResult UpdateStatus1(int id, bool status)
@@ -429,7 +433,7 @@ namespace Negacom.Areas.Admin.Controllers
             var user = _userManager.Users.FirstOrDefault(x => x.Id == userıd);
             if (user == null)
             {
-                return View("Error");
+                return RedirectToAction("Index","User");
             }
             else
             {
@@ -453,7 +457,7 @@ namespace Negacom.Areas.Admin.Controllers
                 }
             }
 
-            return View("Index");
+            return RedirectToAction("Index","User");
         }
     }
 

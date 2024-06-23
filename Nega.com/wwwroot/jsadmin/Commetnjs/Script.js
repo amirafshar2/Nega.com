@@ -145,8 +145,9 @@ $(document).ready(function () {
                 CommentId: commentid, // commentid değerini doğrudan kullanabilirsiniz
                 Content: content
             };
+            console.log("Sending data:", JSON.stringify(c));
             $.ajax({
-                url: '/BlogDet/CreateReplay',
+                url: '/BlogDet/CreateReplay/',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify(c),
@@ -155,7 +156,12 @@ $(document).ready(function () {
                     GetReplay_bay_Commentid(commentid); // burada commentid parametresini doğru şekilde kullanmalısınız
                 },
                 error: function (xhr, status, error) {
-                    console.error("Error adding replay:", status, error);
+                    error: function (xhr, status, error) {
+                        console.error("Error adding replay:", status, error);
+                        console.error("XHR:", xhr);
+                        console.error("Error Details:", error);
+                    }
+
                 }
             });
         }
@@ -221,7 +227,7 @@ $(document).ready(function () {
         <div class="row">
             <div class="col-lg-10 m-4">
                 <textarea rows="6" class="repcontent${commentId}" placeholder="پاسخ کامنت را بنویسید" required></textarea>
-                  <input type="text" hidden class="comentidd${commentId}" value="${commentId}" />
+                <input type="text" hidden class="comentidd${commentId}" value="${commentId}" />
             </div>
             <div class="col-lg-10">
                 <button class="repbtn" data-comment-id="${commentId}" style="background-color: #5fc3b1; cursor:pointer;" class="btn">ذخیره</button>
@@ -237,10 +243,50 @@ $(document).ready(function () {
             });
         }
     });
+    //$(document).on("click", ".repbtn", function (e) {
+    //    e.preventDefault();
+    //    const commentId = $(this).data("comment-id");
+    //    const content = $("#REPlayadd_${commentId} .repcontent").val();
+    //    AddReplay(commentId, content);
+    //});
     $(document).on("click", ".repbtn", function (e) {
         e.preventDefault();
-        const commentId = $(this).data("comment-id");
-        const content = $(`#REPlayadd_${commentId} .repcontent`).val();
-        AddReplay(commentId, content);
+        const CommentId = $(this).data("comment-id");
+        const Content = $(`.repcontent`+Commentid).val();
+
+        if (!content || content.length < 10) {
+            $("#resr_" + commentId).css("color", "red");
+            $("#resr_" + commentId).show().text("لطفا بعد از نوشتن کامنت امتحان کنید و کمترین تعداد کلمه ی مورد فبول 10 میباشد");
+            setTimeout(function () {
+                $("#resr_" + commentId).css("display", "none");
+            }, 5000); // 5 saniye
+        } else {
+            const replayData = {
+                Content: content,
+                CommentId: commentId,
+                CreatedAt: new Date() // Şu anki tarih ve saat
+            };
+
+            $.ajax({
+                url: '/BlogDet/CreateReplay',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(replayData),
+                success: function (response) {
+                    console.log("Replay added successfully:", response);
+                    GetReplay_bay_Commentid(commentId);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error adding replay:", status, error);
+                    $("#resr_" + commentId).css("color", "red");
+                    $("#resr_" + commentId).show().text("پس از ورود به سایت دوباره تلاش کنید");
+                    setTimeout(function () {
+                        $("#resr_" + commentId).css("display", "none");
+                    }, 5000); // 5 saniye
+                }
+            });
+        }
     });
+
+
 });
