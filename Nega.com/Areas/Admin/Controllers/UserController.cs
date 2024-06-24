@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 namespace Negacom.Areas.Admin.Controllers
 {
 
-   
+
     [Area("Admin")]
     public class UserController : Controller
     {
@@ -43,7 +43,7 @@ namespace Negacom.Areas.Admin.Controllers
 
         [Authorize]
         [HttpGet]
-        public  IActionResult Index()
+        public IActionResult Index()
         {
             var val = _Userbll.GetAll();
             val.Reverse();
@@ -233,7 +233,7 @@ namespace Negacom.Areas.Admin.Controllers
                 var result = await _userManager.UpdateAsync(existingUser);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index","User");
+                    return RedirectToAction("Index", "User");
                 }
 
                 foreach (var error in result.Errors)
@@ -258,108 +258,132 @@ namespace Negacom.Areas.Admin.Controllers
             Random random = new Random();
             int ccode;
             ccode = random.Next(100000, 1000000);
-            DB db = new DB();
-            var emilcheck = db.users.Where(i => i.Email == u.Email).Select(x => x.Email).FirstOrDefault();
-            if (emilcheck == null)
+
+            using (var db = new DB())
             {
+                var emailCheck = db.users.FirstOrDefault(i => i.Email == u.Email || i.UserName == u.User);
+                if (emailCheck != null)
+                {
+                    ModelState.AddModelError("", "Your email or username has already been registered.");
+                    return View(u);
+                }
 
                 if (u.Password != u.ConfirmPassword)
                 {
-                    ModelState.AddModelError("Confirm", "password repeat is wrong");
+                    ModelState.AddModelError("Confirm", "Password confirmation does not match.");
                     return View(u);
                 }
-                else
-                {
 
-                    if (u.Name == null || u.Email == null || u.Password == null || u.User == null || u.SureName == null)
+                if (string.IsNullOrWhiteSpace(u.Name) || string.IsNullOrWhiteSpace(u.SureName) ||
+                    string.IsNullOrWhiteSpace(u.Email) || string.IsNullOrWhiteSpace(u.Password) ||
+                    string.IsNullOrWhiteSpace(u.User) || string.IsNullOrWhiteSpace(u.ConfirmPassword))
+                {
+                    ModelState.AddModelError("", "All fields are required.");
+                    return View(u);
+                }
+
+                User newUser = new User
+                {
+                    Name = u.Name,
+                    Family = u.SureName,
+                    Email = u.Email,
+                    UserName = u.User,
+                    ContorimCod = ccode
+
+                };
+                if (db.users.Any() == false)
+                {
+                    newUser.Status = true;
+
+
+                    var createResult = await _userManager.CreateAsync(newUser, u.Password);
+                    if (createResult.Succeeded)
                     {
-                        if (u.Name == null)
+                        UserRolee adminRole = new UserRolee { Name = "Admin", NormalizedName = "ADMIN", Status = true };
+                        _rolbll.Add(adminRole);
+
+                        var user = await _userManager.FindByNameAsync(newUser.UserName);
+                        var role = _rolbll.GetAll().FirstOrDefault(o => o.NormalizedName == adminRole.NormalizedName);
+
+                        if (role != null)
                         {
-                            ModelState.AddModelError("Name", "connot be left bland the name");
+                            // Detach role entity to prevent conflicts
+                            db.Entry(role).State = EntityState.Detached;
+                            await _userManager.AddToRoleAsync(user, role.NormalizedName);
                         }
-                        if (u.SureName == null)
+
+                        MimeMessage mime = new MimeMessage();
+                        mime.From.Add(new MailboxAddress("Nega Admin", "afshar414amir@gmail.com"));
+                        mime.To.Add(new MailboxAddress("User", u.Email));
+                        mime.Subject = "Nega Confirmation code";
+
+                        var bodyBuilder = new BodyBuilder
                         {
-                            ModelState.AddModelError("SureName", "connot be left bland the surname");
-                        }
-                        if (u.Email == null)
+                            TextBody = $"Hello Dear {u.Name} {u.SureName},\nYour Confirmation code to register on Nega is {ccode}"
+                        };
+
+                        mime.Body = bodyBuilder.ToMessageBody();
+
+                        using (var client = new SmtpClient())
                         {
-                            ModelState.AddModelError("Email", "connot be left bland the email");
+                            client.Connect("smtp.gmail.com", 587, false);
+                            client.Authenticate("afshar414amir@gmail.com", "ievj jwvb piqf sfet");
+                            client.Send(mime);
+                            client.Disconnect(true);
                         }
-                        if (u.Password == null)
-                        {
-                            ModelState.AddModelError("Password", "connot be left bland the password");
-                        }
-                        if (u.ConfirmPassword == null)
-                        {
-                            ModelState.AddModelError("ConfirmPassword", "connot be left bland the password");
-                        }
-                        if (u.User == null)
-                        {
-                            ModelState.AddModelError("UserName", "connot be left bland the UserName");
-                        }
-                        return View(u);
+
+                        TempData["mail"] = u.Email;
+                        return RedirectToAction("Index", "Confirm");
                     }
                     else
                     {
-
-                        User uu = new BE.User()
+                        foreach (var error in createResult.Errors)
                         {
-                            Name = u.Name,
-                            Family = u.SureName,
-                            Email = u.Email,
-                            UserName = u.User
+                            ModelState.AddModelError("", error.Description);
+                        }
+                        return View(u);
+                    }
+                }
+                else
+                {
+                    newUser.Status = false;
+                    var createResult = await _userManager.CreateAsync(newUser, u.Password);
+                    if (createResult.Succeeded)
+                    {
+                       
 
+                        MimeMessage mime = new MimeMessage();
+                        mime.From.Add(new MailboxAddress("Nega Admin", "afshar414amir@gmail.com"));
+                        mime.To.Add(new MailboxAddress("User", u.Email));
+                        mime.Subject = "Nega Confirmation code";
+
+                        var bodyBuilder = new BodyBuilder
+                        {
+                            TextBody = $"Hello Dear {u.Name} {u.SureName},\nYour Confirmation code to register on Nega is {ccode}"
                         };
 
-                        var chack = db.users.Select(U => U.Id).FirstOrDefault();
-                        if (chack == 0)
-                        {
-                            uu.Status = true;
-                        }
-                        else
-                        {
-                            uu.Status = false;
-                        }
-                        uu.ContorimCod = ccode;
-                        var resa = await _userManager.CreateAsync(uu, u.Password);
+                        mime.Body = bodyBuilder.ToMessageBody();
 
-                        if (resa.Succeeded)
+                        using (var client = new SmtpClient())
                         {
-                            MimeMessage mime = new MimeMessage();
-                            MailboxAddress mailboxAddressFrom = new MailboxAddress("Nega Admin", "afshar414amir@gmail.com");
-                            MailboxAddress mailboxAddressto = new MailboxAddress("User", u.Email);
-                            mime.From.Add(mailboxAddressFrom);
-                            mime.To.Add(mailboxAddressto);
-                            var bodybuilder = new BodyBuilder();
-                            bodybuilder.TextBody = "Hello Dear " + u.Name + " " + u.SureName + " \n Your Confirmation code to register on Nega is" + ccode;
-                            mime.Body = bodybuilder.ToMessageBody();
-                            mime.Subject = "Nega Confirmation code ";
-                            SmtpClient clint = new SmtpClient();
-                            clint.Connect("smtp.gmail.com", 587, false);
-                            clint.Authenticate("afshar414amir@gmail.com", "ievj jwvb piqf sfet");
-                            clint.Send(mime);
-                            clint.Disconnect(true);
-                            TempData["mail"] = u.Email;
-                            return RedirectToAction("Index", "Confirm");
-                        }
-                        else
-                        {
-                            foreach (var item in resa.Errors)
-                            {
-                                ModelState.AddModelError("", item.Description);
-                            }
-                            return View(u);
+                            client.Connect("smtp.gmail.com", 587, false);
+                            client.Authenticate("afshar414amir@gmail.com", "ievj jwvb piqf sfet");
+                            client.Send(mime);
+                            client.Disconnect(true);
                         }
 
+                        TempData["mail"] = u.Email;
+                        return RedirectToAction("Index", "Confirm");
                     }
-
+                    else
+                    {
+                        foreach (var error in createResult.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
+                        return View(u);
+                    }
                 }
-
-            }
-            else
-            {
-                ModelState.AddModelError("", "your email has already been registered");
-                return View();
             }
         }
         [Authorize]
@@ -386,7 +410,7 @@ namespace Negacom.Areas.Admin.Controllers
                 q.DelateStatus = true;
                 db.SaveChanges();
             }
-            return RedirectToAction("Index","User");
+            return RedirectToAction("Index", "User");
         }
         [Authorize]
         public IActionResult UpdateStatus1(int id, bool status)
@@ -433,7 +457,7 @@ namespace Negacom.Areas.Admin.Controllers
             var user = _userManager.Users.FirstOrDefault(x => x.Id == userıd);
             if (user == null)
             {
-                return RedirectToAction("Index","User");
+                return RedirectToAction("Index", "User");
             }
             else
             {
@@ -457,10 +481,11 @@ namespace Negacom.Areas.Admin.Controllers
                 }
             }
 
-            return RedirectToAction("Index","User");
+            return RedirectToAction("Index", "User");
         }
     }
 
 
 }
+
 

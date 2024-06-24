@@ -60,6 +60,7 @@ namespace DAL.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReqesterDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
+                    DelateStatus = table.Column<bool>(type: "bit", nullable: false),
                     StatusİnCompany = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     About = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Facebook = table.Column<string>(type: "nvarchar(max)", nullable: true),

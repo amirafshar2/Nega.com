@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(DB))]
-    [Migration("20240615153938_1")]
+    [Migration("20240624064652_1")]
     partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -626,6 +626,9 @@ namespace DAL.Migrations
 
                     b.Property<int>("ContorimCod")
                         .HasColumnType("int");
+
+                    b.Property<bool>("DelateStatus")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
