@@ -327,7 +327,7 @@ namespace Negacom.Areas.Admin.Controllers
                         using (var client = new SmtpClient())
                         {
                             client.Connect("smtp.gmail.com", 587, false);
-                            client.Authenticate("afshar414amir@gmail.com", "ievj jwvb piqf sfet");
+                            client.Authenticate("afshar414amir@gmail.com", "pmpd qmpa skez jejz");
                             client.Send(mime);
                             client.Disconnect(true);
                         }
