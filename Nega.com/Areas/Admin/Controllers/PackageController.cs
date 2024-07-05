@@ -168,7 +168,7 @@ namespace Nega.com.Areas.Admin.Controllers
                 pa.Content10 = p.Content10;
                 pa.Date = DateTime.Now;
                 _PckageBLL.Add(pa);
-                return View();
+                return RedirectToAction();
             }
            
            
@@ -418,7 +418,7 @@ namespace Nega.com.Areas.Admin.Controllers
                 pa.Content10 = p.Content10;
                 pa.Date = DateTime.Now;
                 _PckageBLL.Update(pa);
-                return View("Index");
+                return RedirectToAction("Index","Package");
             }
             
         }
@@ -431,7 +431,7 @@ namespace Nega.com.Areas.Admin.Controllers
             else
             {
                 _PckageBLL.Delete(_PckageBLL.GetById(id));
-                return View("Index");
+                return RedirectToAction("Index");
             }
             
         }

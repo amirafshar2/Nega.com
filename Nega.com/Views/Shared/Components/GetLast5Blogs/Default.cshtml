@@ -33,24 +33,24 @@
     {
         if (timeSpan.TotalSeconds < 60)
         {
-            return "Şimdi";
+            return "چند ثانیه پیش";
         }
         else if (timeSpan.TotalMinutes < 60)
         {
-                return $"{(int)timeSpan.TotalMinutes} minute ago";
+                return $"{(int)timeSpan.TotalMinutes} دقیقه قبل";
         }
         else if (timeSpan.TotalHours < 24)
         {
-                return $"{(int)timeSpan.TotalHours} hours ago";
+                return $"{(int)timeSpan.TotalHours} ساعت قبل";
         }
         else if (timeSpan.TotalDays < 7)
         {
-            return $"{(int)timeSpan.TotalDays} day ago";
+            return $"{(int)timeSpan.TotalDays} روز قبل";
         }
         else
         {
             int weeks = (int)(timeSpan.TotalDays / 7);
-            return $"{weeks} week ago";
+            return $"{weeks} هفته قبل";
         }
     }
     }

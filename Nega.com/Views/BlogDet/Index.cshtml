@@ -21,7 +21,7 @@
     <title>Blog</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/551/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .heading-page.header-text {
             text-align: right; /* Metni sağa hizalar */
@@ -102,7 +102,7 @@
     <!-- Banner Ends Here -->
 
 
-  
+
 
     <section class="blog-posts grid-system">
         <div class="container">
@@ -127,7 +127,7 @@
 
 
                                             <li><a href="#"> @formattedTime</a></li>
-                                            <li><a href="#">10 Comments</a></li>
+
                                         </ul>
                                         <p>
                                             @Html.Raw(Model.Content)
@@ -147,183 +147,184 @@
                                     </div>
                                 </div>
                             </div>
-                            @if (Model.Title2 != null)
-                            {
+                            <div class="down-content" style="border-top: solid 1px #eee; width: 96%; margin: 0% 2% 0% 0%;">
+                                @if (Model.Title2 != null)
+                                {
 
-                                <div class="col-lg-12">
-                                    <div class="blog-post">
-                                        <div class="col-lg-12">
-                                            <div class="down">
-                                                <div class="col-lg-12">
-                                                    <img src="~/image/Pack/@Model.Picture2" alt="">
+                                    <div class="col-lg-12">
+                                        <div class="blog-post">
+                                            <div class="col-lg-12">
+                                                <div class="down">
+                                                    <div class="col-lg-12">
+                                                        <img src="~/image/Pack/@Model.Picture2" alt="">
+                                                    </div>
+                                                    <h3 style=" color: #59c29d;">@Model.Title2</h3>
+                                                    <p>
+                                                        @Html.Raw(Model.Content2)
+                                                    </p>
                                                 </div>
-                                                <h3 style=" color: #59c29d;">@Model.Title2</h3>
-                                                <p>
-                                                    @Html.Raw(Model.Content2)
-                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            }
-                            @if (Model.Title3 != null)
-                            {
+                                }
+                                @if (Model.Title3 != null)
+                                {
 
-                                <div class="col-lg-12">
-                                    <div class="blog-post">
-                                        <div class="col-lg-12">
-                                            <div class="down">
-                                                <div class="col-lg-12">
-                                                    <img src="~/image/Pack/@Model.Picture3" alt="">
+                                    <div class="col-lg-12">
+                                        <div class="blog-post">
+                                            <div class="col-lg-12">
+                                                <div class="down">
+                                                    <div class="col-lg-12">
+                                                        <img src="~/image/Pack/@Model.Picture3" alt="">
+                                                    </div>
+                                                    <h3 style=" color: #59c29d;">@Model.Title3</h3>
+                                                    <p>
+                                                        @Html.Raw(Model.Content3)
+                                                    </p>
                                                 </div>
-                                                <h3 style=" color: #59c29d;">@Model.Title3</h3>
-                                                <p>
-                                                    @Html.Raw(Model.Content3)
-                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            }   @if (Model.Title4 != null)
-                            {
+                                }   @if (Model.Title4 != null)
+                                {
 
-                                <div class="col-lg-12">
-                                    <div class="blog-post">
-                                        <div class="col-lg-12">
-                                            <div class="down">
-                                                <div class="col-lg-12">
-                                                    <img src="~/image/Pack/@Model.Picture4" alt="">
+                                    <div class="col-lg-12">
+                                        <div class="blog-post">
+                                            <div class="col-lg-12">
+                                                <div class="down">
+                                                    <div class="col-lg-12">
+                                                        <img src="~/image/Pack/@Model.Picture4" alt="">
+                                                    </div>
+                                                    <h3 style=" color: #59c29d;">@Model.Title4</h3>
+                                                    <p>
+                                                        @Html.Raw(Model.Content4)
+                                                    </p>
                                                 </div>
-                                                <h3 style=" color: #59c29d;">@Model.Title4</h3>
-                                                <p>
-                                                    @Html.Raw(Model.Content4)
-                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            }   @if (Model.Title5 != null)
-                            {
+                                }   @if (Model.Title5 != null)
+                                {
 
-                                <div class="col-lg-12">
-                                    <div class="blog-post">
-                                        <div class="col-lg-12">
-                                            <div class="down">
-                                                <div class="col-lg-12">
-                                                    <img src="~/image/Pack/@Model.Picture5" alt="">
+                                    <div class="col-lg-12">
+                                        <div class="blog-post">
+                                            <div class="col-lg-12">
+                                                <div class="down">
+                                                    <div class="col-lg-12">
+                                                        <img src="~/image/Pack/@Model.Picture5" alt="">
+                                                    </div>
+                                                    <h3 style=" color: #59c29d;">@Model.Title5</h3>
+                                                    <p>
+                                                        @Html.Raw(Model.Content5)
+                                                    </p>
                                                 </div>
-                                                <h3 style=" color: #59c29d;">@Model.Title5</h3>
-                                                <p>
-                                                    @Html.Raw(Model.Content5)
-                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            }
-                            @if (Model.Title6 != null)
-                            {
+                                }
+                                @if (Model.Title6 != null)
+                                {
 
-                                <div class="col-lg-12">
-                                    <div class="blog-post">
-                                        <div class="col-lg-12">
-                                            <div class="down">
-                                                <div class="col-lg-12">
-                                                    <img src="~/image/Pack/@Model.Picture6" alt="">
+                                    <div class="col-lg-12">
+                                        <div class="blog-post">
+                                            <div class="col-lg-12">
+                                                <div class="down">
+                                                    <div class="col-lg-12">
+                                                        <img src="~/image/Pack/@Model.Picture6" alt="">
+                                                    </div>
+                                                    <h3 style=" color: #59c29d;">@Model.Title6</h3>
+                                                    <p>
+                                                        @Html.Raw(Model.Content6)
+                                                    </p>
                                                 </div>
-                                                <h3 style=" color: #59c29d;">@Model.Title6</h3>
-                                                <p>
-                                                    @Html.Raw(Model.Content6)
-                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            }
-                            @if (Model.Title2 != null)
-                            {
+                                }
+                                @if (Model.Title2 != null)
+                                {
 
-                                <div class="col-lg-12">
-                                    <div class="blog-post">
-                                        <div class="col-lg-12">
-                                            <div class="down">
-                                                <div class="col-lg-12">
-                                                    <img src="~/image/Pack/@Model.Picture7" alt="">
+                                    <div class="col-lg-12">
+                                        <div class="blog-post">
+                                            <div class="col-lg-12">
+                                                <div class="down">
+                                                    <div class="col-lg-12">
+                                                        <img src="~/image/Pack/@Model.Picture7" alt="">
+                                                    </div>
+                                                    <h3 style=" color: #59c29d;">@Model.Title7</h3>
+                                                    <p>
+                                                        @Html.Raw(Model.Content7)
+                                                    </p>
                                                 </div>
-                                                <h3 style=" color: #59c29d;">@Model.Title7</h3>
-                                                <p>
-                                                    @Html.Raw(Model.Content7)
-                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            }   @if (Model.Title8 != null)
-                            {
+                                }   @if (Model.Title8 != null)
+                                {
 
-                                <div class="col-lg-12">
-                                    <div class="blog-post">
-                                        <div class="col-lg-12">
-                                            <div class="down">
-                                                <div class="col-lg-12">
-                                                    <img src="~/image/Pack/@Model.Picture8" alt="">
+                                    <div class="col-lg-12">
+                                        <div class="blog-post">
+                                            <div class="col-lg-12">
+                                                <div class="down">
+                                                    <div class="col-lg-12">
+                                                        <img src="~/image/Pack/@Model.Picture8" alt="">
+                                                    </div>
+                                                    <h3 style=" color: #59c29d;">@Model.Title8</h3>
+                                                    <p>
+                                                        @Html.Raw(Model.Content8)
+                                                    </p>
                                                 </div>
-                                                <h3 style=" color: #59c29d;">@Model.Title8</h3>
-                                                <p>
-                                                    @Html.Raw(Model.Content8)
-                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            }
-                            @if (Model.Title9 != null)
-                            {
+                                }
+                                @if (Model.Title9 != null)
+                                {
 
-                                <div class="col-lg-12">
-                                    <div class="blog-post">
-                                        <div class="col-lg-12">
-                                            <div class="down">
-                                                <div class="col-lg-12">
-                                                    <img src="~/image/Pack/@Model.Picture9" alt="">
+                                    <div class="col-lg-12">
+                                        <div class="blog-post">
+                                            <div class="col-lg-12">
+                                                <div class="down">
+                                                    <div class="col-lg-12">
+                                                        <img src="~/image/Pack/@Model.Picture9" alt="">
+                                                    </div>
+                                                    <h3 style=" color: #59c29d;">@Model.Title9</h3>
+                                                    <p>
+                                                        @Html.Raw(Model.Content9)
+                                                    </p>
                                                 </div>
-                                                <h3 style=" color: #59c29d;">@Model.Title9</h3>
-                                                <p>
-                                                    @Html.Raw(Model.Content9)
-                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            }   @if (Model.Title10 != null)
-                            {
+                                }   @if (Model.Title10 != null)
+                                {
 
-                                <div class="col-lg-12">
-                                    <div class="blog-post">
-                                        <div class="col-lg-12">
-                                            <div class="down">
-                                                <div class="col-lg-12">
-                                                    <img src="~/image/Pack/@Model.Picture10" alt="">
+                                    <div class="col-lg-12">
+                                        <div class="blog-post">
+                                            <div class="col-lg-12">
+                                                <div class="down">
+                                                    <div class="col-lg-12">
+                                                        <img src="~/image/Pack/@Model.Picture10" alt="">
+                                                    </div>
+                                                    <h3 style=" color: #59c29d;">@Model.Title10</h3>
+                                                    <p>
+                                                        @Html.Raw(Model.Content10)
+                                                    </p>
                                                 </div>
-                                                <h3 style=" color: #59c29d;">@Model.Title10</h3>
-                                                <p>
-                                                    @Html.Raw(Model.Content10)
-                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            }
-
+                                }
+                            </div>
 
 
 
@@ -345,13 +346,6 @@
                                                 </div>
                                                 <div class="col-lg-12" id="list">
                                                     <ul id="GettComment">
-
-
-
-                                                       
-
-
-
                                                     </ul>
                                                 </div>
 
@@ -441,10 +435,8 @@
 <script src="~/551/assets/js/slick.js"></script>
 <script src="~/551/assets/js/isotope.js"></script>
 <script src="~/551/assets/js/accordions.js"></script>
-@section scripts{
-    <script src="~/jsadmin/commetnjs/script.js"></script>
 
-}
+<script src="~/jsadmin/commetnjs/script.js"></script>
 <script language="text/Javascript">
     cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
     function clearField(t) {                   //declaring the array outside of the
@@ -480,6 +472,7 @@
             }
         }
     }
+
 </script>
 
 

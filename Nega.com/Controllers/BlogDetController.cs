@@ -91,7 +91,7 @@ namespace Negacom.Controllers
                 }
                 return Json(cmm); // Verileri JSON formatında döndürün
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Hata durumunu loglayabilirsiniz
                 return StatusCode(500, "Internal server error"); // İstekte bir hata oluşursa 500 hatası döndürün
@@ -121,7 +121,7 @@ namespace Negacom.Controllers
                 }
                 return Json(replayModels);
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
                 return StatusCode(500, "Internal server error");
@@ -132,30 +132,56 @@ namespace Negacom.Controllers
         [HttpPost]
         public IActionResult CreateReplay([FromBody] ReplayModel replayData)
         {
+            bool control = true;
             try
             {
                 var userId = HttpContext.Session.GetInt32("userid");
                 if (userId != null)
                 {
-                    Reply r = new Reply()
+                    // Yorumun benzersizliğini kontrol etme
+                    Reply re = new Reply()
                     {
                         Content = replayData.Content,
                         CommentId = replayData.CommentId,
                         userid = (int)userId,
                         CreatedAt = DateTime.Now
                     };
-                    _Replaybll.Add(r);
-                    return Ok(new { success = true, message = "Comment added successfully" });
+                    var existingReplay = _Replaybll.GetAll()
+                        .FirstOrDefault(r => r.userid == userId
+                                             && r.CommentId == replayData.CommentId
+                                             && r.Content == replayData.Content
+                                             && (DateTime.Now - r.CreatedAt).TotalSeconds < 60);
+
+                    if (existingReplay != null)
+                    {
+                        return BadRequest("You have already posted this replay recently.");
+                    }
+                    else
+                    {
+                        if (control)
+                        {
+
+                            _Replaybll.Add(re);
+                            control = false;
+                            return Ok(new { success = true, message = "Replay added successfully" });
+                        }
+                        else
+                        {
+                            return BadRequest("You have already posted this replay recently.");
+                        }
+                    }
+
                 }
                 else
                 {
                     return Unauthorized();
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500, "Internal server error");
             }
+            control = true;
         }
 
 
