@@ -1,6 +1,7 @@
 ﻿using BLL.Concrate;
 using DAL.EntityFrameWork;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Negacom.Areas.Admin.ViewComponents.Video
 {
@@ -16,6 +17,7 @@ namespace Negacom.Areas.Admin.ViewComponents.Video
         {
             var value = _Videobll.GetAll();
             value.Reverse();
+            value= value.Where(x=> x.Status== true).ToList();
             return View(value);
 
         }

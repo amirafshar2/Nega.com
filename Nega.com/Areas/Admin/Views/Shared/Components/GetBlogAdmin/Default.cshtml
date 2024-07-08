@@ -4,13 +4,15 @@
 
 
 @using System.Web
+
+@model List<BE.Blog>
+
+
+
 <head>
     <link href="~/jsadmin/blogcartcss/stylesheet.css" rel="stylesheet" />
     <link href="~/jsadmin/statuscss/stylesheet.css" rel="stylesheet" />
 </head>
-
-@model List<BE.Blog>
-
 <div class="col-lg-3 col-sm-6 col-3 col-md-3">
     @foreach (var item in Model)
     {

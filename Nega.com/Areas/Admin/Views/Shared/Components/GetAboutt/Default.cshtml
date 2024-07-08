@@ -4,70 +4,120 @@
 *@
 
 
-
-
-
-
-
-<head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
-</head>
-
-
 @model IEnumerable<BE.About >
 
+<head>
 
-<br />
 
-<div class="col-lg-4">
-    <div class="container p-1 m-2">
-        @foreach (var item in Model)
-        {
-            <table style="display:none">
-                <tr style="display:none">
-                    <td style="display:none ">@item.id</td>
-                </tr>
-            </table>
-           
-            <div class="card" style="width:400px">
-                <img class="card-img-top" src="~/image/Pack/@item.İmage1" alt="Card image" style="display:flex">
-                <div class="card-body">
-                    <h4 class="card-title">@item.Name</h4>
-                    <h5 class="card-title">@item.Title1</h5>
-                    
-                    
-                    
-                    <p class="card-text">@Html.Raw(item.Content)</p>
-                    <br/>
-                    <img class="card-img-top" src="~/image/Pack/@item.İmage2" alt="Card image" style="display:flex">
-                    <h5 class="card-title">@item.Title2</h5>
-                    <p class="card-text">@Html.Raw(item.Content2)</p>
-                    <div class="card-title">
-                        <iframe src="@item.MapLocation" width="100%" height="100%"></iframe>
-                        </div>
-                    <button onclick="location.href='@Url.Action("Update", "Aboute", new { id = item.id })'" class="btn btn-info  dim" type="button">
-                        <i class="fa fa-cog"></i>
-                    </button>
-                    <button onclick="confirmDelete('@item.id')" class="btn btn-danger  dim " type="button"><i class="fa fa-trash"></i></button>
 
-                </div>
-            </div>
+    <link href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" />
+
+    <style type="text/css">
+        .hidden {
+            display: none;
         }
+
+        .content-cell {
+            max-height: 100px; /* Hücre yüksekliği */
+            overflow-y: auto; /* Dikey kaydırma çubuğu */
+            overflow-x: hidden; /* Yatay kaydırma çubuğunu gizle */
+        }
+
+            .content-cell img {
+                max-width: 100px; /* Görüntülerin boyutlarını ayarla */
+                height: auto;
+            }
+    </style>
+    <link href="~/jsadmin/statuscss/stylesheet.css" rel="stylesheet" />
+</head>
+
+<div class="col-lg-12">
+    <div class="ibox ">
+        <div class="ibox-title">
+            <h5>Aboute Table </h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="hidden">#</th>
+                        <th>Name</th>
+                        <th>Title1</th>
+                        <th>Content1</th>
+                        <th>İmage1</th>
+                        <th>Title2</th>
+                        <th>Content2</th>
+                        <th>İmage2</th>
+                        <th>Status</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="hidden">@item.id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Title1</td>
+                            <td>@(Html.Raw( item.Content.Length > 100 ? item.Content.Substring(0, 100) + "..." : item.Content))</td>
+                            <td> <img class="card-img-top" src="~/image/Pack/@item.İmage1" alt="Card image" style="display:flex"></td>
+                            <td>@item.Title2</td>
+                            <td>
+                                @(Html.Raw(item.Content2.Length > 100 ? item.Content2.Substring(0, 100) + "..." : item.Content2)) </td >
+                            <td><img class="card-img-top" src="~/image/Pack/@item.İmage2" alt="Card image" style="display:flex"></td>
+                            
+                            <td>
+                                <input id="s1_@item.id" type="checkbox" class="switch" @(item.Status ? "checked" : "") onchange="updateStatus(@item.id, this)">                              
+                            </td>
+                            <td>
+                                <button onclick="location.href='@Url.Action("Update", "Aboute", new { id = item.id })'" class="btn btn-info  dim" type="button">
+                                    <i class="fa fa-cog"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button onclick="confirmDelete('@item.id')" class="btn btn-danger  dim " type="button"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-
-<br>
-
 
 
 
 <script>
+    function updateStatus(itemId, checkbox) {
+        var newStatus = $(checkbox).is(':checked');
+
+        $.ajax({
+            url: '/Admin/Aboute/UpdateStatus',
+            type: 'POST',
+            data: {
+                id: itemId,
+                status: newStatus
+            },
+            success: function (response) {
+                if (response.success) {
+                    $(checkbox).prop('checked', newStatus);
+                } else {
+                    alert('Status update failed');
+                }
+            },
+            error: function () {
+                alert('An error occurred');
+            }
+        });
+    }
     function confirmDelete(itemId) {
         // SweetAlert ile bir onay iletişi göster0
         Swal.fire({
@@ -85,6 +135,8 @@
             }
         });
     }
-</script>
 
+
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

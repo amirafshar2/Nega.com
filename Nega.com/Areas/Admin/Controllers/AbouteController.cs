@@ -205,5 +205,16 @@ namespace Negacom.Areas.Admin.Controllers
             }
 
         }
+        public IActionResult UpdateStatus(int id, bool status)
+        {
+            var comment = _aboutbll.GetById(id);
+            if (comment != null)
+            {
+                comment.Status = status;
+                _aboutbll.Update(comment);
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
     }
 }

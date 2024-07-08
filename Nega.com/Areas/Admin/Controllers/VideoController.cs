@@ -80,5 +80,16 @@ namespace Negacom.Areas.Admin.Controllers
             _videoBll.Delete(_videoBll.GetById(id));
             return View("Index");
         }
+        public IActionResult UpdateStatus(int id, bool status)
+        {
+            var comment = _videoBll.GetById(id);
+            if (comment != null)
+            {
+                comment.Status = status;
+                _videoBll.Update(comment);
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
     }
 }

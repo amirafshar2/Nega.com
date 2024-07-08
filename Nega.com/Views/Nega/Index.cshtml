@@ -3,22 +3,17 @@
     Layout = "~/Views/Shared/NegaLayout.cshtml";
 }
 
+<div>
+    @await Component.InvokeAsync("GetService")
+</div>
 
-<section class="hero section-padding" data-scroll-index="1">
-    <div class="container">
-        @await Component.InvokeAsync("GetService")
-    </div>
-</section>
 
 <!-- End Hero ====
 ======================================= -->
 <!-- =====================================
 ==== Start Video -->
 <div>
-
-
-        @await Component.InvokeAsync("GetVideo")
- 
+    @await Component.InvokeAsync("GetVideo")
 </div>
 
 <!-- End Video ====
@@ -26,7 +21,7 @@
 <!-- =====================================
 ==== Start Boxs -->
 <div>
-        @await Component.InvokeAsync("GetAbouttt")
+    @await Component.InvokeAsync("GetAbouttt")
 
 </div>
 
@@ -35,7 +30,6 @@
 ======================================= -->
 <!-- =====================================
 ==== Start Numbers -->
-
 @* <div class="numbers section-padding" data-overlay-color="10">
     <div class="container">
         <div class="row">
@@ -80,7 +74,6 @@
 ======================================= -->
 <!-- =====================================
 ==== Start Teams -->
-
 @*  <section class="team section-padding" data-scroll-index="2">
     <div class="container">
         <div class="row">
@@ -247,104 +240,39 @@
 ======================================= -->
 <!-- =====================================
 ==== Start Boxs -->
-
-
-
 <!-- End Boxs ====
 ======================================= -->
 <!-- =====================================
 ==== Start Works -->
-
-<section class="works section-padding" data-scroll-index="3">
-    <div class="container">
-        <div class="row">
-
-            <div class="section-head offset-md-2 col-md-8 offset-lg-3 col-lg-6">
-                <h4>نمونه‌کارها</h4>
-                <p></p>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="container-fluid">
-
-        <div class="row">
-
-            <!-- filter links -->
-            <div class="filtering text-center mb-30 col-sm-12">
-                @await Component.InvokeAsync("GetPortfolioCategory")
-            </div>
-
-            <div class="clearfix"></div>
-
-            <!-- gallery -->
-            <div class="gallery full-width">
-
-                @await Component.InvokeAsync("GetPortfolio")
-
-            </div>
-
-        </div>
-    </div>
-</section>
+<div>
+    @await Component.InvokeAsync("GetPortfolioCategory")
+</div>
 
 <!-- End Works ====
 ======================================= -->
 <!-- =====================================
 ==== Start Price -->
+<div>
+    @await Component.InvokeAsync("GetPack")
+</div>
 
-<section class="price section-padding bg-gray" data-scroll-index="4">
-    <div class="container">
-        <div class="row">
-
-            <div class="section-head offset-md-2 col-md-8 offset-lg-3 col-lg-6">
-                <h4> <span>قیمت های</span></h4>
-                <p>طراحی سایت</p>
-            </div>
-
-            <div class="text-center offset-lg-1 col-lg-10">
-
-                @await Component.InvokeAsync("GetPack")
-
-            </div>
-
-        </div>
-    </div>
-</section>
 
 <!-- End Price ====
 ======================================= -->
 <!-- =====================================
 ==== Start Testimonials -->
+<div>
+    @await Component.InvokeAsync("GetCustomerComment")
+</div>
 
-<section class="testimonials section-padding bg-img bg-fixed bg-center" data-overlay-dark="7" data-background="/simba/img/bg3.jpg">
-    <div class="container">
-        <div class="row">
-
-            <div class="section-head col-lg-4">
-                <h4>آنچه <span>مشتریان</span> می‌گویند</h4>
-                
-            </div>
-
-            <div class="owl-carousel owl-theme col-lg-8">
-                 
-                @await Component.InvokeAsync("GetCustomerComment")
-
-            </div>
-
-        </div>
-    </div>
-</section>
 
 <!-- End Testimonials ====
 ======================================= -->
 <!-- =====================================
 ==== Start Blog -->
-
-<section class="blog section-padding bg-gray" data-scroll-index="5">
+<div>
     @await Component.InvokeAsync("GetBlogs")
-</section>
+</div>
 
 <!-- End Blog ====
 ======================================= -->
