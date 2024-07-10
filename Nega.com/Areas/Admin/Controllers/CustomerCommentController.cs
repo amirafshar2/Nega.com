@@ -62,7 +62,7 @@ namespace Negacom.Areas.Admin.Controllers
                     Email = c.Email,
                     Content = c.Content,
                     Date = DateTime.Now,
-                    Status = c.Status
+                    Status = false
 
                 };
                 if (c.Picture != null)
