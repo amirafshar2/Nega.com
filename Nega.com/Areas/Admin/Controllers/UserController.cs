@@ -32,6 +32,7 @@ namespace Negacom.Areas.Admin.Controllers
         private readonly RoleManager<UserRolee> _roleManager;
         UserManegerloc _Userbll = new UserManegerloc(new EFUserRepository());
         RoleManager _rolbll = new RoleManager(new EFUserRoleeRepository());
+        NotificationManager _notificationbll = new NotificationManager(new EFNotificationRepository());
 
         public UserController(IPasswordHasher<User> passwordHasher, UserManager<User> userManager, IWebHostEnvironment environment, RoleManager<UserRolee> roleManager)
         {
@@ -113,7 +114,16 @@ namespace Negacom.Areas.Admin.Controllers
                         var resa = await _userManager.CreateAsync(uu, u.password);
                         if (resa.Succeeded)
                         {
-                            return RedirectToAction("Index", "Login");
+                            var notif = new Notification() {
+                            Title= "CreateUser",
+                            Message= "Created new User , the User name is :"+uu.UserName ,
+                            Timestamp= DateTime.Now,
+                            Type= "Create",
+                            Recipient = "Admin",
+                            ReadStatus = false
+                            };
+                            _notificationbll.Add(notif);
+                            return RedirectToAction("Index");
                         }
                         else
                         {
@@ -350,8 +360,17 @@ namespace Negacom.Areas.Admin.Controllers
                     var createResult = await _userManager.CreateAsync(newUser, u.Password);
                     if (createResult.Succeeded)
                     {
-                       
 
+                        var notif = new Notification()
+                        {
+                            Title = "Registred",
+                            Message = "Registred new User , the User name is :" + newUser.UserName,
+                            Timestamp = DateTime.Now,
+                            Type = "Registred",
+                            Recipient = "Admin",
+                            ReadStatus = false
+                        };
+                        _notificationbll.Add(notif);
                         MimeMessage mime = new MimeMessage();
                         mime.From.Add(new MailboxAddress("Nega Admin", "afshar414amir@gmail.com"));
                         mime.To.Add(new MailboxAddress("User", u.Email));
@@ -367,7 +386,7 @@ namespace Negacom.Areas.Admin.Controllers
                         using (var client = new SmtpClient())
                         {
                             client.Connect("smtp.gmail.com", 587, false);
-                            client.Authenticate("afshar414amir@gmail.com", "ievj jwvb piqf sfet");
+                            client.Authenticate("afshar414amir@gmail.com", "viva bduu ewvg dmph");
                             client.Send(mime);
                             client.Disconnect(true);
                         }

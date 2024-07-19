@@ -427,10 +427,12 @@
                                     <label for="s1_@item.Id">Status</label>
                                 </div>
                                 <div class="row ">
-                                    <a href="~/Admin/User/Delete/@item.Id" class="m-1 btn btn-danger btn-round">Delete</a>
+                                    <button onclick="confirmDelete('@item.Id')" class="btn btn-danger  btn-round  " style="height: 30px; margin: 3px 3px 0px 0px;" type="button">
+                                        Delete
+                                    </button>
                                     <a href="/Admin/User/Detale/@item.Id" class="m-1 btn btn-info btn-round">Detale</a>
                                     <a href="/Admin/User/Update/@item.Id" class="m-1 btn btn-primary btn-round btn-simple">Update</a> 
-                                    <a href="/Admin/User/AddRole/@item.Id" class="m-1 btn btn-primary btn-round btn-simple">Roles</a>
+                                    <a href="/Admin/User/AddRole/@item.Id" class="m-1 btn btn-success btn-round btn-simple">Roles</a>
                                 </div>
                                 <p class="social-icon m-t-5 m-b-0">
                                     <a title="Facebook" href="@item.Facebook"><i class="fa fa-facebook"></i></a>
@@ -492,4 +494,23 @@
             }
         });
     }
+
+    function confirmDelete(itemId) {
+        // SweetAlert ile bir onay iletişi göster0
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Are you sure you want to delete this item?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Kullanıcı evet'e tıkladığında, silme işlemini gerçekleştir
+                window.location.href = "/Admin/User/Delete/" + itemId;
+            }
+        });
+    }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

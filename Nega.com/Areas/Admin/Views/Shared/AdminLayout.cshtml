@@ -30,7 +30,7 @@
     <link href="~/AdminTema/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="~/AdminTema/css/animate.css" rel="stylesheet">
     <link href="~/AdminTema/css/style.css" rel="stylesheet">
-
+    <link href="~/jsadmin/notificationcss/notifcss.css" rel="stylesheet" />
 </head>
 
 
@@ -41,7 +41,7 @@
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         @await Component.InvokeAsync("GetOnlineUser")
-                     
+
                     </li>
                     <li>
                         <a href="~/Nega/Index">
@@ -101,12 +101,20 @@
 
                 </ul>
             </div>
-        </nav>
 
-        <div id="page-wrapper" class="gray-bg" >
-            
-            <div>
-                @RenderBody()
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-11 col-xs-12">
+                        @RenderBody()
+                    </div>
+                    <div style="direction: rtl;" class="col-md-1 notificationss">
+                        @await Component.InvokeAsync("GetNotifications")
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

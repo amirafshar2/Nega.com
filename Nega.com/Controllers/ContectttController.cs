@@ -10,6 +10,7 @@ namespace Negacom.Controllers
     public class ContectttController : Controller
     {
         ContactManager _contactbll = new ContactManager(new EFContactRepository());
+        NotificationManager _notificationBll = new NotificationManager(new EFNotificationRepository());
 
         [HttpGet]
         public IActionResult Index()
@@ -41,6 +42,16 @@ namespace Negacom.Controllers
                 c.Date = DateTime.Now;
                 c.Status = true;
                 _contactbll.Add(c);
+                var notification = new Notification() {
+                    Title = "contact",
+                    Message = c.Mail + " sended new contact request",
+                    Timestamp = DateTime.Now,
+                    Type = "request",
+                    Recipient = "Admin" + "Moderator",
+                    ReadStatus = false
+                    
+                };
+                _notificationBll.Add(notification);
                 return Json(new { success = true });
             }
 

@@ -26,6 +26,7 @@ namespace Negacom.Controllers
         BlogManager _blogbll = new BlogManager(new EFBlogRepository());
         CommentManager _commentbll = new CommentManager(new EFCommentRepository());
         ReplayManager _Replaybll = new ReplayManager(new EFReplayRepository());
+        NotificationManager _notificationbll = new NotificationManager(new EFNotificationRepository());
         public BlogDetController(UserManager<User> userManager)
         {
             _userManager = userManager;
@@ -59,6 +60,15 @@ namespace Negacom.Controllers
                     BlogId = c.BlogId
                 };
                 _commentbll.Add(cc);
+                var noti = new Notification() { 
+                Title="Comment",
+                Message="new Comment from id:"+userId+". for blogid : "+cc.BlogId,
+                Timestamp = DateTime.Now,
+                Type="Comment",
+                ReadStatus=false,
+                Recipient="Admin"
+                };
+                _notificationbll.Add(noti);
                 return Ok(new { success = true, message = "Comment added successfully" });
             }
             else

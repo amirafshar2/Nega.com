@@ -33,6 +33,7 @@ namespace DAL.Context
         public DbSet<Video> video { get; set; }
         public DbSet<CustomerComment> customerComments { get; set; }
         public DbSet<Reply> Replies { get; set; }
+        public DbSet<Notification> notifications { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Reply>()

@@ -340,7 +340,7 @@
         }
 
         setupFileInputChangeHandler('logo1', 'preview1');
-        setupFileInputChangeHandler('logo2', 'preview2');
+        
     });
 
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -372,14 +372,14 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // Kullanıcı evet'e tıkladığında, silme işlemini gerçekleştir
-                window.location.href = "/Admin/Aboute/Delete/" + itemId;
+                window.location.href = "/Admin/User/Delete/" + itemId;
             }
         });
     }
 
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
