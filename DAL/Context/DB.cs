@@ -32,6 +32,7 @@ namespace DAL.Context
         public DbSet<Success> successes { get; set; }
         public DbSet<Video> video { get; set; }
         public DbSet<CustomerComment> customerComments { get; set; }
+        public DbSet<VisitorCount> visitorCounts { get; set; }
         public DbSet<Reply> Replies { get; set; }
         public DbSet<Notification> notifications { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

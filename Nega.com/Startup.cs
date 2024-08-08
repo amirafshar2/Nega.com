@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Negacom.Service;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -86,6 +87,7 @@ namespace Nega.com
 
             services.AddSession();
             services.AddHttpContextAccessor();
+            services.AddScoped<VisitorCounterService>();
 
         }
 
