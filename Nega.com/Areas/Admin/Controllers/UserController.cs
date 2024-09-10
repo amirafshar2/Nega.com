@@ -151,7 +151,7 @@ namespace Negacom.Areas.Admin.Controllers
                 return View();
             }
         }
-        [Authorize(Roles = "Admin,Moderator")]
+        [Authorize(Roles = "Admin,Moderator,Writer,User")]
         [HttpGet]
         public IActionResult Update(int id)
         {
@@ -181,7 +181,7 @@ namespace Negacom.Areas.Admin.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin,Moderator")]
+        [Authorize(Roles = "Admin,Moderator,Writer,User")]
         [HttpPost]
         public async Task<IActionResult> Update(UserModel u, int id)
         {
