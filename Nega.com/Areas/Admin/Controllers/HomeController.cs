@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Nega.com.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Moderator,Writer")]
     [Area("Admin")]
     public class HomeController : Controller
     {

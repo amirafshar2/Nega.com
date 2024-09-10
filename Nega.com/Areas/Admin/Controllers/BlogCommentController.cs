@@ -1,11 +1,14 @@
 ﻿using DAL.Context;
 using DAL.EntityFrameWork;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Linq;
 
 namespace Negacom.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Moderator")]
     [Area("Admin")]
     public class BlogCommentController : Controller
     {

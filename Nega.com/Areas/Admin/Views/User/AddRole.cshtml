@@ -349,36 +349,38 @@
     </style>
 </head>
 
-
-<form method="post" asp-action="AddRole">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Rol Adı</th>
-                <th>Kullanıcıda Mevcut</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < Model.Count(); i++)
-            {
+@if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+{
+    <form method="post" asp-action="AddRole">
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@Model[i].name</td>
-                    <td>
-
-                        <div>
-                            <input id="s1_@Model[i].roleid" type="checkbox" asp-for="@Model[i].exist" class="switch">
-                            <label for="s1_@Model[i].roleid">@Model[i].name</label>
-                        </div>
-
-                        <input type="hidden" asp-for="@Model[i].roleid" />
-                        <input type="hidden" asp-for="@Model[i].name" />
-
-                    </td>
+                    <th>Rol Adı</th>
+                    <th>Kullanıcıda Mevcut</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    <button type="submit" class="btn btn-success">Update</button>
-</form>
-<br />
-<a class="btn btn-info" href="/Admin/User/Index">go back</a>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                    <tr>
+                        <td>@Model[i].name</td>
+                        <td>
+
+                            <div>
+                                <input id="s1_@Model[i].roleid" type="checkbox" asp-for="@Model[i].exist" class="switch">
+                                <label for="s1_@Model[i].roleid">@Model[i].name</label>
+                            </div>
+
+                            <input type="hidden" asp-for="@Model[i].roleid" />
+                            <input type="hidden" asp-for="@Model[i].name" />
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-success">Update</button>
+    </form>
+    <br />
+    <a class="btn btn-info" href="/Admin/User/Index">go back</a>
+}

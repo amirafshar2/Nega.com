@@ -2,25 +2,16 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
-
-
-
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <!DOCTYPE html>
 <html>
-
-
-
-
 <head>
     <!-- Title  -->
     <title>NEGA</title>
-
     <!-- Favicon -->
     <link rel="shortcut icon" href="~/image/negasmal.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -33,7 +24,6 @@
     <link href="~/jsadmin/notificationcss/notifcss.css" rel="stylesheet" />
 </head>
 
-
 <body style="margin:0% 0% 0% 0%;">
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
@@ -41,7 +31,6 @@
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         @await Component.InvokeAsync("GetOnlineUser")
-
                     </li>
                     <li>
                         <a href="~/Nega/Index">
@@ -49,46 +38,102 @@
                         </a>
                     </li>
                     <li>
-                        <a href="~/Admin/Home/Index"><i class="fa fa-home"></i> <span class="nav-label">Home</span></a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                        {
+                            <a href="~/Admin/Home/Index"><i class="fa fa-home"></i> <span class="nav-label">Home</span></a>
+
+                        }
                     </li>
                     <li>
-                        <a href="~/Admin/Aboute/Index"><i class="fa fa-info-circle"></i> <span class="nav-label">About</span></a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                        {
+                            <a href="~/Admin/Aboute/Index"><i class="fa fa-info-circle"></i> <span class="nav-label">About</span></a>
+
+                        }
                     </li>
                     <li>
-                        <a href="~/Admin/CustomerComment/Index"><i class="fa fa-commenting-o"></i> <span class="nav-label">Customer Comment</span></a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                        {
+
+                            <a href="~/Admin/CustomerComment/Index"><i class="fa fa-commenting-o"></i> <span class="nav-label">Customer Comment</span></a>
+                        }
                     </li>
                     <li>
-                        <a href="~/Admin/Package/Index"><i class="fa fa-cart-plus"></i> <span class="nav-label">Package</span></a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                        {
+                            <a href="~/Admin/Package/Index"><i class="fa fa-cart-plus"></i> <span class="nav-label">Package</span></a>
+
+                        }
                     </li>
                     <li>
-                        <a href="~/Admin/Portfolio/Index"><i class="fa fa-archive"></i> <span class="nav-label">Portfolio Category</span></a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                        {
+                            <a href="~/Admin/Portfolio/Index"><i class="fa fa-archive"></i> <span class="nav-label">Portfolio Category</span></a>
+
+                        }
                     </li>
                     <li>
-                        <a href="~/Admin/Ref/Index"><i class="fa fa-briefcase"></i> <span class="nav-label">Portfolio</span></a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                        {
+                            <a href="~/Admin/Ref/Index"><i class="fa fa-briefcase"></i> <span class="nav-label">Portfolio</span></a>
+
+                        }
                     </li>
                     <li>
-                        <a href="~/Admin/Service/Index"><i class="fa fa-cogs"></i> <span class="nav-label">Service</span></a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                        {
+
+                            <a href="~/Admin/Service/Index"><i class="fa fa-cogs"></i> <span class="nav-label">Service</span></a>
+                        }
                     </li>
                     <li>
-                        <a href="~/Admin/Video/Index"><i class="fa fa-youtube"></i> <span class="nav-label">Video </span></a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                        {
+
+                            <a href="~/Admin/Video/Index"><i class="fa fa-youtube"></i> <span class="nav-label">Video </span></a>
+                        }
                     </li>
                     <li>
-                        <a href="~/Admin/User/Index"><i class="fa fa-user"></i> <span class="nav-label">User</span></a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                        {
+                            <a href="~/Admin/User/Index"><i class="fa fa-user"></i> <span class="nav-label">User</span></a>
+
+                        }
                     </li>
                     <li>
-                        <a href="~/Admin/Role/Index"><i class="fa fa-users"></i> <span class="nav-label">Role</span></a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                        {
+
+                            <a href="~/Admin/Role/Index"><i class="fa fa-users"></i> <span class="nav-label">Role</span></a>
+                        }
                     </li>
                     <li>
-                        <a href="~/Admin/BlogCategory/Index"><i class="fa fa-puzzle-piece"></i> <span class="nav-label">Blog Category</span></a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator") || User.IsInRole("Writer"))
+                        {
+
+                            <a href="~/Admin/BlogCategory/Index"><i class="fa fa-puzzle-piece"></i> <span class="nav-label">Blog Category</span></a>
+                        }
                     </li>
                     <li>
-                        <a href="~/Admin/Blog/Index"><i class="fa fa-columns"></i> <span class="nav-label">Blog</span></a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator") || User.IsInRole("Writer"))
+                        {
+                            <a href="~/Admin/Blog/Index"><i class="fa fa-columns"></i> <span class="nav-label">Blog</span></a>
+
+                        }
                     </li>
                     <li>
-                        <a href="~/Admin/BlogComment/Index"><i class="fa  fa-comments"></i> <span class="nav-label">Blogs Comment</span></a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                        {
+
+                            <a href="~/Admin/BlogComment/Index"><i class="fa  fa-comments"></i> <span class="nav-label">Blogs Comment</span></a>
+                        }
                     </li>
                     <li>
-                        <a href="~/Admin/Contect/Index"><i class="fa fa-plug"></i> <span class="nav-label">Contect Request</span></a>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                        {
+
+                            <a href="~/Admin/Contect/Index"><i class="fa fa-plug"></i> <span class="nav-label">Contect Request</span></a>
+                        }
                     </li>
                     <li style="">
                         <form asp-action="Logout" asp-controller="Login" method="post" class="form-inline">

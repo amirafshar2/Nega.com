@@ -65,9 +65,24 @@
         <div class="container">
 
             <!-- Logo -->
-            <a class="logo" href="~/Admin/Home/Index">
-                <img src="~/simba/negalight.png" alt="logo" />
-            </a>
+            @if (User.IsInRole("User"))
+            {
+                <a class="logo" href="~/Admin/Profile/Index">
+                    <img src="~/simba/negalight.png" alt="logo" />
+                </a>
+            }
+            else if (User.IsInRole("Admin,Moderator,Writer"))
+            {
+                <a class="logo" href="~/Admin/Home/Index">
+                    <img src="~/simba/negalight.png" alt="logo" />
+                </a>
+            }
+            else
+            {
+                <a class="logo" href="~/Admin/Login/Index">
+                    <img src="~/simba/negalight.png" alt="logo" />
+                </a>
+            }
 
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -11,7 +11,7 @@ namespace Negacom.Areas.Admin.Controllers
 {
 
 
-    [Authorize]
+    [Authorize(Roles = "Admin,Moderator")]
 
 
     [Area("Admin")]

@@ -29,72 +29,79 @@
     </style>
     <link href="~/jsadmin/statuscss/stylesheet.css" rel="stylesheet" />
 </head>
+@if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+{
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Aboute Table </h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="hidden">#</th>
 
-<div class="col-lg-12">
-    <div class="ibox ">
-        <div class="ibox-title">
-            <h5>Aboute Table </h5>
-            <div class="ibox-tools">
-                <a class="collapse-link">
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-                <a class="close-link">
-                    <i class="fa fa-times"></i>
-                </a>
+                            <th>Title1</th>
+                            <th>Content</th>
+                            <th>İmage1</th>
+                            <th>Video</th>
+                            <th>Status</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="hidden">@item.id</td>
+                                <td>@item.Title</td>
+                                <td>
+                                    @(
+                                        Html.Raw(item.Content.Length > 100 ? item.Content.Substring(0, 100) + "..." : item.Content)
+                                        )
+                                </td>
+                                <td>
+                                    <img class="card-img-top" src="~/image/Pack/@item.picture" alt="Card image" style="display:flex; height: 85px; width: 133px;">
+                                </td>
+                                <td>
+                                    @{
+                                        // YouTube linkini embed linkine dönüştür
+                                        var videoId = item.VideoLink.Split(new string[] { "v=" }, StringSplitOptions.None).Last();
+                                        var embedLink = $"https://www.youtube.com/embed/{videoId}";
+                                    }
+
+                                    <iframe width="280" height="150" src="@embedLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </td>
+                                <td>
+                                    <input id="s1_@item.id" type="checkbox" class="switch" @(
+                                   item.Status ? "checked" : ""
+                                   ) onchange="updateStatus(@item.id, this)">
+                                </td>
+                                <td>
+                                    <button onclick="location.href='@Url.Action("Update", "Video", new { id = item.id })'" class="btn btn-info  dim" type="button">
+                                        <i class="fa fa-cog"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button onclick="confirmDelete('@item.id')" class="btn btn-danger  dim " type="button"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="ibox-content">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th class="hidden">#</th>
-                       
-                        <th>Title1</th>
-                        <th>Content</th>
-                        <th>İmage1</th>
-                        <th>Video</th>                      
-                        <th>Status</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td class="hidden">@item.id</td>
-                            <td>@item.Title</td>
-                            <td>@(Html.Raw(item.Content.Length > 100 ? item.Content.Substring(0, 100) + "..." : item.Content))</td>
-                            <td>
-                                <img class="card-img-top" src="~/image/Pack/@item.picture" alt="Card image" style="display:flex; height: 85px; width: 133px;">
-                            </td>
-                            <td>
-                                @{
-                                    // YouTube linkini embed linkine dönüştür
-                                    var videoId = item.VideoLink.Split(new string[] { "v=" }, StringSplitOptions.None).Last();
-                                    var embedLink = $"https://www.youtube.com/embed/{videoId}";
-                                }
-
-                                <iframe width="280" height="150" src="@embedLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </td>
-                            <td>
-                                <input id="s1_@item.id" type="checkbox" class="switch" @(item.Status ? "checked" : "") onchange="updateStatus(@item.id, this)">
-                            </td>
-                            <td>
-                                <button onclick="location.href='@Url.Action("Update", "Video", new { id = item.id })'" class="btn btn-info  dim" type="button">
-                                    <i class="fa fa-cog"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button onclick="confirmDelete('@item.id')" class="btn btn-danger  dim " type="button"><i class="fa fa-trash"></i></button>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
     </div>
-</div>
-
+}
 
 
 <script>

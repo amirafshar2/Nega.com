@@ -17,7 +17,7 @@ using System.Linq;
 
 namespace Nega.com.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Moderator")]
     [Area("Admin")]
     public class PackageController : Controller
     {

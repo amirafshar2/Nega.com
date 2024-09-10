@@ -53,14 +53,21 @@ namespace Negacom.Areas.Admin.Controllers
             else
             {
                 var val = _UserMangerbll.GetbayUsername(u.UserName);
-                if (val != null && await _usermanager.CheckPasswordAsync(  val, u.Password))
+                if (val != null && await _usermanager.CheckPasswordAsync(val, u.Password))
                 {
-                   
 
-                    if (val == null || val.Status == true || val.DelateStatus== false)
+
+                    if (val == null || val.Status == true || val.DelateStatus == false)
                     {
                         var result = await _signinmanager.PasswordSignInAsync(u.UserName, u.Password, true, true);
-                        return RedirectToAction("Index", "Home");
+                        if (User.IsInRole("Admin") || User.IsInRole("Moderator")|| User.IsInRole("Writer"))
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else if(User.IsInRole("User"))
+                        {
+                            return RedirectToAction("Index", "Profile");
+                        }
                     }
                     else
                     {

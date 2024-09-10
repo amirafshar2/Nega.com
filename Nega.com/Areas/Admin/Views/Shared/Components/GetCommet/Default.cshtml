@@ -336,49 +336,52 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        @foreach (var item in Model)
-        {
-            <div class="be-comment-block">
-                <div class="be-comment">
-                    <div class="be-img-comment">
-                        <a href="blog-detail-2.html">
-                            <img src="~/image/Pack/@item.Picture" alt="profile" class="be-ava-comment">
-                        </a>
-                    </div>
-                    <div class="be-comment-content">
-                        <span class="be-comment-name">
-                            <a href="blog-detail-2.html">@item.NameSurName </a>
-                        </span>
-                        <span class="be-comment-time">
-                            <i class="fa fa-clock-o"></i>
-                            @item.Date.ToLocalTime()
-                        </span>
-                        <div>
-                            <input id="s1_@item.id" type="checkbox" class="switch" @(item.Status ? "checked" : "") onchange="updateStatus(@item.id, this)">
-                            <label for="s1_@item.id">Status</label>
+    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+    {
+        <div class="container">
+            @foreach (var item in Model)
+            {
+                <div class="be-comment-block">
+                    <div class="be-comment">
+                        <div class="be-img-comment">
+                            <a href="blog-detail-2.html">
+                                <img src="~/image/Pack/@item.Picture" alt="profile" class="be-ava-comment">
+                            </a>
                         </div>
+                        <div class="be-comment-content">
+                            <span class="be-comment-name">
+                                <a href="blog-detail-2.html">@item.NameSurName </a>
+                            </span>
+                            <span class="be-comment-time">
+                                <i class="fa fa-clock-o"></i>
+                                @item.Date.ToLocalTime()
+                            </span>
+                            <div>
+                                <input id="s1_@item.id" type="checkbox" class="switch" @(item.Status ? "checked" : "") onchange="updateStatus(@item.id, this)">
+                                <label for="s1_@item.id">Status</label>
+                            </div>
 
-                        <h4>@item.Brand</h4>
-                        <div class="be-comment-text">
-                            <p id="content">
-                                @item.Content
-                            </p>
+                            <h4>@item.Brand</h4>
+                            <div class="be-comment-text">
+                                <p id="content">
+                                    @item.Content
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="m-2">
+                        <div class="m-2">
 
-                        <button onclick="location.href='@Url.Action("Update", "CustomerComment", new { id = item.id })'" class="btn btn-info dim" type="button">
-                            <i class="fa fa-cog"></i>
-                        </button>
+                            <button onclick="location.href='@Url.Action("Update", "CustomerComment", new { id = item.id })'" class="btn btn-info dim" type="button">
+                                <i class="fa fa-cog"></i>
+                            </button>
 
-                        <button onclick="confirmDelete('@HttpUtility.UrlEncode(item.id.ToString())')" class="btn btn-danger dim" type="button"><i class="fa fa-trash"></i></button>
+                            <button onclick="confirmDelete('@HttpUtility.UrlEncode(item.id.ToString())')" class="btn btn-danger dim" type="button"><i class="fa fa-trash"></i></button>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
+            }
+        </div>
+    }
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -387,7 +390,7 @@
             var newStatus = $(checkbox).is(':checked');
 
             $.ajax({
-                url: '/Admin/CustomerComment/UpdateStatus', 
+                url: '/Admin/CustomerComment/UpdateStatus',
                 type: 'POST',
                 data: {
                     id: itemId,
@@ -423,4 +426,6 @@
     </script>
 </body>
 </html>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

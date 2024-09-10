@@ -11,7 +11,7 @@ using System;
 
 namespace Negacom.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Moderator")]
     [Area("Admin")]
     public class RefController : Controller
     {

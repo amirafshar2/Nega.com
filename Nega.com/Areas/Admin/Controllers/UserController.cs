@@ -42,7 +42,7 @@ namespace Negacom.Areas.Admin.Controllers
             _roleManager = roleManager;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin,Moderator")]
         [HttpGet]
         public IActionResult Index()
         {
@@ -50,7 +50,7 @@ namespace Negacom.Areas.Admin.Controllers
             val.Reverse();
             return View(val);
         }
-        [Authorize]
+        [Authorize(Roles = "Admin,Moderator")]
         [HttpPost]
         public async Task<IActionResult> Index(UserModel u)
         {
@@ -151,7 +151,7 @@ namespace Negacom.Areas.Admin.Controllers
                 return View();
             }
         }
-        [Authorize]
+        [Authorize(Roles = "Admin,Moderator")]
         [HttpGet]
         public IActionResult Update(int id)
         {
@@ -181,7 +181,7 @@ namespace Negacom.Areas.Admin.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin,Moderator")]
         [HttpPost]
         public async Task<IActionResult> Update(UserModel u, int id)
         {
@@ -311,7 +311,12 @@ namespace Negacom.Areas.Admin.Controllers
                     {
                         UserRolee adminRole = new UserRolee { Name = "Admin", NormalizedName = "ADMIN", Status = true };
                         _rolbll.Add(adminRole);
-
+                        UserRolee adminRole1 = new UserRolee { Name = "Moderator", NormalizedName = "MODERATOR", Status = true };
+                        _rolbll.Add(adminRole1); 
+                        UserRolee adminRole2 = new UserRolee { Name = "User", NormalizedName = "USER", Status = true };
+                        _rolbll.Add(adminRole2);
+                        UserRolee adminRole3 = new UserRolee { Name = "Writer", NormalizedName = "WRİTER", Status = true };
+                        _rolbll.Add(adminRole3);
                         var user = await _userManager.FindByNameAsync(newUser.UserName);
                         var role = _rolbll.GetAll().FirstOrDefault(o => o.NormalizedName == adminRole.NormalizedName);
 
@@ -337,7 +342,7 @@ namespace Negacom.Areas.Admin.Controllers
                         using (var client = new SmtpClient())
                         {
                             client.Connect("smtp.gmail.com", 587, false);
-                            client.Authenticate("afshar414amir@gmail.com", "pmpd qmpa skez jejz");
+                            client.Authenticate("afshar414amir@gmail.com", "osgl jrbp yajb lbjq");
                             client.Send(mime);
                             client.Disconnect(true);
                         }
@@ -405,7 +410,7 @@ namespace Negacom.Areas.Admin.Controllers
                 }
             }
         }
-        [Authorize]
+        [Authorize(Roles = "Admin,Moderator")]
         [HttpPost]
         public IActionResult UpdateStatus(int id, bool status)
         {
@@ -418,7 +423,7 @@ namespace Negacom.Areas.Admin.Controllers
             }
             return Json(new { success = false });
         }
-        [Authorize]
+        [Authorize(Roles = "Admin,Moderator")]
         public IActionResult Delete(int id)
         {
             DB db = new DB();
@@ -431,7 +436,7 @@ namespace Negacom.Areas.Admin.Controllers
             }
             return RedirectToAction("Index", "User");
         }
-        [Authorize]
+        [Authorize(Roles = "Admin,Moderator")]
         public IActionResult UpdateStatus1(int id, bool status)
         {
             var comment = _Userbll.GetById(id);
@@ -443,7 +448,7 @@ namespace Negacom.Areas.Admin.Controllers
             }
             return Json(new { success = false });
         }
-        [Authorize]
+        [Authorize(Roles = "Admin,Moderator")]
         [HttpGet]
         public async Task<IActionResult> AddRole(int id)
         {
@@ -468,7 +473,7 @@ namespace Negacom.Areas.Admin.Controllers
 
             return View(rm);
         }
-        [Authorize]
+        [Authorize(Roles = "Admin,Moderator")]
         [HttpPost]
         public async Task<IActionResult> AddRole(List<Rolemodel> m)
         {
@@ -501,6 +506,10 @@ namespace Negacom.Areas.Admin.Controllers
             }
 
             return RedirectToAction("Index", "User");
+        }
+        public IActionResult Accessdenied ()
+        {
+            return View();
         }
     }
 

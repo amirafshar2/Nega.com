@@ -402,52 +402,58 @@
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 @model List<BE.User>
-@foreach (var item in Model)
+@if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
 {
-    <div class="container profile-page">
-        <div class="row">
-            <div class="col-xl-6 col-lg-7 col-md-12">
-                <div class="card profile-header">
-                    <div class="body">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-12">
-                                <div class="profile-image float-md-right"> <img src="~/image/Pack/@item.Picture" alt=""> </div>
-                            </div>
-                            <div class="col-lg-8 col-md-8 col-12">
-                                <h5 class="m-t-0 m-b-0"><strong>@item.Name @item.Family</strong></h5>
-                               
-                                <div class="col-6"><h5><strong>UserName:</strong></h5> <p>@item.UserName</p></div>
-                                <div>
-                                    <input id="s1_@item.Id" type="checkbox" class="switch" @(item.Personeldurumu ? "checked" : "") onchange="updateStatus1(@item.Id, this)">
-                                    <label for="s1_@item.Id">Share on Page</label>
+    @foreach (var item in Model)
+    {
+        <div class="container profile-page">
+            <div class="row">
+                <div class="col-xl-6 col-lg-7 col-md-12">
+                    <div class="card profile-header">
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="profile-image float-md-right"> <img src="~/image/Pack/@item.Picture" alt=""> </div>
                                 </div>
-                               
-                                <div>
-                                    <input id="s1_@item.Id" type="checkbox" class="switch" @(item.Status ? "checked" : "") onchange="updateStatus(@item.Id, this)">
-                                    <label for="s1_@item.Id">Status</label>
+                                <div class="col-lg-8 col-md-8 col-12">
+                                    <h5 class="m-t-0 m-b-0"><strong>@item.Name @item.Family</strong></h5>
+
+                                    <div class="col-6"><h5><strong>UserName:</strong></h5> <p>@item.UserName</p></div>
+                                    <div>
+                                        <input id="s1_@item.Id" type="checkbox" class="switch" @(
+                                item.Personeldurumu ? "checked" : ""
+                                ) onchange="updateStatus1(@item.Id, this)">
+                                        <label for="s1_@item.Id">Share on Page</label>
+                                    </div>
+
+                                    <div>
+                                        <input id="s1_@item.Id" type="checkbox" class="switch" @(
+                                item.Status ? "checked" : ""
+                                ) onchange="updateStatus(@item.Id, this)">
+                                        <label for="s1_@item.Id">Status</label>
+                                    </div>
+                                    <div class="row ">
+                                        <button onclick="confirmDelete('@item.Id')" class="btn btn-danger  btn-round  " style="height: 30px; margin: 3px 3px 0px 0px;" type="button">
+                                            Delete
+                                        </button>
+                                        <a href="/Admin/User/Detale/@item.Id" class="m-1 btn btn-info btn-round">Detale</a>
+                                        <a href="/Admin/User/Update/@item.Id" class="m-1 btn btn-primary btn-round btn-simple">Update</a> 
+                                        <a href="/Admin/User/AddRole/@item.Id" class="m-1 btn btn-success btn-round btn-simple">Roles</a>
+                                    </div>
+                                    <p class="social-icon m-t-5 m-b-0">
+                                        <a title="Facebook" href="@item.Facebook"><i class="fa fa-facebook"></i></a>
+                                        <a title="Telegram" href="@item.Telegram"><i class="fa fa-telegram"></i></a>
+                                        <a title="Instagram" href="@item.İnstagram"><i class="fa fa-instagram"></i></a>
+                                    </p>
                                 </div>
-                                <div class="row ">
-                                    <button onclick="confirmDelete('@item.Id')" class="btn btn-danger  btn-round  " style="height: 30px; margin: 3px 3px 0px 0px;" type="button">
-                                        Delete
-                                    </button>
-                                    <a href="/Admin/User/Detale/@item.Id" class="m-1 btn btn-info btn-round">Detale</a>
-                                    <a href="/Admin/User/Update/@item.Id" class="m-1 btn btn-primary btn-round btn-simple">Update</a> 
-                                    <a href="/Admin/User/AddRole/@item.Id" class="m-1 btn btn-success btn-round btn-simple">Roles</a>
-                                </div>
-                                <p class="social-icon m-t-5 m-b-0">
-                                    <a title="Facebook" href="@item.Facebook"><i class="fa fa-facebook"></i></a>
-                                    <a title="Telegram" href="@item.Telegram"><i class="fa fa-telegram"></i></a>
-                                    <a title="Instagram" href="@item.İnstagram"><i class="fa fa-instagram"></i></a>
-                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
 }
-
 <script>
  
     function updateStatus(itemId, checkbox) {

@@ -9,7 +9,7 @@ using System.Security.Claims;
 namespace Negacom.Areas.Admin.Controllers
 {
 
-    [Authorize]
+    [Authorize(Roles = "Admin,Moderator,Writer,User")]  
     [Area("Admin")]
     public class ProfileController : Controller
     {

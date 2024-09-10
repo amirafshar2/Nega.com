@@ -17,6 +17,7 @@ using DAL.Context;
 using DAL.EntityFrameWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -64,7 +65,8 @@ namespace Nega.com
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/Admin/Login";
-                options.AccessDeniedPath = "/Admin/Reqister";
+                options.AccessDeniedPath = new PathString ("/Admin/User/Accessdenied");
+                
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
             });
             services.AddControllersWithViews().AddNewtonsoftJson(options =>

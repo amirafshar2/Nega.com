@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Negacom.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Moderator")]
     [Area("Admin")]
     public class VideoController : Controller
     {

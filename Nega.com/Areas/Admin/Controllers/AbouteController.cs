@@ -13,9 +13,10 @@ using System.Linq;
 namespace Negacom.Areas.Admin.Controllers
 {
 
-    [Authorize]
+   
 
     [Area("Admin")]
+    [Authorize(Roles ="Admin,Moderator")]
     public class AbouteController : Controller
     {
 

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Negacom.Areas.Admin.Controllers
 {
 
-    [Authorize]
+    [Authorize(Roles = "Admin,Moderator,Writer")]
 
     [Area("Admin")]
     public class BlogCategoryController : Controller

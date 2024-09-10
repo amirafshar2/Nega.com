@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace Negacom.Areas.Admin.Controllers
 {
 
-    [Authorize]
+    [Authorize(Roles = "Admin,Moderator,Writer")]
 
     [Area("Admin")]
     public class BlogController : Controller

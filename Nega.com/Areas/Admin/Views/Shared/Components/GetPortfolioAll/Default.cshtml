@@ -16,56 +16,57 @@
         }
     </style>
 </head>
+@if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+{
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Striped Table </h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
 
-<div class="col-lg-12">
-    <div class="ibox ">
-        <div class="ibox-title">
-            <h5>Striped Table </h5>
-            <div class="ibox-tools">
-                <a class="collapse-link">
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-            
-                <a class="close-link">
-                    <i class="fa fa-times"></i>
-                </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="hidden">#</th>
+                            <th>Name</th>
+                            <th>Description</th>
+
+                            <th>Edite</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="hidden">@item.id</td>
+                                <td>@item.Name</td>
+                                <td>@item.Description</td>
+                                <td>
+                                    <button onclick="location.href='@Url.Action("Update", "Portfolio", new { id = item.id })'" class="btn btn-info  dim" type="button">
+                                        <i class="fa fa-cog"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button onclick="confirmDelete('@item.id')" class="btn btn-danger  dim " type="button"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="ibox-content">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th class="hidden">#</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        
-                        <th>Edite</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td class="hidden">@item.id</td>
-                            <td>@item.Name</td>
-                            <td>@item.Description</td>
-                            <td>
-                                <button onclick="location.href='@Url.Action("Update", "Portfolio", new { id = item.id })'" class="btn btn-info  dim" type="button">
-                                    <i class="fa fa-cog"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button onclick="confirmDelete('@item.id')" class="btn btn-danger  dim " type="button"><i class="fa fa-trash"></i></button>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
     </div>
-</div>
-
+}
 
 
 <script>

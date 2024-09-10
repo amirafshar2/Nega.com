@@ -1,10 +1,4 @@
-﻿
-
-
-
-
-
-@*
+﻿@*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
@@ -25,7 +19,7 @@
 
     <!-- Title  -->
     <title>NEGA</title>
-   
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="~/image/negasmal.png">
 
@@ -67,11 +61,27 @@
         <div class="container">
 
             <!-- Logo -->
-            <a class="logo" href="~/Admin/Home/Index">
-                <img src="~/simba/negalight.png"  alt="logo" />
-            </a>
-         
-          
+            @if (User.IsInRole("User"))
+            {
+                <a class="logo" href="~/Admin/Profile/Index">
+                    <img src="~/simba/negalight.png" alt="logo" />
+                </a>
+            }
+            else if (User.IsInRole("Admin,Moderator,Writer"))
+            {
+                <a class="logo" href="~/Admin/Home/Index">
+                    <img src="~/simba/negalight.png" alt="logo" />
+                </a>
+            }
+            else
+            {
+                <a class="logo" href="~/Admin/Login/Index">
+                    <img src="~/simba/negalight.png" alt="logo" />
+                </a>
+            }
+
+
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="icon-bar"><i class="fas fa-bars"></i></span>
             </button>
@@ -119,9 +129,9 @@
     <!-- =====================================
     ==== Start Footer -->
 
-            <div>
-                <img src="~/simba/www.cagdascivata.com.tr.svg" />
-            </div>
+    <div>
+        <img src="~/simba/www.cagdascivata.com.tr.svg" />
+    </div>
     <footer>
         <div class="container">
             <div class="row">
@@ -153,18 +163,18 @@
                     </a>
 
                     <div class="social">
-                        
+
                         <a href="https://t.me/Negainfo"><i class="fab fa-telegram"></i></a>
                         <a href="https://www.instagram.com/nega.com.tr?igsh=MXYzenB3YWNseXAxOQ=="><i class="fab fa-instagram"></i></a>
                     </div>
 
-                    
+
                 </div>
 
             </div>
         </div>
     </footer>
- 
+
     <!-- End Footer ====
     ======================================= -->
     <!-- jQuery -->
