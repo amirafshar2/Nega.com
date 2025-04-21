@@ -3,6 +3,7 @@ using BLL.Concrate;
 using DAL.Context;
 using DAL.EntityFrameWork;
 using MailKit.Net.Smtp;
+using MailKit.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -341,8 +342,8 @@ namespace Negacom.Areas.Admin.Controllers
 
                         using (var client = new SmtpClient())
                         {
-                            client.Connect("smtp.gmail.com", 587, false);
-                            client.Authenticate("afshar414amir@gmail.com", "osgl jrbp yajb lbjq");
+                            client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                            client.Authenticate("afshar414amir@gmail.com", "fxmh wbzi hxjx pdtg"); // Burada uygulama şifresini kullan
                             client.Send(mime);
                             client.Disconnect(true);
                         }
@@ -391,7 +392,7 @@ namespace Negacom.Areas.Admin.Controllers
                         using (var client = new SmtpClient())
                         {
                             client.Connect("smtp.gmail.com", 587, false);
-                            client.Authenticate("afshar414amir@gmail.com", "viva bduu ewvg dmph");
+                            client.Authenticate("afshar414amir@gmail.com", "fxmh wbzi hxjx pdtg");
                             client.Send(mime);
                             client.Disconnect(true);
                         }
